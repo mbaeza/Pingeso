@@ -11,7 +11,53 @@
         <ui:composition template="./Base.xhtml">
 
             <ui:define name="content">
-                
+                <h:form>
+                    <h:panelGrid style="margin: 0 auto" columns="2" cellpadding="5"> 
+                        <h:outputText value="Nombres: " />
+                        <p:inputText id="nombres" required="true" value="#{conductorBean.nombres}">
+                            <p:watermark for="nombres" value="Alex Patricio" />
+                        </p:inputText>
+                        
+                        <h:outputText value="Primer apellido: " />
+                        <p:inputText id="primer_apellido" required="true" value="#{conductorBean.primer_apellido}">
+                            <p:watermark for="primer_apellido" value="Ahumada" />
+                        </p:inputText> 
+                        
+                        <h:outputText value="Segundo apellido: " />
+                        <p:inputText id="segundo_apellido" required="true" value="#{conductorBean.segundo_apellido}">
+                            <p:watermark for="segundo_apellido" value="Ahumada" />
+                        </p:inputText>
+                        
+                        <h:outputText value="RUT: " />
+                        <p:inputText id="rut" required="true" value="#{conductorBean.rut}">
+                            <p:watermark for="rut" value="172427545" />
+                        </p:inputText> 
+                        
+                        <h:outputText value="Fecha de nacimiento: " />
+                        <p:inputMask id="fecha_nacimiento" value="#{conductorBean.fecha_nacimiento}" mask="99/99/9999">
+                            <p:watermark for="fecha_nacimiento" value="28/06/1989" />
+                        </p:inputMask>
+                        
+                        <h:outputText value="Direccion: " />
+                        <p:inputText id="direccion" required="true" value="#{conductorBean.direccion}">
+                            <p:watermark for="direccion" value="calle A #1234" />
+                        </p:inputText> 
+                        
+                        <h:outputText value="Correo: " />
+                        <p:inputText id="correo" required="true" value="#{conductorBean.correo}">
+                            <p:watermark for="correo" value="micorreo@gmail.com" />
+                        </p:inputText> 
+                        
+                        <h:outputText value="Telefono: " />
+                        <p:inputMask id="telefono" value="#{conductorBean.telefono}" mask="99999999">
+                            <p:watermark for="telefono" value="83217654" />
+                        </p:inputMask> 
+                        
+                        <p:commandButton value="Borrar formulario" type="reset" /> 
+                        <p:commandButton action="#{conductorBean.insertarConductor()}" value="Agregar" />
+                        
+                    </h:panelGrid>
+                </h:form> 
             </ui:define>
 
             <ui:define name="bottom">
