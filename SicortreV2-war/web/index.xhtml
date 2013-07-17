@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+          <p:commandButton action="#{camionBean.insertarCamion()}" value="Agregar" /> 
+          
+          <h:form>                        
+                    <!--Aqui tiene que ir un titulo-->
+                    <h:panelGrid style="margin: 0 auto" columns="2" cellpadding="5">  
+                        <h:outputText value="Patente: " />  
+                        <p:inputMask id="patente" value="#{camionBean.patente}" mask="aa-**-99">
+                            <p:watermark for="patente" value="PK-82-31" />
+                        </p:inputMask>    
+
+                        <h:outputText value="Fecha de compra: " />  
+                        <p:inputMask id="fecha_compra" value="#{camionBean.fecha_compra}" mask="99/99/9999">
+                            <p:watermark for="fecha_compra" value="22/10/2010" />
+                        </p:inputMask> 
+
+                        <h:outputText value="Kilometraje: " />  
+                        <p:inputMask id="km" value="#{camionBean.kilometraje}" mask="9999999999">
+                            <p:watermark for="km" value="50.000" />
+                        </p:inputMask>
+
+                        <h:outputText value="Motor: " />  
+                        <p:inputText id="Motor" required="true" value="#{camionBean.motor}" > 
+                            <p:watermark for="Motor" value="1600 cc" />
+                        </p:inputText>  
+
+                        <h:outputText value="Carga máxima: " />  
+                        <p:inputMask id="carga_max" value="#{camionBean.carga_max}" mask="99999999">
+                            <p:watermark for="carga_max" value="1200, en Kg" />
+                        </p:inputMask>
+                        
+                        <h:outputText value="Modelo: " />  
+                        <p:selectOneMenu value="#{camionBean.modelo_seleccionado}" effect="fade">  
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItems value="#{camionBean.modelos}" var="modelo" itemLabel="#{modelo.nombreModelo}" itemValue="#{modelo}"/>  
+                        </p:selectOneMenu> 
+
+                        <h:outputText value="Codigo GPS: " />  
+                        <p:inputMask id="cod_gps" value="#{camionBean.cod_gps_google}" mask="********************">
+                             <p:watermark for="cod_gps" value="Debe seguir el tutorial" />
+                        </p:inputMask>
+
+                        <h:outputText value="Observaciones: " />  
+                        <p:inputTextarea value="#{camionBean.observaciones}" rows="10" cols="10" autoResize="false"/>  
+            
+                        <p:commandButton value="Borrar formulario" type="reset" />  
+                        <p:commandButton action="#{camionBean.insertarCamion()}" value="Agregar" />  
+                    </h:panelGrid>
+                </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <body>
+        <ui:composition template="./Base.xhtml">
+            <ui:define name="content">
+                <div style="padding-top: 100px; padding-left: 20%; padding-right: 20%; margin: 0px 10% 12% 15%; height: 300px; width: 400px">    
+                    <div class="InicioSesión">
+                        <form class="form-horizontal">
+                                <div class="control-group error">
+                                  <label class="control-label" for="inputError">Nombre de Usuario</label>
+                                  <div class="controls">
+                                    <input type="text" id="inputError"/>
+                                    <span class="help-inline">Please correct the error</span>
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                  <label class="control-label" for="inputPassword">Contraseña</label>
+                                  <div class="controls">
+                                    <input type="password" id="inputPassword" placeholder="Password"/>
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                  <div class="controls">
+                                    <label class="checkbox">
+                                      <input type="checkbox"/> Remember me
+                                    </label>
+                                    <button type="submit" class="btn">Entrar</button>
+                                  </div>
+                                </div>                   
+                        </form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

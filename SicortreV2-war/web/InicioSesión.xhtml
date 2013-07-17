@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+         <ui:composition template="./BaseInicio.xhtml">
+            <ui:define name="content">
+                <div style="padding-top: 100px; padding-left: 20%; padding-right: 20%; margin: 0px 10% 12% 15%; height: 300px; width: 400px">    
+                    <div class="InicioSesión">
+                        <h:form class="form-horizontal">
+                                <div class="control-group">
+                                  <label class="control-label" for="usernameInput">Nombre de Usuario</label>
+                                  <div class="controls">
+                                      <h:inputText id="inputEmail" value="#{loginBean.username}"  />
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                  <label class="control-label" for="passwordInput">Contraseña</label>
+                                  <div class="controls">
+                                      <h:inputText value="#{loginBean.password}" id="inputPassword" />
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                  <div class="controls">
+                                    <label class="checkbox">
+                                      <input type="checkbox"/> Remember me
+                                    </label>
+                                      <h:commandButton type="submit" value="Entrar" class="btn" action="#{loginBean.login}"></h:commandButton>
+                                  </div>
+                                </div>                   
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
