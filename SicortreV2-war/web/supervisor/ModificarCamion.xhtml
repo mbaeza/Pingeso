@@ -9,15 +9,29 @@
     <body>
         <ui:composition template="./Base.xhtml">
             <ui:define name="content">
-                <h:panelGrid columns="2" columnClasses="column" cellpadding="5">  
+                <h:form>                                
+                    <p:dataTable style="width: 300px; height: 400px" id="tbl" var="marca" value="#{camionBean.marcas}"  paginator="true" rows="10">  
+                        <p:column>  
+                            <f:facet name="header">  
+                                <h:outputText value="Model" />  
+                            </f:facet>  
+                            <h:link  value="#{marca.nombreMarca}"/>
+                        </p:column>  
 
-                    <h:outputText value="Ajax Inplace Editor: " />  
-                    <p:inplace editor="true">  
-                        <p:inputText value=""  
-                                    required="true" label="text"/>  
-                    </p:inplace>  
+                        <p:column>  
+                            <f:facet name="header">  
+                                <h:outputText value="Year" />  
+                            </f:facet>  
+                            <h:outputText value="#{marca.idMarca}"/>  
+                        </p:column>  
+                    </p:dataTable>
 
-                </h:panelGrid>  
+                    <h:outputText value="Basic Input: " />  
+                    <p:inplace id="basic">  
+                        <p:inputText value="Edit Me" />  
+                    </p:inplace>                    
+                      
+                </h:form>
             </ui:define>
 
             <ui:define name="bottom">
