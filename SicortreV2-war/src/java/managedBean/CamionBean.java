@@ -4,7 +4,7 @@
  */
 package managedBean;
 
-import entitiesClass.Camion;
+import entitiesClass.Camion;  
 import sessionBeans.CamionFacadeLocal;
 import entitiesClass.Marca;
 import sessionBeans.MarcaFacadeLocal;
@@ -17,8 +17,12 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 
 /**
  *
@@ -35,6 +39,12 @@ public class CamionBean implements Serializable {
     private CamionFacadeLocal camionFacade;
     
     private List<SelectItem> modelos_y_marcas;
+    private List<Modelo> modelos;
+    private List<Marca> marcas;
+    private List<Camion> camiones;
+    private List<Modelo> modelosSeleccionadosPorMarca;
+    private Marca marca_seleccionada;
+    private String modelo_seleccionado;
     private String patente;
     private String fecha_compra;
     private String kilometraje;
@@ -42,12 +52,7 @@ public class CamionBean implements Serializable {
     private String carga_max;
     private String cod_gps_google;
     private String observaciones;
-    private List<Modelo> modelos;
-    private List<Marca> marcas;
-    private List<Camion> camiones;
-    private List<Modelo> modelosSeleccionadosPorMarca;
-    private Marca marca_seleccionada;
-    private String modelo_seleccionado;
+    private Camion camion_seleccionado;    
     private Modelo modelo;
 
   
@@ -58,7 +63,7 @@ public class CamionBean implements Serializable {
     public void init(){
         marcas = marcaFacade.findAll();      
         camiones = camionFacade.findAll();
-        modelos = modeloFacade.findAll();
+        modelos = modeloFacade.findAll();  
         //modelos_y_marcas = camionFacade.MarcasModelos();
        // modelos_y_marcas = new CamionBean().MarcasModelos(modelos, marcas);
        /* for(int i = 0;i < modelos.size();i++){
@@ -77,6 +82,14 @@ public class CamionBean implements Serializable {
                 modelosSeleccionadosPorMarca.add(modeloFacade.findAll().get(i));
             }
         }*/
+    }
+    
+    public Camion getCamion_seleccionado() {
+        return camion_seleccionado;
+    }
+
+    public void setCamion_seleccionado(Camion camion_seleccionado) {
+        this.camion_seleccionado = camion_seleccionado;
     }
     
      public Modelo getModelo() {
@@ -244,7 +257,50 @@ public class CamionBean implements Serializable {
         //modelo.setNombreModelo(modelo_seleccionado);
         modelo = new Modelo(id);
         camion.setIdModelo(modelo);
-        camion.setObservacion(modelo_seleccionado);
+        camion.setObservacion(observaciones);
         camionFacade.create(camion);
     }
+    
+    public void modificarCamion(){
+        int id = 0;
+      /*  if(camionFacade.findAll().size() != 0){
+            id = camionFacade.findAll().get(camionFacade.findAll().size()-1).getId()+1;
+        }*/
+        Camion camion = new Camion();
+        camion.setId(camion_seleccionado.getId());
+        camion.setFechaDeCompra(fecha_compra);
+        camion.setKilometraje(Double.parseDouble(kilometraje));
+        camion.setMaxCarga(Integer.parseInt(carga_max));
+        camion.setMotor(motor);
+        camion.setPatente(patente);
+        camion.setUsuarioGLatitude(cod_gps_google);
+        camion.setIdConductor(null);
+        for(int i = 0;i<modelos.size();i++){
+            if(modelos.get(i).getNombreModelo().equals(modelo_seleccionado))
+                id = modelos.get(i).getIdModelo();
+        }
+        //modelo.setNombreModelo(modelo_seleccionado);
+        modelo = new Modelo(id);
+        camion.setIdModelo(modelo);
+        camion.setObservacion(observaciones);
+        camionFacade.edit(camion);
+    }
+    
+    
+    
+    public void onRowSelect(SelectEvent event) {  
+       /* FacesMessage msg = new FacesMessage("Car Selected", ((Camion) event.getObject()).getPatente());  
+  
+        FacesContext.getCurrentInstance().addMessage(null, msg);*/
+      //  Modelo miModelo = modeloFacade.BuscarPorID(String.valueOf(camion_seleccionado.getId()));
+        modelo_seleccionado = modeloFacade.BuscarPorID(camion_seleccionado.getIdModelo().getIdModelo()).getNombreModelo();
+        patente = camion_seleccionado.getPatente();
+        fecha_compra = camion_seleccionado.getFechaDeCompra();
+        kilometraje = String.valueOf(camion_seleccionado.getKilometraje());
+        motor = camion_seleccionado.getMotor() ;
+        carga_max = String.valueOf(camion_seleccionado.getMaxCarga());
+        cod_gps_google = camion_seleccionado.getUsuarioGLatitude();
+        observaciones = camion_seleccionado.getObservacion();
+        
+    }   
 }

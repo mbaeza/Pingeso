@@ -794,16 +794,20 @@ exists or setup the property manually. For example like this:
     <target depends="compile,-library-inclusion-in-archive-weblogic,-library-inclusion-in-archive-by-user" name="library-inclusion-in-archive"/>
     <target if="is.jars.in.ejbjar" name="-library-inclusion-in-archive-by-user">
         <copyfiles files="${libs.jackson.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.Primefaces_3.5.classpath}" todir="${build.classes.dir}"/>
     </target>
     <target if="is.server.weblogic" name="-library-inclusion-in-archive-weblogic">
         <basename file="${libs.jackson.classpath}" property="manifest.libs.jackson.classpath"/>
+        <basename file="${libs.Primefaces_3.5.classpath}" property="manifest.libs.Primefaces_3.5.classpath"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Extension-List" value="jar-1 "/>
+            <attribute name="Extension-List" value="jar-1 jar-2 "/>
             <attribute name="jar-1-Extension-Name" value="${manifest.libs.jackson.classpath}"/>
+            <attribute name="jar-2-Extension-Name" value="${manifest.libs.Primefaces_3.5.classpath}"/>
         </manifest>
     </target>
     <target depends="compile" name="library-inclusion-in-manifest">
         <copyfiles files="${libs.jackson.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.Primefaces_3.5.classpath}" todir="${dist.ear.dir}/lib"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target name="-copy-meta-inf">
