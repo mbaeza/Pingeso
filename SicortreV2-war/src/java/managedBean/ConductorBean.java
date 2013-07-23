@@ -4,12 +4,26 @@
  */
 package managedBean;
 
+import entitiesClass.Camion;
 import entitiesClass.Conductor;
+import entitiesClass.Modelo;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import javax.annotation.*;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import sessionBeans.ConductorFacadeLocal;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.model.SelectItem;
+import java.io.Serializable;
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.model.SelectItemGroup;
+import org.primefaces.event.SelectEvent;
+
 
 /**
  *
@@ -21,7 +35,8 @@ public class ConductorBean {
     @EJB
     private ConductorFacadeLocal conductorFacade;
     
-    private int rut;
+    private String rut;
+    private String rut_seleccionado;
     private String fecha_nacimiento;
     private String direccion;
     private String correo;
@@ -29,29 +44,63 @@ public class ConductorBean {
     private String nombres;
     private String primer_apellido;
     private String segundo_apellido;
-            
+    private List<Conductor> conductores;
+    private Conductor conductor_seleccionado; 
     /**
      * Creates a new instance of ConductorBean
      */
     
     public ConductorBean() {
+        //conductores= new ArrayList<Conductor>();
+        //conductores=conductorFacade.findAll();
+    }
+    
+    @PostConstruct
+    public void init(){
+        conductores= new ArrayList<Conductor>();
+        conductores=conductorFacade.findAll();
+    }
+
+    public String getRut() {
+        return rut;
+    }
+
+    public void setRut(String rut) {
+        this.rut = rut;
+    }
+
+    public String getRut_seleccionado() {
+        return rut_seleccionado;
+    }
+
+    public void setRut_seleccionado(String rut_seleccionado) {
+        this.rut_seleccionado = rut_seleccionado;
+    }
+
+    public Conductor getConductor_seleccionado() {
+        return conductor_seleccionado;
+    }
+
+    public void setConductor_seleccionado(Conductor conductor_seleccionado) {
+        this.conductor_seleccionado = conductor_seleccionado;
     }
 
     public ConductorFacadeLocal getConductorFacade() {
         return conductorFacade;
     }
 
+    public List<Conductor> getConductores() {
+        return conductores;
+    }
+
+    public void setConductores(List<Conductor> conductores) {
+        this.conductores = conductores;
+    }
+
     public void setConductorFacade(ConductorFacadeLocal conductorFacade) {
         this.conductorFacade = conductorFacade;
     }
 
-    public int getRut() {
-        return rut;
-    }
-
-    public void setRut(int rut) {
-        this.rut = rut;
-    }
 
     public String getFecha_nacimiento() {
         return fecha_nacimiento;
@@ -111,7 +160,7 @@ public class ConductorBean {
     
     public void insertarConductor(){
         Conductor conductor = new Conductor();
-        conductor.setRut(rut);
+        conductor.setRut(Integer.parseInt(rut));
         conductor.setFechaNacimiento(fecha_nacimiento);
         conductor.setDireccion(direccion);
         conductor.setCorreo(correo);
@@ -120,5 +169,40 @@ public class ConductorBean {
         conductor.setPrimerApellido(primer_apellido);
         conductor.setSegundoApellido(segundo_apellido);
         conductorFacade.create(conductor);
+    }
+    
+    public void onRowSelect(SelectEvent event) {  
+       /* FacesMessage msg = new FacesMessage("Car Selected", ((Camion) event.getObject()).getPatente());  
+  
+        FacesContext.getCurrentInstance().addMessage(null, msg);*/
+      //  Modelo miModelo = modeloFacade.BuscarPorID(String.valueOf(camion_seleccionado.getId()));
+        nombres = conductor_seleccionado.getNombres();
+        primer_apellido = conductor_seleccionado.getPrimerApellido();
+        segundo_apellido=conductor_seleccionado.getSegundoApellido();
+        rut= String.valueOf(conductor_seleccionado.getRut());
+        fecha_nacimiento = conductor_seleccionado.getFechaNacimiento();
+        direccion = conductor_seleccionado.getDireccion();
+        correo = conductor_seleccionado.getCorreo();
+        telefono = conductor_seleccionado.getTelefono();
+        
+    }
+    
+     public void modificarConductor(){
+        int id = 0;
+      /*  if(camionFacade.findAll().size() != 0){
+            id = camionFacade.findAll().get(camionFacade.findAll().size()-1).getId()+1;
+        }*/
+        Conductor conductor = new Conductor();
+        conductor.setRut(Integer.parseInt(rut));
+        conductor.setNombres(nombres);
+        conductor.setPrimerApellido(primer_apellido);
+        conductor.setSegundoApellido(segundo_apellido);
+        conductor.setFechaNacimiento(fecha_nacimiento);
+        conductor.setDireccion(direccion);
+        conductor.setCorreo(correo);
+        conductor.setTelefono(telefono);
+
+        
+        conductorFacade.edit(conductor);
     }
 }

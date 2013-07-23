@@ -13,44 +13,53 @@
             <ui:define name="content">
                 <h:form prependId="false">  
   
-    <p:dataTable id="dataTable" var="car" value="#{tableBean.cars}"  
+                    <p:dataTable id="dataTable" var="conductores" value="#{conductorBean.conductores}"  
                  paginator="true" rows="10"  
                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                  rowsPerPageTemplate="5,10,15">  
-        <f:facet name="header">  
-            Ajax Pagination  
-        </f:facet>  
+                    <f:facet name="header">  
+                        Ajax Pagination  
+                    </f:facet>  
   
-        <p:column>  
-            <f:facet name="header">  
-                <h:outputText value="Model" />  
-            </f:facet>  
-            <h:outputText value="#{car.model}" />  
-        </p:column>  
+                    <p:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="RUT" />  
+                        </f:facet>  
+                        <h:outputText value="#{conductores.rut}" />  
+                    </p:column>  
   
-        <p:column>  
-            <f:facet name="header">  
-                <h:outputText value="Year" />  
-            </f:facet>  
-            <h:outputText value="#{car.year}" />  
-        </p:column>  
+                    <p:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="Nombres" />  
+                        </f:facet>  
+                        <h:outputText value="#{conductores.nombres}" />  
+                    </p:column>  
   
-        <p:column>  
-            <f:facet name="header">  
-                <h:outputText value="Manufacturer" />  
-            </f:facet>  
-            <h:outputText value="#{car.manufacturer}" />  
-        </p:column>  
+                    <p:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="Primer apellido" />  
+                        </f:facet>  
+                        <h:outputText value="#{conductores.primerApellido}" />  
+                    </p:column>  
   
-        <p:column>  
-            <f:facet name="header">  
-                <h:outputText value="Color" />  
-            </f:facet>  
-            <h:outputText value="#{car.color}" />  
-        </p:column>  
-    </p:dataTable>  
+                    <p:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="Segundo apellido" />  
+                        </f:facet>  
+                        <h:outputText value="#{conductores.segundoApellido}" />  
+                    </p:column>
+                        
+                    <p:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="Camion asignado" />  
+                        </f:facet>  
+                        <h:outputText value="#{conductores}" />  
+                    </p:column>
+                    
+                   
+                </p:dataTable>  
   
-</h:form>
+                </h:form>
             </ui:define>
 
             <ui:define name="bottom">
