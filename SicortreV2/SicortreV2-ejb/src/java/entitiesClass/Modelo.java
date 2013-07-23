@@ -21,6 +21,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -56,7 +57,7 @@ public class Modelo implements Serializable {
 
     public Modelo(Integer idModelo) {
         this.idModelo = idModelo;
-    }    
+    }
 
     public Modelo(Integer idModelo, String nombreModelo) {
         this.idModelo = idModelo;
@@ -80,6 +81,7 @@ public class Modelo implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     public Collection<Camion> getCamionCollection() {
         return camionCollection;
     }

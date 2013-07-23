@@ -38,9 +38,9 @@
                             <p:watermark for="carga_max" value="1200, en Kg" />
                         </p:inputMask>                        
                         
-                        <h:outputText value="Modelo: " />  
+                        <h:outputText value="Modelo - Marca: " />  
                         <p:selectOneMenu value="#{camionBean.modelo_seleccionado}">  
-                            <f:selectItems value="#{camionBean.modelos}" var="modelo" itemLabel="#{modelo.nombreModelo}" itemValue="#{modelo.nombreModelo}"/>  
+                            <f:selectItems value="#{camionBean.modelos}" var="modelo" itemLabel="#{modelo.nombreModelo} - #{modelo.idMarca.nombreMarca}" itemValue="#{modelo.nombreModelo}"/>  
                         </p:selectOneMenu> 
                         
                         <h:outputText value="Codigo GPS: " />  

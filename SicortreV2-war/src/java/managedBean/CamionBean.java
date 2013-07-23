@@ -31,6 +31,7 @@ import org.primefaces.event.UnselectEvent;
 @Named(value = "camionBean")
 @RequestScoped
 public class CamionBean implements Serializable {
+    //Inyección de dependencia desde los EJB
     @EJB
     private MarcaFacadeLocal marcaFacade;
     @EJB
@@ -38,6 +39,7 @@ public class CamionBean implements Serializable {
     @EJB
     private CamionFacadeLocal camionFacade;
     
+    //variables a utilizar
     private List<SelectItem> modelos_y_marcas;
     private List<Modelo> modelos;
     private List<Marca> marcas;
@@ -54,34 +56,25 @@ public class CamionBean implements Serializable {
     private String observaciones;
     private Camion camion_seleccionado;    
     private Modelo modelo;
-
+    private Camion camion_seleccionado_CamEst;
   
-   public CamionBean(){    
-   }
+    public CamionBean(){    
+    }
    
    @PostConstruct
     public void init(){
         marcas = marcaFacade.findAll();      
         camiones = camionFacade.findAll();
         modelos = modeloFacade.findAll();  
-        //modelos_y_marcas = camionFacade.MarcasModelos();
-       // modelos_y_marcas = new CamionBean().MarcasModelos(modelos, marcas);
-       /* for(int i = 0;i < modelos.size();i++){
-           SelectItemGroup Mo1 = new SelectItemGroup(modelos.get(i).getNombreModelo());
-           SelectItem items[] = null;
-           for(int u = 0;u < marcas.size();u++){
-               SelectItem item = new SelectItem(marcas.get(u).getNombreMarca(),marcas.get(u).getNombreMarca());
-               items[u] = item;
-        }
-           Mo1.setSelectItems(items);
-           modelos_y_marcas.add(Mo1);
-        }*/
-       // modelos = modeloFacade.find(marca_seleccionada.getIdMarca());
-        /*for(int i = 0;i < modelos.size();i++){
-            if(marca_seleccionada.getIdMarca() == modelos.get(i).getIdMarca().getIdMarca()){
-                modelosSeleccionadosPorMarca.add(modeloFacade.findAll().get(i));
-            }
-        }*/
+   }
+   
+    //Setters y Getters
+    public Camion getCamion_seleccionado_CamEst() {
+        return camion_seleccionado_CamEst;
+    }
+
+    public void setCamion_seleccionado_CamEst(Camion camion_seleccionado_CamEst) {
+        this.camion_seleccionado_CamEst = camion_seleccionado_CamEst;
     }
     
     public Camion getCamion_seleccionado() {
@@ -237,12 +230,14 @@ public class CamionBean implements Serializable {
         this.modelo_seleccionado = modelo_seleccionado;
     }
 
+    //Funcion para insertarun camion
     public void insertarCamion(){
         int id = 0;
       /*  if(camionFacade.findAll().size() != 0){
             id = camionFacade.findAll().get(camionFacade.findAll().size()-1).getId()+1;
         }*/
         Camion camion = new Camion();
+        camion.setEstado("Activo");
         camion.setFechaDeCompra(fecha_compra);
         camion.setKilometraje(Double.parseDouble(kilometraje));
         camion.setMaxCarga(Integer.parseInt(carga_max));
@@ -261,6 +256,7 @@ public class CamionBean implements Serializable {
         camionFacade.create(camion);
     }
     
+    //funcion para modificar los datos de un camion
     public void modificarCamion(){
         int id = 0;
       /*  if(camionFacade.findAll().size() != 0){
@@ -281,18 +277,23 @@ public class CamionBean implements Serializable {
         }
         //modelo.setNombreModelo(modelo_seleccionado);
         modelo = new Modelo(id);
+        camion.setEstado("Activo");
         camion.setIdModelo(modelo);
         camion.setObservacion(observaciones);
         camionFacade.edit(camion);
     }
     
+    //funcion para cambiar el estado de un camion
+    public void cambiarEstadoCamion(){
+        
+        camion_seleccionado_CamEst.setEstado("Inactivo");
+        camionFacade.edit(camion_seleccionado_CamEst);
+        
+    }
     
-    
+    //funcion utilizada en el modificar camiones, para que aparezcan los datos seleccionados en el formulario
     public void onRowSelect(SelectEvent event) {  
-       /* FacesMessage msg = new FacesMessage("Car Selected", ((Camion) event.getObject()).getPatente());  
-  
-        FacesContext.getCurrentInstance().addMessage(null, msg);*/
-      //  Modelo miModelo = modeloFacade.BuscarPorID(String.valueOf(camion_seleccionado.getId()));
+       
         modelo_seleccionado = modeloFacade.BuscarPorID(camion_seleccionado.getIdModelo().getIdModelo()).getNombreModelo();
         patente = camion_seleccionado.getPatente();
         fecha_compra = camion_seleccionado.getFechaDeCompra();

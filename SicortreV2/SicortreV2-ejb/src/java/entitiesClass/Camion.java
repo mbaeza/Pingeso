@@ -23,6 +23,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -40,7 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Camion.findByObservacion", query = "SELECT c FROM Camion c WHERE c.observacion = :observacion"),
     @NamedQuery(name = "Camion.findByMaxCarga", query = "SELECT c FROM Camion c WHERE c.maxCarga = :maxCarga"),
     @NamedQuery(name = "Camion.findByMotor", query = "SELECT c FROM Camion c WHERE c.motor = :motor"),
-    @NamedQuery(name = "Camion.findByKilometraje", query = "SELECT c FROM Camion c WHERE c.kilometraje = :kilometraje")})
+    @NamedQuery(name = "Camion.findByKilometraje", query = "SELECT c FROM Camion c WHERE c.kilometraje = :kilometraje"),
+    @NamedQuery(name = "Camion.findByEstado", query = "SELECT c FROM Camion c WHERE c.estado = :estado")})
 public class Camion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
@@ -79,6 +81,11 @@ public class Camion implements Serializable {
     @NotNull
     @Column(name = "kilometraje")
     private double kilometraje;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 8)
+    @Column(name = "Estado")
+    private String estado;
     @JoinColumn(name = "id_conductor", referencedColumnName = "Rut")
     @ManyToOne
     private Conductor idConductor;
@@ -97,7 +104,7 @@ public class Camion implements Serializable {
         this.id = id;
     }
 
-    public Camion(Integer id, String patente, String usuarioGLatitude, String fechaDeCompra, int maxCarga, String motor, double kilometraje) {
+    public Camion(Integer id, String patente, String usuarioGLatitude, String fechaDeCompra, int maxCarga, String motor, double kilometraje, String estado) {
         this.id = id;
         this.patente = patente;
         this.usuarioGLatitude = usuarioGLatitude;
@@ -105,6 +112,7 @@ public class Camion implements Serializable {
         this.maxCarga = maxCarga;
         this.motor = motor;
         this.kilometraje = kilometraje;
+        this.estado = estado;
     }
 
     public String getPatente() {
@@ -171,6 +179,14 @@ public class Camion implements Serializable {
         this.kilometraje = kilometraje;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public Conductor getIdConductor() {
         return idConductor;
     }
@@ -188,6 +204,7 @@ public class Camion implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     public Collection<Conductor> getConductorCollection() {
         return conductorCollection;
     }
@@ -197,6 +214,7 @@ public class Camion implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     public Collection<Coordenadas> getCoordenadasCollection() {
         return coordenadasCollection;
     }
