@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Base.xhtml">
+
+            <ui:define name="content">
+                 <h:form id="tablaGigante">          
+                    <h:panelGrid style="margin: 0 auto; width: 800px" cellpadding="5">                                             
+                        <p:dataTable  id="tbl" var="camion" value="#{camionBean.camiones}" rowKey="#{camion.patente}" paginator="true" rows="10" selection="#{camionBean.camion_seleccionado_CamEst}" >                                  
+                                
+                                <p:column selectionMode="single" style="width:2%" />  
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Patente" />  
+                                    </f:facet>    
+                                    <h:outputText value="#{camion.patente}" />                                      
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Conductor" />  
+                                    </f:facet>    
+                                    #{(camion.idConductor == null ) ? "No asignado" : camion.idConductor.nombres} 
+                                    <BR/>
+                                    #{(camion.idConductor == null ) ? "" : camion.idConductor.primerApellido} 
+                                    <BR/>
+                                    #{(camion.idConductor == null ) ? "" : camion.idConductor.segundoApellido}
+                                </p:column>
+                                
+                                 <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Kilometraje" />  
+                                    </f:facet>    
+                                     <h:outputText value="#{camion.kilometraje}" />                                      
+                                </p:column>
+                                
+                                 <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Carga Max." />  
+                                    </f:facet>    
+                                     <h:outputText value="#{camion.maxCarga}" />                                      
+                                </p:column>
+                                
+                                 <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Motor" />  
+                                    </f:facet>    
+                                     <h:outputText value="#{camion.motor}" />                                      
+                                </p:column>
+                                
+                                 <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Modelo" />  
+                                    </f:facet>    
+                                     <h:outputText value="#{camion.idModelo.nombreModelo}" />                                      
+                                </p:column>
+                                
+                                 <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Marca" />  
+                                    </f:facet>    
+                                     <h:outputText value="#{camion.idModelo.idMarca.nombreMarca}" />                                      
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Fecha de Compra" />  
+                                    </f:facet>  
+                                    <h:outputText value="#{camion.fechaDeCompra}" />  
+                                </p:column> 
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Estado" />  
+                                    </f:facet>  
+                                    <h:outputText value="#{camion.estado}" />  
+                                </p:column> 
+                                
+                            </p:dataTable> 
+                        
+                        <p:commandButton id="viewButton" value="Ver Camion" icon="ui-icon-search" update=":tablaGigante:displaySingle" oncomplete="singleCarDialog.show()"/>
+                    </h:panelGrid>
+                    
+                    <p:dialog id="dialog" header="Visualizacion del Camion" widgetVar="singleCarDialog" resizable="false" showEffect="fade" hideEffect="explode">  
+
+                        <h:panelGrid id="displaySingle" columns="2" cellpadding="4">  
+
+                            <f:facet name="header">  
+                                <p:graphicImage value="/resources/img/camion_basura.png"/>  
+                            </f:facet>  
+                            
+                            <h:panelGrid>  
+                                
+                                <h:outputText value="Patente: " />  
+                                <h:outputText value="#{camionBean.camion_seleccionado_CamEst.patente}" style="font-weight:bold"/>  
+
+                                <h:outputText value="Observaciones: " />  
+                                <b> #{camionBean.camion_seleccionado_CamEst.observacion=="" ? "No existen observaciones" : camionBean.camion_seleccionado_CamEst.observacion}</b>
+                                
+                           </h:panelGrid>
+                      </h:panelGrid>  
+                </p:dialog>   
+              </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
