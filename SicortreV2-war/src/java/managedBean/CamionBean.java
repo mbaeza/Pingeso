@@ -9,6 +9,7 @@ import sessionBeans.CamionFacadeLocal;
 import entitiesClass.Marca;
 import sessionBeans.MarcaFacadeLocal;
 import entitiesClass.Modelo;
+import java.awt.event.ActionEvent;
 import sessionBeans.ModeloFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
@@ -254,6 +255,16 @@ public class CamionBean implements Serializable {
         camion.setIdModelo(modelo);
         camion.setObservacion(observaciones);
         camionFacade.create(camion);
+        
+        modelo_seleccionado = "";
+        patente = null;
+        fecha_compra = null;;
+        kilometraje = null;
+        motor = null;
+        carga_max =null;
+        cod_gps_google = null;
+        observaciones = null;
+        
     }
     
     //funcion para modificar los datos de un camion
@@ -303,5 +314,23 @@ public class CamionBean implements Serializable {
         cod_gps_google = camion_seleccionado.getUsuarioGLatitude();
         observaciones = camion_seleccionado.getObservacion();
         
-    }   
+    }  
+    
+    //Mensaje confirmación Modificar camion
+    public void confirmacionModificar(ActionEvent actionEvent){  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modificación realizada",  "Se ha modificado un camion del sistema satisfactoriamente");    
+        FacesContext.getCurrentInstance().addMessage(null, message); 
+    }  
+    
+    //Mensaje confirmación Agregar camion
+    public void confirmacionAgregar(ActionEvent actionEvent){  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Agregación realizada",  "Se ha agregado un camion del sistema satisfactoriamente");    
+        FacesContext.getCurrentInstance().addMessage(null, message); 
+    } 
+    
+    //Mensaje confirmación Cambiar de estado camion
+    public void confirmacionCambiarEstado(ActionEvent actionEvent){  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cambio de estado realizado",  "Se ha cambiado el estado un camion del sistema satisfactoriamente");    
+        FacesContext.getCurrentInstance().addMessage(null, message); 
+    } 
 }

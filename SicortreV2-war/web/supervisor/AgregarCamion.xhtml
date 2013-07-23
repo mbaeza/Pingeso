@@ -10,9 +10,12 @@
         <!--Agregar un camion, este es el formulario-->
         <ui:composition template="./Base.xhtml">
             <ui:define name="content">
-                <h:form>                        
+                <h:form id="form">                        
                     <!--Aqui tiene que ir un titulo-->
-                    <h:panelGrid style="margin: 0 auto" columns="2" cellpadding="5">  
+                    
+                    <p:growl id="confirmacion" showDetail="true" life="2500" />  
+                    
+                    <h:panelGrid id="formulario" style="margin: 0 auto" columns="2" cellpadding="5">  
                         <h:outputText value="Patente: " />  
                         <p:inputMask id="patente" value="#{camionBean.patente}" mask="aa-**-99">
                             <p:watermark for="patente" value="PK-82-31" />
@@ -52,8 +55,14 @@
                         <p:inputTextarea value="#{camionBean.observaciones}" rows="10" cols="10" autoResize="false"/>  
 
                         <p:commandButton value="Borrar formulario" type="reset" />  
-                        <p:commandButton action="#{camionBean.insertarCamion()}" value="Agregar" />  
-                    </h:panelGrid>
+                        <p:commandButton onclick="mensajeConfirmacion.show()" value="Agregar" />
+                        
+                        <p:confirmDialog message="¿Está seguro que desea agregar un nuevo camion? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
+                            <p:commandButton value="Sí" action="#{camionBean.insertarCamion()}" actionListener="#{camionBean.confirmacionAgregar(actionEvent)}" update=":form" oncomplete="mensajeConfirmacion.hide()" ajax="true" />
+                            <p:commandButton value="No" onclick="mensajeConfirmacion.hide();" type="button" /> 
+                        </p:confirmDialog>
+                                               
+                    </h:panelGrid>                                         
                 </h:form> 
             </ui:define>
         </ui:composition>

@@ -9,9 +9,12 @@
     <body>
         <ui:composition template="./Base.xhtml">
             <ui:define name="content">
-                <h:form id="formulario">          
+                <h:form id="formulario">    
+                    
+                    <p:growl id="confirmacion" showDetail="true" life="2500"/>  
+                    
                     <h:panelGrid style="margin: 0 auto; width: 800px" columns="2" cellpadding="5">
-                        <h:panelGrid style="" cellpadding="5"> 
+                        <h:panelGrid cellpadding="5"> 
                         
                             <p:dataTable style="width: 300px; height: 550px" id="tbl" var="camion" value="#{camionBean.camiones}" rowKey="#{camion.patente}" paginator="true" rows="5" selection="#{camionBean.camion_seleccionado}" selectionMode="single">  
                                 <p:ajax event="rowSelect" listener="#{camionBean.onRowSelect}" update=":formulario:formModificar" />  
@@ -73,7 +76,11 @@
                             <p:inputTextarea value="#{camionBean.observaciones}" rows="10" cols="10" autoResize="false"/>  
 
                            
-                            <p:commandButton action="#{camionBean.modificarCamion()}" value="Modificar" />  
+                            <p:commandButton onclick="mensajeConfirmacion.show()" value="Modificar"/>
+                            <p:confirmDialog message="¿Está seguro que desea modificar un camion? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
+                                <p:commandButton value="Sí" action="#{camionBean.modificarCamion()}" actionListener="#{camionBean.confirmacionModificar(actionEvent)}" update=":formulario:confirmacion" oncomplete="mensajeConfirmacion.hide()"/>
+                                <p:commandButton value="No" onclick="mensajeConfirmacion.hide();" type="button" /> 
+                            </p:confirmDialog>
                         
                         </h:panelGrid>                    
                     </h:panelGrid>

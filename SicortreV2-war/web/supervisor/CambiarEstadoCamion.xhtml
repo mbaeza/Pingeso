@@ -11,7 +11,9 @@
         <ui:composition template="./Base.xhtml">
 
             <ui:define name="content">
-                 <h:form id="tablaGigante">          
+                 <h:form id="tablaGigante">       
+                    <p:growl id="confirmacion" showDetail="true" life="2500" />  
+                     
                     <h:panelGrid style="margin: 0 auto; width: 800px" cellpadding="5">                                             
                         <p:dataTable  id="tbl" var="camion" value="#{camionBean.camiones}" rowKey="#{camion.patente}" paginator="true" rows="7" selection="#{camionBean.camion_seleccionado_CamEst}" >                                  
                                 
@@ -86,7 +88,11 @@
                                 
                             </p:dataTable> 
                         
-                        <p:commandButton action="#{camionBean.cambiarEstadoCamion()}" value="Cambiar Estado" update=":tablaGigante:tbl"/>
+                        <p:commandButton onclick="mensajeConfirmacion.show()" value="Cambiar Estado" />
+                        <p:confirmDialog message="¿Está seguro que desea cambiar el estado de este camion? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
+                            <p:commandButton value="Sí" action="#{camionBean.cambiarEstadoCamion()}" actionListener="#{camionBean.confirmacionCambiarEstado(actionEvent)}" update=":tablaGigante" oncomplete="mensajeConfirmacion.hide()" ajax="true" />
+                            <p:commandButton value="No" onclick="mensajeConfirmacion.hide();" type="button" /> 
+                        </p:confirmDialog>
                     </h:panelGrid>
                 </h:form>
             </ui:define>
