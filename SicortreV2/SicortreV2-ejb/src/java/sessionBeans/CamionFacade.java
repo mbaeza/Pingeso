@@ -15,6 +15,7 @@ import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -39,6 +40,19 @@ public class CamionFacade extends AbstractFacade<Camion> implements CamionFacade
         super(Camion.class);
     }
 
+    @Override
+    public Camion BuscarPorID(int ID) {
+        Query query;
+        query = em.createNamedQuery("Camion.findAll");
+        List<Camion> camiones =  query.getResultList();
+        
+        for(Camion camionEleg : camiones){
+            if(camionEleg.getId() == ID ){
+                return camionEleg;
+            }            
+        }
+        return (Camion)query.getResultList().get(0);
+    }
     /*@Override
     public List<SelectItem> MarcasModelos(){
         List<SelectItem> modelos_y_marcas = null;

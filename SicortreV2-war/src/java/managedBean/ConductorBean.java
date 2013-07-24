@@ -47,9 +47,11 @@ public class ConductorBean {
     private String nombres;
     private String primer_apellido;
     private String segundo_apellido;
+    private String camion;
     private List<Conductor> conductores;
     private Conductor conductor_seleccionado;
     private Conductor conductor_seleccionado_CamEst;
+    private Camion camion_seleccionado;
     /**
      * Creates a new instance of ConductorBean
      */
@@ -63,6 +65,22 @@ public class ConductorBean {
     public void init(){
         conductores= new ArrayList<Conductor>();
         conductores=conductorFacade.findAll();
+    }
+
+    public String getCamion() {
+        return camion;
+    }
+
+    public void setCamion(String camion) {
+        this.camion = camion;
+    }
+
+    public Camion getCamion_seleccionado() {
+        return camion_seleccionado;
+    }
+
+    public void setCamion_seleccionado(Camion camion_seleccionado) {
+        this.camion_seleccionado = camion_seleccionado;
     }
 
     public Conductor getConductor_seleccionado_CamEst() {
@@ -232,6 +250,16 @@ public class ConductorBean {
         conductor.setTelefono(telefono);
         conductor.setEstado("Activo");
 
+        
+        conductorFacade.edit(conductor);
+    }
+     
+    public void asignarCamion(){
+      /*  if(camionFacade.findAll().size() != 0){
+            id = camionFacade.findAll().get(camionFacade.findAll().size()-1).getId()+1;
+        }*/
+        Conductor conductor = new Conductor();
+        conductor.setIdCamion(camion_seleccionado);
         
         conductorFacade.edit(conductor);
     }

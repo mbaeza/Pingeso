@@ -11,55 +11,90 @@
         <ui:composition template="./Base.xhtml">
 
             <ui:define name="content">
-                <h:form prependId="false">  
-  
-                    <p:dataTable id="dataTable" var="conductores" value="#{conductorBean.conductores}"  
-                 paginator="true" rows="10"  
-                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
-                 rowsPerPageTemplate="5,10,15">  
-                    <f:facet name="header">  
-                        Ajax Pagination  
-                    </f:facet>  
-  
-                    <p:column>  
-                        <f:facet name="header">  
-                            <h:outputText value="RUT" />  
-                        </f:facet>  
-                        <h:outputText value="#{conductores.rut}" />  
-                    </p:column>  
-  
-                    <p:column>  
-                        <f:facet name="header">  
-                            <h:outputText value="Nombres" />  
-                        </f:facet>  
-                        <h:outputText value="#{conductores.nombres}" />  
-                    </p:column>  
-  
-                    <p:column>  
-                        <f:facet name="header">  
-                            <h:outputText value="Primer apellido" />  
-                        </f:facet>  
-                        <h:outputText value="#{conductores.primerApellido}" />  
-                    </p:column>  
-  
-                    <p:column>  
-                        <f:facet name="header">  
-                            <h:outputText value="Segundo apellido" />  
-                        </f:facet>  
-                        <h:outputText value="#{conductores.segundoApellido}" />  
-                    </p:column>
+                
+                <h:form id="tablaGigante">          
+                    <h:panelGrid style="margin: 0 auto; width: 800px" cellpadding="5">                                             
+                        <p:dataTable  id="tbl" var="conductor" value="#{conductorBean.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="10" selection="#{conductorBean.conductor_seleccionado_CamEst}" >                                  
+                                
+                                <p:column selectionMode="single" style="width:2%" />  
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="RUT" />  
+                                    </f:facet>    
+                                    <h:outputText value="#{conductor.rut}" />                                      
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Nombres" />  
+                                    </f:facet>  
+                                    <h:outputText value="#{conductor.nombres}" />  
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Primer apellido" />  
+                                    </f:facet>  
+                                    <h:outputText value="#{conductor.primerApellido}" />  
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Segundo apellido" />  
+                                    </f:facet>  
+                                    <h:outputText value="#{conductor.segundoApellido}" />  
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Camion" />  
+                                    </f:facet>    
+                                    #{(conductor.idCamion == null ) ? "No asignado" : conductor.idCamion.patente} 
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Fecha nacimiento" />  
+                                    </f:facet>  
+                                    <h:outputText value="#{conductor.fechaNacimiento}" />  
+                                </p:column>                               
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Estado" />  
+                                    </f:facet>  
+                                    <h:outputText value="#{conductor.estado}" />  
+                                </p:column> 
+                                
+                            </p:dataTable> 
                         
-                    <p:column>  
-                        <f:facet name="header">  
-                            <h:outputText value="Camion asignado" />  
-                        </f:facet>  
-                        <h:outputText value="#{conductores}" />  
-                    </p:column>
+                        <p:commandButton id="viewButton" value="Asignar Camion" icon="ui-icon-search" update=":tablaGigante:displaySingle" oncomplete="singleCarDialog.show()"/>
+                        
+                    </h:panelGrid>
                     
-                   
-                </p:dataTable>  
-  
-                </h:form>
+                    <p:dialog id="dialog" header="Asignar Camion" widgetVar="singleCarDialog" resizable="false" showEffect="fade" hideEffect="explode">  
+
+                        <h:panelGrid id="displaySingle" columns="2" cellpadding="4">   
+                            
+                            <h:panelGrid>  
+                                
+                                <h:outputText value="RUT: " />  
+                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.rut}" style="font-weight:bold"/>
+                                
+                                <h:outputText value="Camion: " />  
+                                <p:selectOneMenu value="#{conductorBean.camion}">  
+                                    <f:selectItems value="#{camionBean.camiones}" var="camion" itemLabel="#{camion.patente}" itemValue="#{camion.id}"/>  
+                                    </p:selectOneMenu> 
+                                
+                                <p:commandButton value="Aceptar" action="#{conductorBean.asignarCamion()}" actionListener="#{conductorBean.confirmacionCambiarEstado(actionEvent)}" update=":tablaGigante" oncomplete="mensajeConfirmacion.hide()" ajax="true" />
+                                
+                           </h:panelGrid>
+                      </h:panelGrid>  
+                </p:dialog>
+                      
+              </h:form>
+                
             </ui:define>
 
             <ui:define name="bottom">

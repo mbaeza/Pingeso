@@ -29,6 +29,8 @@ public interface CamionFacadeLocal {
     List<Camion> findAll();
 
     List<Camion> findRange(int[] range);
+    
+    Camion BuscarPorID(int ID);
 
     int count();
 
