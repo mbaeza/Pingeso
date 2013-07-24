@@ -25,7 +25,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Marco
+ * @author alex
  */
 @Entity
 @Table(name = "modelo")

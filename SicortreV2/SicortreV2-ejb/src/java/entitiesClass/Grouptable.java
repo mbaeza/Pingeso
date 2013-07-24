@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Marco
+ * @author alex
  */
 @Entity
 @Table(name = "grouptable")

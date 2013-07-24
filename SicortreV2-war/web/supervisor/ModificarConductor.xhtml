@@ -11,7 +11,11 @@
         <ui:composition template="./Base.xhtml">
 
             <ui:define name="content">
-                <h:form id="formulario">          
+                
+                <h:form id="formulario">
+                    
+                    <p:growl id="confirmacion" showDetail="true" life="2500"/>
+                    
                     <h:panelGrid style="margin: 0 auto; width: 800px" columns="2" cellpadding="5">
                         <h:panelGrid style="" cellpadding="5"> 
                         
@@ -78,7 +82,11 @@
                         </p:inputMask>
 
                            
-                        <p:commandButton action="#{conductorBean.modificarConductor()}" value="Modificar" />  
+                        <p:commandButton onclick="mensajeConfirmacion.show()" value="Modificar"/> 
+                        <p:confirmDialog message="¿Está seguro que desea modificar un conductor? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
+                            <p:commandButton value="Sí" action="#{conductorBean.modificarConductor()}" actionListener="#{conductorBean.confirmacionModificar(actionEvent)}" update=":formulario:confirmacion" oncomplete="mensajeConfirmacion.hide()"/>
+                            <p:commandButton value="No" onclick="mensajeConfirmacion.hide();" type="button" /> 
+                        </p:confirmDialog>
                         
                         </h:panelGrid>                    
                     </h:panelGrid>

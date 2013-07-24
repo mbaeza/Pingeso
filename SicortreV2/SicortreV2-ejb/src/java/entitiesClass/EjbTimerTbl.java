@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Marco
+ * @author alex
  */
 @Entity
 @Table(name = "ejb__timer__tbl")

@@ -24,7 +24,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Marco
+ * @author alex
  */
 @Entity
 @Table(name = "conductor")
@@ -38,7 +38,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Conductor.findByTelefono", query = "SELECT c FROM Conductor c WHERE c.telefono = :telefono"),
     @NamedQuery(name = "Conductor.findByNombres", query = "SELECT c FROM Conductor c WHERE c.nombres = :nombres"),
     @NamedQuery(name = "Conductor.findByPrimerApellido", query = "SELECT c FROM Conductor c WHERE c.primerApellido = :primerApellido"),
-    @NamedQuery(name = "Conductor.findBySegundoApellido", query = "SELECT c FROM Conductor c WHERE c.segundoApellido = :segundoApellido")})
+    @NamedQuery(name = "Conductor.findBySegundoApellido", query = "SELECT c FROM Conductor c WHERE c.segundoApellido = :segundoApellido"),
+    @NamedQuery(name = "Conductor.findByEstado", query = "SELECT c FROM Conductor c WHERE c.estado = :estado")})
 public class Conductor implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -81,6 +82,11 @@ public class Conductor implements Serializable {
     @Size(min = 1, max = 25)
     @Column(name = "segundo_apellido")
     private String segundoApellido;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 8)
+    @Column(name = "Estado")
+    private String estado;
     @OneToMany(mappedBy = "idConductor")
     private Collection<Camion> camionCollection;
     @JoinColumn(name = "id_camion", referencedColumnName = "Id")
@@ -94,7 +100,7 @@ public class Conductor implements Serializable {
         this.rut = rut;
     }
 
-    public Conductor(Integer rut, String fechaNacimiento, String direccion, String correo, String telefono, String nombres, String primerApellido, String segundoApellido) {
+    public Conductor(Integer rut, String fechaNacimiento, String direccion, String correo, String telefono, String nombres, String primerApellido, String segundoApellido, String estado) {
         this.rut = rut;
         this.fechaNacimiento = fechaNacimiento;
         this.direccion = direccion;
@@ -103,6 +109,7 @@ public class Conductor implements Serializable {
         this.nombres = nombres;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
+        this.estado = estado;
     }
 
     public Integer getRut() {
@@ -167,6 +174,14 @@ public class Conductor implements Serializable {
 
     public void setSegundoApellido(String segundoApellido) {
         this.segundoApellido = segundoApellido;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     @XmlTransient

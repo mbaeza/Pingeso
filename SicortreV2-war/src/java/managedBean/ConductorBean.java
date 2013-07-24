@@ -7,6 +7,7 @@ package managedBean;
 import entitiesClass.Camion;
 import entitiesClass.Conductor;
 import entitiesClass.Modelo;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -21,6 +22,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.model.SelectItem;
 import java.io.Serializable;
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItemGroup;
 import org.primefaces.event.SelectEvent;
 
@@ -45,7 +48,8 @@ public class ConductorBean {
     private String primer_apellido;
     private String segundo_apellido;
     private List<Conductor> conductores;
-    private Conductor conductor_seleccionado; 
+    private Conductor conductor_seleccionado;
+    private Conductor conductor_seleccionado_CamEst;
     /**
      * Creates a new instance of ConductorBean
      */
@@ -59,6 +63,14 @@ public class ConductorBean {
     public void init(){
         conductores= new ArrayList<Conductor>();
         conductores=conductorFacade.findAll();
+    }
+
+    public Conductor getConductor_seleccionado_CamEst() {
+        return conductor_seleccionado_CamEst;
+    }
+
+    public void setConductor_seleccionado_CamEst(Conductor conductor_seleccionado_CamEst) {
+        this.conductor_seleccionado_CamEst = conductor_seleccionado_CamEst;
     }
 
     public String getRut() {
@@ -168,7 +180,25 @@ public class ConductorBean {
         conductor.setNombres(nombres);
         conductor.setPrimerApellido(primer_apellido);
         conductor.setSegundoApellido(segundo_apellido);
+        conductor.setEstado("Activo");
         conductorFacade.create(conductor);
+        
+        rut=null;
+        rut_seleccionado=null;
+        fecha_nacimiento=null;
+        direccion=null;
+        correo=null;
+        telefono=null;
+        nombres=null;
+        primer_apellido=null;
+        segundo_apellido=null;
+    }
+
+    public void cambiarEstadoConductor(){
+        
+        conductor_seleccionado_CamEst.setEstado("Inactivo");
+        conductorFacade.edit(conductor_seleccionado_CamEst);
+        
     }
     
     public void onRowSelect(SelectEvent event) {  
@@ -188,7 +218,6 @@ public class ConductorBean {
     }
     
      public void modificarConductor(){
-        int id = 0;
       /*  if(camionFacade.findAll().size() != 0){
             id = camionFacade.findAll().get(camionFacade.findAll().size()-1).getId()+1;
         }*/
@@ -201,8 +230,24 @@ public class ConductorBean {
         conductor.setDireccion(direccion);
         conductor.setCorreo(correo);
         conductor.setTelefono(telefono);
+        conductor.setEstado("Activo");
 
         
         conductorFacade.edit(conductor);
     }
+     
+    public void confirmacionModificar(ActionEvent actionEvent){  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modificación realizada",  "Se ha modificado un conductor del sistema satisfactoriamente");    
+        FacesContext.getCurrentInstance().addMessage(null, message); 
+    }
+     
+    public void confirmacionAgregar(ActionEvent actionEvent){  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Agregación realizada",  "Se ha agregado un conductor al sistema satisfactoriamente");    
+        FacesContext.getCurrentInstance().addMessage(null, message); 
+    } 
+        
+    public void confirmacionCambiarEstado(ActionEvent actionEvent){  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cambio de estado realizado",  "Se ha cambiado el estado de un conductor del sistema satisfactoriamente");    
+        FacesContext.getCurrentInstance().addMessage(null, message); 
+    } 
 }

@@ -1,14 +1,115 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <body>
 
         <ui:composition template="./Base.xhtml">
 
             <ui:define name="content">
-                content
+                <h:form id="tablaGigante">          
+                    <h:panelGrid style="margin: 0 auto; width: 800px" cellpadding="5">                                             
+                        <p:dataTable  id="tbl" var="conductor" value="#{conductorBean.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="10" selection="#{conductorBean.conductor_seleccionado_CamEst}" >                                  
+                                
+                                <p:column selectionMode="single" style="width:2%" />  
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="RUT" />  
+                                    </f:facet>    
+                                    <h:outputText value="#{conductor.rut}" />                                      
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Nombres" />  
+                                    </f:facet>  
+                                    <h:outputText value="#{conductor.nombres}" />  
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Primer apellido" />  
+                                    </f:facet>  
+                                    <h:outputText value="#{conductor.primerApellido}" />  
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Segundo apellido" />  
+                                    </f:facet>  
+                                    <h:outputText value="#{conductor.segundoApellido}" />  
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Camion" />  
+                                    </f:facet>    
+                                    #{(conductor.idCamion == null ) ? "No asignado" : conductor.idCamion.patente} 
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Fecha nacimiento" />  
+                                    </f:facet>  
+                                    <h:outputText value="#{conductor.fechaNacimiento}" />  
+                                </p:column>                               
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Estado" />  
+                                    </f:facet>  
+                                    <h:outputText value="#{conductor.estado}" />  
+                                </p:column> 
+                                
+                            </p:dataTable> 
+                        
+                        <p:commandButton id="viewButton" value="Ver Conductor" icon="ui-icon-search" update=":tablaGigante:displaySingle" oncomplete="singleCarDialog.show()"/>
+                        
+                    </h:panelGrid>
+                    
+                    <p:dialog id="dialog" header="Visualizacion del Conductor" widgetVar="singleCarDialog" resizable="false" showEffect="fade" hideEffect="explode">  
+
+                        <h:panelGrid id="displaySingle" columns="2" cellpadding="4">   
+                            
+                            <h:panelGrid>  
+                                
+                                <h:outputText value="Nombres: " />  
+                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.nombres}" style="font-weight:bold"/>
+                                
+                                <h:outputText value="Primer apellido: " />  
+                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.primerApellido}" style="font-weight:bold"/>
+                                
+                                <h:outputText value="Segundo apellido: " />  
+                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.segundoApellido}" style="font-weight:bold"/>
+                                
+                                <h:outputText value="RUT: " />  
+                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.rut}" style="font-weight:bold"/>
+                                
+                                <h:outputText value="Fecha nacimiento: " />  
+                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.fechaNacimiento}" style="font-weight:bold"/>
+                                
+                                <h:outputText value="Direccion: " />  
+                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.direccion}" style="font-weight:bold"/>
+                                
+                                <h:outputText value="Correo: " />  
+                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.correo}" style="font-weight:bold"/>
+                                
+                                <h:outputText value="Telefono: " />  
+                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.telefono}" style="font-weight:bold"/>
+                                
+                                <h:outputText value="Estado: " />  
+                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.estado}" style="font-weight:bold"/>
+                                
+                           </h:panelGrid>
+                      </h:panelGrid>  
+                </p:dialog>
+                      
+              </h:form>
             </ui:define>
 
             <ui:define name="bottom">
