@@ -61,6 +61,12 @@
     width: 930px;
 }
 
+.header-central{
+    margin: 0px auto;
+    height: 202px;
+    width: 940px;
+}
+
 .menu_generico{
     border-radius: 5px;
     min-height: 800px;
