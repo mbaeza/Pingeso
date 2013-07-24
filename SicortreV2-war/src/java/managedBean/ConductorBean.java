@@ -18,6 +18,7 @@ import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import sessionBeans.ConductorFacadeLocal;
+import sessionBeans.ConductorFacade;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.model.SelectItem;
 import java.io.Serializable;
@@ -26,6 +27,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItemGroup;
 import org.primefaces.event.SelectEvent;
+import sessionBeans.CamionFacadeLocal;
 
 
 /**
@@ -35,6 +37,8 @@ import org.primefaces.event.SelectEvent;
 @Named(value = "conductorBean")
 @RequestScoped
 public class ConductorBean {
+    @EJB
+    private CamionFacadeLocal camionFacade;
     @EJB
     private ConductorFacadeLocal conductorFacade;
     
@@ -89,6 +93,14 @@ public class ConductorBean {
 
     public void setConductor_seleccionado_CamEst(Conductor conductor_seleccionado_CamEst) {
         this.conductor_seleccionado_CamEst = conductor_seleccionado_CamEst;
+    }
+
+    public CamionFacadeLocal getCamionFacade() {
+        return camionFacade;
+    }
+
+    public void setCamionFacade(CamionFacadeLocal camionFacade) {
+        this.camionFacade = camionFacade;
     }
 
     public String getRut() {
@@ -258,10 +270,14 @@ public class ConductorBean {
       /*  if(camionFacade.findAll().size() != 0){
             id = camionFacade.findAll().get(camionFacade.findAll().size()-1).getId()+1;
         }*/
-        Conductor conductor = new Conductor();
-        conductor.setIdCamion(camion_seleccionado);
         
-        conductorFacade.edit(conductor);
+        //Conductor conductor = new Conductor();
+        //conductor.setRut(conductor_seleccionado_CamEst.getRut());
+        //conductor.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
+        //conductorFacade.edit(conductor);
+        
+        conductor_seleccionado_CamEst.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
+        conductorFacade.edit(conductor_seleccionado_CamEst);
     }
      
     public void confirmacionModificar(ActionEvent actionEvent){  
