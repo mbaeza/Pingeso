@@ -5,11 +5,8 @@
 package sessionBeans;
 
 import entitiesClass.Camion;
-import entitiesClass.Marca;
-import entitiesClass.Modelo;
 import java.util.List;
 import javax.ejb.Local;
-import javax.faces.model.SelectItem;
 
 /**
  *
@@ -33,7 +30,5 @@ public interface CamionFacadeLocal {
     Camion BuscarPorID(int ID);
 
     int count();
-
-   /* List<SelectItem> MarcasModelos();*/
     
 }

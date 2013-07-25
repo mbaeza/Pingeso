@@ -13,7 +13,7 @@
             <ui:define name="content">
                 <h:form id="tablaGigante">          
                     <h:panelGrid style="margin: 0 auto; width: 800px" cellpadding="5">                                             
-                        <p:dataTable  id="tbl" var="conductor" value="#{conductorBean.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="10" selection="#{conductorBean.conductor_seleccionado_CamEst}" >                                  
+                        <p:dataTable  id="tbl" var="conductor" value="#{verConductor.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="10" selection="#{verConductor.conductor_seleccionado_CamEst}" >                                  
                                 
                                 <p:column selectionMode="single" style="width:2%" />  
                                 
@@ -44,14 +44,7 @@
                                     </f:facet>  
                                     <h:outputText value="#{conductor.segundoApellido}" />  
                                 </p:column>
-                                
-                                <p:column>  
-                                    <f:facet name="header">  
-                                        <h:outputText value="Camion" />  
-                                    </f:facet>    
-                                    #{(conductor.idCamion == null ) ? "No asignado" : conductor.idCamion.patente} 
-                                </p:column>
-                                
+                                                                                             
                                 <p:column>  
                                     <f:facet name="header">  
                                         <h:outputText value="Fecha nacimiento" />  
@@ -79,31 +72,31 @@
                             <h:panelGrid>  
                                 
                                 <h:outputText value="Nombres: " />  
-                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.nombres}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.nombres}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Primer apellido: " />  
-                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.primerApellido}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.primerApellido}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Segundo apellido: " />  
-                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.segundoApellido}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.segundoApellido}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="RUT: " />  
-                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.rut}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.rut}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Fecha nacimiento: " />  
-                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.fechaNacimiento}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.fechaNacimiento}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Direccion: " />  
-                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.direccion}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.direccion}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Correo: " />  
-                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.correo}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.correo}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Telefono: " />  
-                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.telefono}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.telefono}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Estado: " />  
-                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.estado}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.estado}" style="font-weight:bold"/>
                                 
                            </h:panelGrid>
                       </h:panelGrid>  

@@ -4,7 +4,7 @@
  */
 package sessionBeans;
 
-import entitiesClass.Coordenadas;
+import entitiesClass.Coordenada;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -13,24 +13,26 @@ import javax.ejb.Local;
  * @author Marco
  */
 @Local
-public interface CoordenadasFacadeLocal {
+public interface CoordenadaFacadeLocal {
 
-    void create(Coordenadas coordenadas);
+    void create(Coordenada coordenada);
 
-    void edit(Coordenadas coordenadas);
+    void edit(Coordenada coordenada);
 
-    void remove(Coordenadas coordenadas);
+    void remove(Coordenada coordenada);
 
-    Coordenadas find(Object id);
+    Coordenada find(Object id);
 
-    List<Coordenadas> findAll();
+    List<Coordenada> findAll();
 
-    List<Coordenadas> findRange(int[] range);
+    List<Coordenada> findRange(int[] range);
 
     int count();
     
     String obtenerLatitud(String nombreUsuarioGLatitude);
     
     String obtenerLongitud(String nombreUsuarioGLongitud);
+
+    void guardarCoordenadas();
     
 }

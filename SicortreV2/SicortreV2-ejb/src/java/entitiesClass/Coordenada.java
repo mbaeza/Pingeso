@@ -5,7 +5,6 @@
 package entitiesClass;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,63 +16,69 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author alex
+ * @author Marco
  */
 @Entity
-@Table(name = "coordenadas")
+@Table(name = "coordenada")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Coordenadas.findAll", query = "SELECT c FROM Coordenadas c"),
-    @NamedQuery(name = "Coordenadas.findByLatitud", query = "SELECT c FROM Coordenadas c WHERE c.latitud = :latitud"),
-    @NamedQuery(name = "Coordenadas.findByLongitud", query = "SELECT c FROM Coordenadas c WHERE c.longitud = :longitud"),
-    @NamedQuery(name = "Coordenadas.findByFecha", query = "SELECT c FROM Coordenadas c WHERE c.fecha = :fecha"),
-    @NamedQuery(name = "Coordenadas.findById", query = "SELECT c FROM Coordenadas c WHERE c.id = :id")})
-public class Coordenadas implements Serializable {
+    @NamedQuery(name = "Coordenada.findAll", query = "SELECT c FROM Coordenada c"),
+    @NamedQuery(name = "Coordenada.findById", query = "SELECT c FROM Coordenada c WHERE c.id = :id"),
+    @NamedQuery(name = "Coordenada.findByLatitud", query = "SELECT c FROM Coordenada c WHERE c.latitud = :latitud"),
+    @NamedQuery(name = "Coordenada.findByLongitud", query = "SELECT c FROM Coordenada c WHERE c.longitud = :longitud"),
+    @NamedQuery(name = "Coordenada.findByFecha", query = "SELECT c FROM Coordenada c WHERE c.fecha = :fecha")})
+public class Coordenada implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "Latitud")
+    @Column(name = "latitud")
     private String latitud;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "Longitud")
+    @Column(name = "longitud")
     private String longitud;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "Fecha")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fecha;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "Id")
-    private Integer id;
-    @JoinColumn(name = "Id_camion", referencedColumnName = "Id")
+    private String fecha;
+    @JoinColumn(name = "id_camion", referencedColumnName = "Id")
     @ManyToOne(optional = false)
-    private Camion idcamion;
+    private Camion idCamion;
 
-    public Coordenadas() {
+    public Coordenada() {
     }
 
-    public Coordenadas(Integer id) {
+    public Coordenada(Integer id) {
         this.id = id;
     }
 
-    public Coordenadas(Integer id, String latitud, String longitud, Date fecha) {
+    public Coordenada(Integer id, String latitud, String longitud, String fecha) {
         this.id = id;
         this.latitud = latitud;
         this.longitud = longitud;
         this.fecha = fecha;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getLatitud() {
@@ -92,28 +97,20 @@ public class Coordenadas implements Serializable {
         this.longitud = longitud;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
-    public Integer getId() {
-        return id;
+    public Camion getIdCamion() {
+        return idCamion;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Camion getIdcamion() {
-        return idcamion;
-    }
-
-    public void setIdcamion(Camion idcamion) {
-        this.idcamion = idcamion;
+    public void setIdCamion(Camion idCamion) {
+        this.idCamion = idCamion;
     }
 
     @Override
@@ -126,10 +123,10 @@ public class Coordenadas implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Coordenadas)) {
+        if (!(object instanceof Coordenada)) {
             return false;
         }
-        Coordenadas other = (Coordenadas) object;
+        Coordenada other = (Coordenada) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -138,7 +135,7 @@ public class Coordenadas implements Serializable {
 
     @Override
     public String toString() {
-        return "entitiesClass.Coordenadas[ id=" + id + " ]";
+        return "entitiesClass.Coordenada[ id=" + id + " ]";
     }
     
 }

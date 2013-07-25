@@ -28,7 +28,7 @@ public interface ModeloFacadeLocal {
     List<Modelo> findRange(int[] range);
 
     int count();
-
+    
     Modelo BuscarPorID(int ID);
     
 }

@@ -27,7 +27,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author alex
+ * @author Marco
  */
 @Entity
 @Table(name = "camion")
@@ -42,7 +42,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Camion.findByMaxCarga", query = "SELECT c FROM Camion c WHERE c.maxCarga = :maxCarga"),
     @NamedQuery(name = "Camion.findByMotor", query = "SELECT c FROM Camion c WHERE c.motor = :motor"),
     @NamedQuery(name = "Camion.findByKilometraje", query = "SELECT c FROM Camion c WHERE c.kilometraje = :kilometraje"),
-    @NamedQuery(name = "Camion.findByEstado", query = "SELECT c FROM Camion c WHERE c.estado = :estado")})
+    @NamedQuery(name = "Camion.findByEstado", query = "SELECT c FROM Camion c WHERE c.estado = :estado"),
+    @NamedQuery(name = "Camion.findByControl", query = "SELECT c FROM Camion c WHERE c.control = :control")})
 public class Camion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
@@ -86,16 +87,18 @@ public class Camion implements Serializable {
     @Size(min = 1, max = 8)
     @Column(name = "Estado")
     private String estado;
-    @JoinColumn(name = "id_conductor", referencedColumnName = "Rut")
-    @ManyToOne
-    private Conductor idConductor;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 11)
+    @Column(name = "Control")
+    private String control;
     @JoinColumn(name = "id_modelo", referencedColumnName = "id_modelo")
     @ManyToOne(optional = false)
     private Modelo idModelo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCamion")
-    private Collection<Conductor> conductorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcamion")
-    private Collection<Coordenadas> coordenadasCollection;
+    private Collection<AsignacionConductorCamion> asignacionConductorCamionCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCamion")
+    private Collection<Coordenada> coordenadaCollection;
 
     public Camion() {
     }
@@ -104,7 +107,7 @@ public class Camion implements Serializable {
         this.id = id;
     }
 
-    public Camion(Integer id, String patente, String usuarioGLatitude, String fechaDeCompra, int maxCarga, String motor, double kilometraje, String estado) {
+    public Camion(Integer id, String patente, String usuarioGLatitude, String fechaDeCompra, int maxCarga, String motor, double kilometraje, String estado, String control) {
         this.id = id;
         this.patente = patente;
         this.usuarioGLatitude = usuarioGLatitude;
@@ -113,6 +116,7 @@ public class Camion implements Serializable {
         this.motor = motor;
         this.kilometraje = kilometraje;
         this.estado = estado;
+        this.control = control;
     }
 
     public String getPatente() {
@@ -187,12 +191,12 @@ public class Camion implements Serializable {
         this.estado = estado;
     }
 
-    public Conductor getIdConductor() {
-        return idConductor;
+    public String getControl() {
+        return control;
     }
 
-    public void setIdConductor(Conductor idConductor) {
-        this.idConductor = idConductor;
+    public void setControl(String control) {
+        this.control = control;
     }
 
     public Modelo getIdModelo() {
@@ -205,22 +209,22 @@ public class Camion implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public Collection<Conductor> getConductorCollection() {
-        return conductorCollection;
+    public Collection<AsignacionConductorCamion> getAsignacionConductorCamionCollection() {
+        return asignacionConductorCamionCollection;
     }
 
-    public void setConductorCollection(Collection<Conductor> conductorCollection) {
-        this.conductorCollection = conductorCollection;
+    public void setAsignacionConductorCamionCollection(Collection<AsignacionConductorCamion> asignacionConductorCamionCollection) {
+        this.asignacionConductorCamionCollection = asignacionConductorCamionCollection;
     }
 
     @XmlTransient
     @JsonIgnore
-    public Collection<Coordenadas> getCoordenadasCollection() {
-        return coordenadasCollection;
+    public Collection<Coordenada> getCoordenadaCollection() {
+        return coordenadaCollection;
     }
 
-    public void setCoordenadasCollection(Collection<Coordenadas> coordenadasCollection) {
-        this.coordenadasCollection = coordenadasCollection;
+    public void setCoordenadaCollection(Collection<Coordenada> coordenadaCollection) {
+        this.coordenadaCollection = coordenadaCollection;
     }
 
     @Override

@@ -13,7 +13,7 @@
             <ui:define name="content">
                  <h:form id="tablaGigante">          
                     <h:panelGrid style="margin: 0 auto; width: 800px" cellpadding="5">                                             
-                        <p:dataTable  id="tbl" var="camion" value="#{camionBean.camiones}" rowKey="#{camion.patente}" paginator="true" rows="10" selection="#{camionBean.camion_seleccionado_CamEst}" >                                  
+                        <p:dataTable  id="tbl" var="camion" value="#{verCamion.camiones}" rowKey="#{camion.patente}" paginator="true" rows="10" selection="#{verCamion.camion_seleccionado_CamEst}" >                                  
                                 
                                 <p:column selectionMode="single" style="width:2%" />  
                                 
@@ -22,18 +22,7 @@
                                         <h:outputText value="Patente" />  
                                     </f:facet>    
                                     <h:outputText value="#{camion.patente}" />                                      
-                                </p:column>
-                                
-                                <p:column>  
-                                    <f:facet name="header">  
-                                        <h:outputText value="Conductor" />  
-                                    </f:facet>    
-                                    #{(camion.idConductor == null ) ? "No asignado" : camion.idConductor.nombres} 
-                                    <BR/>
-                                    #{(camion.idConductor == null ) ? "" : camion.idConductor.primerApellido} 
-                                    <BR/>
-                                    #{(camion.idConductor == null ) ? "" : camion.idConductor.segundoApellido}
-                                </p:column>
+                                </p:column>                                
                                 
                                  <p:column>  
                                     <f:facet name="header">  
@@ -100,10 +89,10 @@
                             <h:panelGrid>  
                                 
                                 <h:outputText value="Patente: " />  
-                                <h:outputText value="#{camionBean.camion_seleccionado_CamEst.patente}" style="font-weight:bold"/>  
+                                <h:outputText value="#{verCamion.camion_seleccionado_CamEst.patente}" style="font-weight:bold"/>  
 
                                 <h:outputText value="Observaciones: " />  
-                                <b> #{camionBean.camion_seleccionado_CamEst.observacion=="" ? "No existen observaciones" : camionBean.camion_seleccionado_CamEst.observacion}</b>
+                                <b> #{verCamion.camion_seleccionado_CamEst.observacion=="" ? "No existen observaciones" : verCamion.camion_seleccionado_CamEst.observacion}</b>
                                 
                            </h:panelGrid>
                       </h:panelGrid>  

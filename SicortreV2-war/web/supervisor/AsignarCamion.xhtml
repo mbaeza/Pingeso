@@ -14,7 +14,7 @@
                 
                 <h:form id="tablaGigante">          
                     <h:panelGrid style="margin: 0 auto; width: 800px" cellpadding="5">                                             
-                        <p:dataTable  id="tbl" var="conductor" value="#{conductorBean.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="10" selection="#{conductorBean.conductor_seleccionado_CamEst}" >                                  
+                        <p:dataTable  id="tbl" var="conductor" value="#{asignarConductorCamion.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="10" selection="#{asignarConductorCamion.conductor_seleccionado_CamEst}" >                                  
                                 
                                 <p:column selectionMode="single" style="width:2%" />  
                                 
@@ -44,21 +44,7 @@
                                         <h:outputText value="Segundo apellido" />  
                                     </f:facet>  
                                     <h:outputText value="#{conductor.segundoApellido}" />  
-                                </p:column>
-                                
-                                <p:column>  
-                                    <f:facet name="header">  
-                                        <h:outputText value="Camion" />  
-                                    </f:facet>    
-                                    #{(conductor.idCamion == null ) ? "No asignado" : conductor.idCamion.patente} 
-                                </p:column>
-                                
-                                <p:column>  
-                                    <f:facet name="header">  
-                                        <h:outputText value="Fecha nacimiento" />  
-                                    </f:facet>  
-                                    <h:outputText value="#{conductor.fechaNacimiento}" />  
-                                </p:column>                               
+                                </p:column>                                                                                                    
                                 
                                 <p:column>  
                                     <f:facet name="header">  

@@ -4,6 +4,7 @@
  */
 package managedBean;
 
+import entitiesClass.AsignacionConductorCamion;
 import entitiesClass.Camion;
 import entitiesClass.Conductor;
 import entitiesClass.Modelo;
@@ -22,11 +23,13 @@ import sessionBeans.ConductorFacade;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.model.SelectItem;
 import java.io.Serializable;
+import java.util.Date;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItemGroup;
 import org.primefaces.event.SelectEvent;
+import sessionBeans.AsignacionConductorCamionFacadeLocal;
 import sessionBeans.CamionFacadeLocal;
 
 
@@ -37,6 +40,8 @@ import sessionBeans.CamionFacadeLocal;
 @Named(value = "conductorBean")
 @RequestScoped
 public class ConductorBean {
+    @EJB
+    private AsignacionConductorCamionFacadeLocal asignacionConductorCamionFacade;
     @EJB
     private CamionFacadeLocal camionFacade;
     @EJB
@@ -267,17 +272,13 @@ public class ConductorBean {
     }
      
     public void asignarCamion(){
-      /*  if(camionFacade.findAll().size() != 0){
-            id = camionFacade.findAll().get(camionFacade.findAll().size()-1).getId()+1;
-        }*/
-        
-        //Conductor conductor = new Conductor();
-        //conductor.setRut(conductor_seleccionado_CamEst.getRut());
-        //conductor.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
-        //conductorFacade.edit(conductor);
-        
-        conductor_seleccionado_CamEst.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
-        conductorFacade.edit(conductor_seleccionado_CamEst);
+        //conductor_seleccionado_CamEst.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
+        //conductorFacade.edit(conductor_seleccionado_CamEst);
+        AsignacionConductorCamion asignacion =  new AsignacionConductorCamion();
+        asignacion.setFecha(new Date());
+        asignacion.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
+        asignacion.setIdConductor(conductor_seleccionado_CamEst);
+        asignacionConductorCamionFacade.create(asignacion);
     }
      
     public void confirmacionModificar(ActionEvent actionEvent){  

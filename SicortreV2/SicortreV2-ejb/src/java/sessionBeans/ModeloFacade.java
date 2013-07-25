@@ -27,8 +27,8 @@ public class ModeloFacade extends AbstractFacade<Modelo> implements ModeloFacade
 
     public ModeloFacade() {
         super(Modelo.class);
-    }   
-
+    }
+    
     @Override
     public Modelo BuscarPorID(int ID) {
         Query query;
@@ -42,6 +42,5 @@ public class ModeloFacade extends AbstractFacade<Modelo> implements ModeloFacade
         }
         return (Modelo)query.getResultList().get(0);
     }
-    
     
 }

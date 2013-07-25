@@ -7,11 +7,10 @@ package entitiesClass;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -24,7 +23,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author alex
+ * @author Marco
  */
 @Entity
 @Table(name = "conductor")
@@ -87,11 +86,8 @@ public class Conductor implements Serializable {
     @Size(min = 1, max = 8)
     @Column(name = "Estado")
     private String estado;
-    @OneToMany(mappedBy = "idConductor")
-    private Collection<Camion> camionCollection;
-    @JoinColumn(name = "id_camion", referencedColumnName = "Id")
-    @ManyToOne(optional = false)
-    private Camion idCamion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idConductor")
+    private Collection<AsignacionConductorCamion> asignacionConductorCamionCollection;
 
     public Conductor() {
     }
@@ -186,20 +182,12 @@ public class Conductor implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public Collection<Camion> getCamionCollection() {
-        return camionCollection;
+    public Collection<AsignacionConductorCamion> getAsignacionConductorCamionCollection() {
+        return asignacionConductorCamionCollection;
     }
 
-    public void setCamionCollection(Collection<Camion> camionCollection) {
-        this.camionCollection = camionCollection;
-    }
-
-    public Camion getIdCamion() {
-        return idCamion;
-    }
-
-    public void setIdCamion(Camion idCamion) {
-        this.idCamion = idCamion;
+    public void setAsignacionConductorCamionCollection(Collection<AsignacionConductorCamion> asignacionConductorCamionCollection) {
+        this.asignacionConductorCamionCollection = asignacionConductorCamionCollection;
     }
 
     @Override

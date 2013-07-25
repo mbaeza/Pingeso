@@ -4,8 +4,8 @@
  */
 package managedBean;
 
-import sessionBeans.CoordenadasFacade;
-import sessionBeans.CoordenadasFacadeLocal;
+import sessionBeans.CoordenadaFacade;
+import sessionBeans.CoordenadaFacadeLocal;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.ApplicationScoped;
@@ -31,7 +31,7 @@ public class MapBean {
         //advancedModel = new DefaultMapModel();  
           
         //Shared coordinates
-        CoordenadasFacade a = new CoordenadasFacade();
+        CoordenadaFacade a = new CoordenadaFacade();
         
         LatLng coord1 = new LatLng( Double.parseDouble(a.obtenerLatitud("2781247900090555142")), Double.parseDouble(a.obtenerLongitud("2781247900090555142")));
         LatLng coord2 = new LatLng( Double.parseDouble(a.obtenerLatitud("140446060491853871")), Double.parseDouble(a.obtenerLongitud("140446060491853871")));

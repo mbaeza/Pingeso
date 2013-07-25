@@ -244,8 +244,8 @@ public class CamionBean implements Serializable {
         camion.setMaxCarga(Integer.parseInt(carga_max));
         camion.setMotor(motor);
         camion.setPatente(patente);
+        camion.setControl("Estacionado");
         camion.setUsuarioGLatitude(cod_gps_google);
-        camion.setIdConductor(null);
         for(int i = 0;i<modelos.size();i++){
             if(modelos.get(i).getNombreModelo().equals(modelo_seleccionado))
                 id = modelos.get(i).getIdModelo();
@@ -281,7 +281,6 @@ public class CamionBean implements Serializable {
         camion.setMotor(motor);
         camion.setPatente(patente);
         camion.setUsuarioGLatitude(cod_gps_google);
-        camion.setIdConductor(null);
         for(int i = 0;i<modelos.size();i++){
             if(modelos.get(i).getNombreModelo().equals(modelo_seleccionado))
                 id = modelos.get(i).getIdModelo();
