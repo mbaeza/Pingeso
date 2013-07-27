@@ -56,16 +56,6 @@ public class AsignarConductorCamion {
         conductores= new ArrayList<Conductor>();
         conductores=conductorFacade.findAll();
     }
-    
-    public void asignarCamion(){
-        //conductor_seleccionado_CamEst.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
-        //conductorFacade.edit(conductor_seleccionado_CamEst);
-        AsignacionConductorCamion asignacion =  new AsignacionConductorCamion();
-        asignacion.setFecha(new Date());
-        asignacion.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
-        asignacion.setIdConductor(conductor_seleccionado_CamEst);
-        asignacionConductorCamionFacade.create(asignacion);
-    }
 
     public AsignacionConductorCamionFacadeLocal getAsignacionConductorCamionFacade() {
         return asignacionConductorCamionFacade;
@@ -201,6 +191,16 @@ public class AsignarConductorCamion {
 
     public void setCamion_seleccionado(Camion camion_seleccionado) {
         this.camion_seleccionado = camion_seleccionado;
+    }
+    
+    public void asignarCamion(){
+        //conductor_seleccionado_CamEst.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
+        //conductorFacade.edit(conductor_seleccionado_CamEst);
+        AsignacionConductorCamion asignacion =  new AsignacionConductorCamion();
+        asignacion.setFecha(new Date());
+        asignacion.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
+        asignacion.setIdConductor(conductor_seleccionado_CamEst);
+        asignacionConductorCamionFacade.create(asignacion);
     }
     
 }

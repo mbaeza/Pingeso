@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Base.xhtml">
+
+            <ui:define name="content">
+                <h:form id="tablaGigante">          
+                    <h:panelGrid style="margin: 0 auto; width: 800px" cellpadding="5">                                             
+                        <p:dataTable  id="tbl" var="asignacion" value="#{verAsignacionBean.asignaciones}" rowKey="#{asignacion.fecha}" paginator="true" rows="10">                                    
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="RUT conductor" />  
+                                    </f:facet>    
+                                    <h:outputText value="#{asignacion.idConductor.rut}" />                                      
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Patente camion" />  
+                                    </f:facet>  
+                                    <h:outputText value="#{asignacion.idCamion.patente}" />  
+                                </p:column>
+                                                                                                                           
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Fecha" />  
+                                    </f:facet>  
+                                    <h:outputText value="#{asignacion.fecha}" />  
+                                </p:column> 
+                                
+                            </p:dataTable> 
+                        
+                    </h:panelGrid>                   
+                      
+              </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

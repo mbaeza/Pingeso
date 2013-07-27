@@ -66,14 +66,14 @@
                             <h:panelGrid>  
                                 
                                 <h:outputText value="RUT: " />  
-                                <h:outputText value="#{conductorBean.conductor_seleccionado_CamEst.rut}" style="font-weight:bold"/>
+                                <h:outputText value="#{asignarConductorCamion.conductor_seleccionado_CamEst.rut}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Camion: " />  
-                                <p:selectOneMenu value="#{conductorBean.camion}">  
+                                <p:selectOneMenu value="#{asignarConductorCamion.camion}">  
                                     <f:selectItems value="#{camionBean.camiones}" var="camion" itemLabel="#{camion.patente}" itemValue="#{camion.id}"/>  
                                     </p:selectOneMenu> 
                                 
-                                <p:commandButton value="Aceptar" action="#{conductorBean.asignarCamion()}" actionListener="#{conductorBean.confirmacionCambiarEstado(actionEvent)}" update=":tablaGigante" oncomplete="mensajeConfirmacion.hide()" ajax="true" />
+                                <p:commandButton value="Aceptar" action="#{asignarConductorCamion.asignarCamion()}" actionListener="#{conductorBean.confirmacionCambiarEstado(actionEvent)}" update=":tablaGigante" oncomplete="mensajeConfirmacion.hide()" ajax="true" />
                                 
                            </h:panelGrid>
                       </h:panelGrid>  
