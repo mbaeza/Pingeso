@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -97,6 +98,8 @@ public class Camion implements Serializable {
     private Modelo idModelo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCamion")
     private Collection<AsignacionConductorCamion> asignacionConductorCamionCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idCamion")
+    private Control control1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCamion")
     private Collection<Coordenada> coordenadaCollection;
 
@@ -215,6 +218,14 @@ public class Camion implements Serializable {
 
     public void setAsignacionConductorCamionCollection(Collection<AsignacionConductorCamion> asignacionConductorCamionCollection) {
         this.asignacionConductorCamionCollection = asignacionConductorCamionCollection;
+    }
+
+    public Control getControl1() {
+        return control1;
+    }
+
+    public void setControl1(Control control1) {
+        this.control1 = control1;
     }
 
     @XmlTransient

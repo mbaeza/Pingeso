@@ -10,6 +10,9 @@ import entitiesClass.Marca;
 import entitiesClass.Modelo;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Schedule;
@@ -100,37 +103,30 @@ public class CoordenadaFacade extends AbstractFacade<Coordenada> implements Coor
         }
         return Latitud;
     }
-    @Schedule(minute = "*", second = "*/5", dayOfMonth = "*", month = "*", year = "*", hour = "*", dayOfWeek = "Mon-Fri")
+    @Schedule(minute = "*", second = "*/30", dayOfMonth = "*", month = "*", year = "*", hour = "*", dayOfWeek = "Mon-Fri")
     @Override
     public void guardarCoordenadas() {
-        List<Camion> camiones =  camionFacade.findAll();
-        List<Marca> Marcas =  marcaFacade.findAll();
-        System.out.println("HOlA");
-    //  for(Camion camionEleg : camiones){
+        List<Camion> camiones =  camionFacade.findAll();       
+        
+      for(Camion camionEleg : camiones){
            
             Coordenada coordenadas = new Coordenada();      
-            ModeloFacade modelo = new ModeloFacade();
-            Modelo model = new Modelo();
-            model.setIdMarca(Marcas.get(0));
-            model.setNombreModelo("123");
-            model.setIdModelo(800);
-         //   modeloFacade.create(model);
-        //    String latitud = obtenerLatitud(camionEleg.getUsuarioGLatitude());
-        //    String longitud = obtenerLongitud(camionEleg.getUsuarioGLatitude());
-            System.out.println("HOlAAQWE");
-       //     if(!longitud.equals("Error") && !latitud.equals("Error")){
-               // coordenadas.setIdcamion(camionEleg);
-                coordenadas.setLongitud("sadas");
-                coordenadas.setLatitud("asdasd");
-                coordenadas.setFecha("asd");
-                coordenadas.setIdCamion(camiones.get(0));
-                coordenadas.setId(8);
-                create(coordenadas);
-           // }
+
+            String latitud = obtenerLatitud(camionEleg.getUsuarioGLatitude());
+            String longitud = obtenerLongitud(camionEleg.getUsuarioGLatitude());
+            //System.out.println(longitud);
             
-       // }
+            if((longitud.equals("Error") == false && latitud.equals("Error") == false)  && (camionEleg.getControl().equals("En Ruta")==true && camionEleg.getEstado().equals("Activo")==true)){
+                System.out.println("HOlA");
+                coordenadas.setLongitud(longitud);
+                coordenadas.setLatitud(latitud);
+                coordenadas.setFecha(new Date());
+                coordenadas.setHora(new Date());
+                coordenadas.setIdCamion(camionEleg);
+                create(coordenadas);
         
+            }
+      }
     }
-    
     
 }

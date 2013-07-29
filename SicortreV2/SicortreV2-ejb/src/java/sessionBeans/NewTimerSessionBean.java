@@ -15,7 +15,7 @@ import javax.ejb.Stateless;
 @Stateless
 public class NewTimerSessionBean implements NewTimerSessionBeanLocal {
 
-    @Schedule(minute = "*", second = "*/5", dayOfMonth = "*", month = "*", year = "*", hour = "9-23", dayOfWeek = "Mon-Fri")
+   // @Schedule(minute = "*", second = "*/5", dayOfMonth = "*", month = "*", year = "*", hour = "9-23", dayOfWeek = "Mon-Fri")
     @Override
     public void myTimer() {
         System.out.println("Timer event: " + new Date());

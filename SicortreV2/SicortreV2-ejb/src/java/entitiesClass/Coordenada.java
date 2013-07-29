@@ -5,6 +5,7 @@
 package entitiesClass;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -32,7 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Coordenada.findById", query = "SELECT c FROM Coordenada c WHERE c.id = :id"),
     @NamedQuery(name = "Coordenada.findByLatitud", query = "SELECT c FROM Coordenada c WHERE c.latitud = :latitud"),
     @NamedQuery(name = "Coordenada.findByLongitud", query = "SELECT c FROM Coordenada c WHERE c.longitud = :longitud"),
-    @NamedQuery(name = "Coordenada.findByFecha", query = "SELECT c FROM Coordenada c WHERE c.fecha = :fecha")})
+    @NamedQuery(name = "Coordenada.findByFecha", query = "SELECT c FROM Coordenada c WHERE c.fecha = :fecha"),
+    @NamedQuery(name = "Coordenada.findByHora", query = "SELECT c FROM Coordenada c WHERE c.hora = :hora")})
 public class Coordenada implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -52,9 +56,14 @@ public class Coordenada implements Serializable {
     private String longitud;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 30)
     @Column(name = "Fecha")
-    private String fecha;
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Hora")
+    @Temporal(TemporalType.TIME)
+    private Date hora;
     @JoinColumn(name = "id_camion", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private Camion idCamion;
@@ -66,11 +75,12 @@ public class Coordenada implements Serializable {
         this.id = id;
     }
 
-    public Coordenada(Integer id, String latitud, String longitud, String fecha) {
+    public Coordenada(Integer id, String latitud, String longitud, Date fecha, Date hora) {
         this.id = id;
         this.latitud = latitud;
         this.longitud = longitud;
         this.fecha = fecha;
+        this.hora = hora;
     }
 
     public Integer getId() {
@@ -97,12 +107,20 @@ public class Coordenada implements Serializable {
         this.longitud = longitud;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public Date getHora() {
+        return hora;
+    }
+
+    public void setHora(Date hora) {
+        this.hora = hora;
     }
 
     public Camion getIdCamion() {

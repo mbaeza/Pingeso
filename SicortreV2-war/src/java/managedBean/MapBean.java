@@ -34,12 +34,12 @@ public class MapBean {
         CoordenadaFacade a = new CoordenadaFacade();
         
         LatLng coord1 = new LatLng( Double.parseDouble(a.obtenerLatitud("2781247900090555142")), Double.parseDouble(a.obtenerLongitud("2781247900090555142")));
-        LatLng coord2 = new LatLng( Double.parseDouble(a.obtenerLatitud("140446060491853871")), Double.parseDouble(a.obtenerLongitud("140446060491853871")));
+      //  LatLng coord2 = new LatLng( Double.parseDouble(a.obtenerLatitud("140446060491853871")), Double.parseDouble(a.obtenerLongitud("140446060491853871")));
         // LatLng coord1 = new LatLng(-33.358818,-70.6854664);
           
         //Icons and Data  
         advancedModel.addOverlay(new Marker(coord1, "Konyaalti", "konyaalti.png", "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"));  
-        advancedModel.addOverlay(new Marker(coord2, "Ataturk Parki","sadasd" ,"http://maps.google.com/mapfiles/ms/micons/pink-dot.png"));  
+     //   advancedModel.addOverlay(new Marker(coord2, "Ataturk Parki","sadasd" ,"http://maps.google.com/mapfiles/ms/micons/pink-dot.png"));  
         /*advancedModel.addOverlay(new Marker(coord4, "Kaleici", "kaleici.png", "http://maps.google.com/mapfiles/ms/micons/pink-dot.png"));  
         advancedModel.addOverlay(new Marker(coord3, "Karaalioglu Parki", "karaalioglu.png", "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png"));*/  
         for(Marker marker : advancedModel.getMarkers()) { 

@@ -29,4 +29,6 @@ public interface AsignacionConductorCamionFacadeLocal {
 
     int count();
     
+    List<AsignacionConductorCamion> BuscarPorCamion();
+    
 }

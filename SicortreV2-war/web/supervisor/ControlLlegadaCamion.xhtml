@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Base.xhtml">
+
+            <ui:define name="content">
+                <h:form id="formulario">
+                    
+                    <p:growl id="confirmacion" showDetail="true" life="2500"/>  
+                    
+                    <h:panelGrid style="margin: 0 auto; width: 800px" columns="2" cellpadding="5">
+                        <h:panelGrid cellpadding="5"> 
+                        
+                            <p:dataTable style="width: 300px; height: 250px" id="tbl" var="camion" value="#{controlLlegadaCamion.controles}" rowKey="#{camion.idControl}" paginator="true" rows="5" selection="#{controlLlegadaCamion.camion_seleccionado}" selectionMode="single">  
+                                <p:ajax event="rowSelect" listener="#{controlLlegadaCamion.onRowSelect(event)}" update=":formulario:formModificar" />  
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Patente" />  
+                                    </f:facet>    
+                                    <h:outputText value="#{camion.idCamion.patente}" />                                      
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Hora salida" />  
+                                    </f:facet>    
+                                    <h:outputText value="#{camion.horaSalida.hours}:#{camion.horaSalida.minutes}:#{camion.horaSalida.seconds}" />                                      
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Fecha" />  
+                                    </f:facet>    
+                                    <h:outputText value="#{camion.fecha.day}-#{camion.fecha.month}-#{camion.fecha.year}" />                                      
+                                </p:column>
+                                                                
+                            </p:dataTable>                      
+                        </h:panelGrid>                                                
+                    
+                        <h:panelGrid id="formModificar" columns="2" >                 
+                            
+                            <h:outputText value="Patente camión: " />
+                            <p:inputText id="patente" required="true" disabled="true" value="#{controlLlegadaCamion.patente}">
+                            </p:inputText>                                                       
+                        
+                            <h:outputText value="Fecha control: " />
+                            <p:inputText id="fecha" disabled="true" required="true" value="#{controlLlegadaCamion.fecha}">                                
+                            </p:inputText>   
+                            
+                            <h:outputText value="Hora salida: " />
+                            <p:inputText id="hora" disabled="true" required="true" value="#{controlLlegadaCamion.hora_salida}">    
+                            </p:inputText>
+                            
+                            <h:outputText value="Hora llegada: " />
+                            <p:inputText id="hora_llegada" required="true" value="#{controlLlegadaCamion.hora_entrada}">
+                                <p:watermark for="hora_llegada" value="15:00:00" />
+                            </p:inputText>
+                            
+                            <h:outputText value="Cantidad basura: " />
+                            <p:inputText id="basura" required="true" value="#{controlLlegadaCamion.cantidad_basura}">
+                                <p:watermark for="basura" value="1500 kgs" />
+                            </p:inputText>                                                          
+                            
+                            <p:commandButton onclick="mensajeConfirmacion.show()" value="Ingresar Control"/>
+                            <p:confirmDialog message="¿Está seguro que desea ingresar el control? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
+                                <p:commandButton value="Sí" action="#{controlLlegadaCamion.modificarControl()}" actionListener="#{controlLlegadaCamion.confirmacionControlLlegada(actionEvent)}" update=":formulario:confirmacion" oncomplete="mensajeConfirmacion.hide()"/>
+                                <p:commandButton value="No" onclick="mensajeConfirmacion.hide();" type="button" /> 
+                            </p:confirmDialog>
+                           
+                            
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </h:form>  
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

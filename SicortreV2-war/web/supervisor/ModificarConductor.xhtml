@@ -19,8 +19,8 @@
                     <h:panelGrid style="margin: 0 auto; width: 800px" columns="2" cellpadding="5">
                         <h:panelGrid style="" cellpadding="5"> 
                         
-                            <p:dataTable style="width: 300px; height: 550px" id="tbl" var="conductor" value="#{conductorBean.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="5" selection="#{conductorBean.conductor_seleccionado}" selectionMode="single">  
-                                <p:ajax event="rowSelect" listener="#{conductorBean.onRowSelect}" update=":formulario:formModificar" />  
+                            <p:dataTable style="width: 300px; height: 550px" id="tbl" var="conductor" value="#{modificarConductor.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="5" selection="#{modificarConductor.conductor_seleccionado}" selectionMode="single">  
+                                <p:ajax event="rowSelect" listener="#{modificarConductor.onRowSelect}" update=":formulario:formModificar" />  
                                 
                                 <p:column>  
                                     <f:facet name="header">  
@@ -42,49 +42,49 @@
                         <h:panelGrid id="formModificar" columns="2" >                 
                             
                             <h:outputText value="Nombres: " />
-                        <p:inputText id="nombres" required="true" value="#{conductorBean.nombres}">
+                        <p:inputText id="nombres" required="true" value="#{modificarConductor.nombres}">
                             <p:watermark for="nombres" value="Alex Patricio" />
                         </p:inputText>
                         
                         <h:outputText value="Primer apellido: " />
-                        <p:inputText id="primer_apellido" required="true" value="#{conductorBean.primer_apellido}">
+                        <p:inputText id="primer_apellido" required="true" value="#{modificarConductor.primer_apellido}">
                             <p:watermark for="primer_apellido" value="Ahumada" />
                         </p:inputText> 
                         
                         <h:outputText value="Segundo apellido: " />
-                        <p:inputText id="segundo_apellido" required="true" value="#{conductorBean.segundo_apellido}">
+                        <p:inputText id="segundo_apellido" required="true" value="#{modificarConductor.segundo_apellido}">
                             <p:watermark for="segundo_apellido" value="Ahumada" />
                         </p:inputText>
                         
                         <h:outputText value="RUT: " />
-                        <p:inputText id="rut" required="true" value="#{conductorBean.rut}">
+                        <p:inputText id="rut" required="true" value="#{modificarConductor.rut}">
                             <p:watermark for="rut" value="172427545" />
                         </p:inputText> 
                         
                         <h:outputText value="Fecha de nacimiento: " />
-                        <p:inputMask id="fecha_nacimiento" value="#{conductorBean.fecha_nacimiento}" mask="99/99/9999">
+                        <p:inputMask id="fecha_nacimiento" value="#{modificarConductor.fecha_nacimiento}" mask="99/99/9999">
                             <p:watermark for="fecha_nacimiento" value="28/06/1989" />
                         </p:inputMask>
                         
                         <h:outputText value="Direccion: " />
-                        <p:inputText id="direccion" required="true" value="#{conductorBean.direccion}">
+                        <p:inputText id="direccion" required="true" value="#{modificarConductor.direccion}">
                             <p:watermark for="direccion" value="calle A #1234" />
                         </p:inputText> 
                         
                         <h:outputText value="Correo: " />
-                        <p:inputText id="correo" required="true" value="#{conductorBean.correo}">
+                        <p:inputText id="correo" required="true" value="#{modificarConductor.correo}">
                             <p:watermark for="correo" value="micorreo@gmail.com" />
                         </p:inputText> 
                         
                         <h:outputText value="Telefono: " />
-                        <p:inputMask id="telefono" value="#{conductorBean.telefono}" mask="99999999">
+                        <p:inputMask id="telefono" value="#{modificarConductor.telefono}" mask="99999999">
                             <p:watermark for="telefono" value="83217654" />
                         </p:inputMask>
 
                            
                         <p:commandButton onclick="mensajeConfirmacion.show()" value="Modificar"/> 
                         <p:confirmDialog message="¿Está seguro que desea modificar un conductor? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
-                            <p:commandButton value="Sí" action="#{conductorBean.modificarConductor()}" actionListener="#{conductorBean.confirmacionModificar(actionEvent)}" update=":formulario:confirmacion" oncomplete="mensajeConfirmacion.hide()"/>
+                            <p:commandButton value="Sí" action="#{modificarConductor.modificarConductor()}" actionListener="#{modificarConductor.confirmacionModificar(actionEvent)}" update=":formulario:confirmacion" oncomplete="mensajeConfirmacion.hide()"/>
                             <p:commandButton value="No" onclick="mensajeConfirmacion.hide();" type="button" /> 
                         </p:confirmDialog>
                         
