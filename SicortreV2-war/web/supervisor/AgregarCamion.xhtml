@@ -10,60 +10,77 @@
         <!--Agregar un camion, este es el formulario-->
         <ui:composition template="./Base.xhtml">
             <ui:define name="content">
+                <p:fieldset legend="Agregar camión">
                 <h:form id="form">                        
                     <!--Aqui tiene que ir un titulo-->
-                    
+                    <div class="row-fluid">
+                        <h:outputText value="1.- Complete el formulario para poder ingresar un camión."></h:outputText>
+                        
+                    </div>
                     <p:growl id="confirmacion" showDetail="true" life="2500" />  
+                    <div class="row-fluid">
+                        <br></br>
+                        <h:panelGrid id="formulario" style="margin: 0 auto" columns="2" cellpadding="5" width="854px">  
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText value="(*) Patente: " />  
+                                <p:inputMask id="patente" value="#{agregarCamion.patente}" mask="aa-**-99">
+                                <p:watermark for="patente" value="PK-82-31" />
+                                </p:inputMask>    
+
+                                <h:outputText value="(*) Fecha de compra: " />  
+                                <p:inputMask id="fecha_compra" value="#{agregarCamion.fecha_compra}" mask="99/99/9999">
+                                    <p:watermark for="fecha_compra" value="22/10/2010" />
+                                </p:inputMask> 
+
+                                <h:outputText value="(*) Kilometraje: " />  
+                                <p:inputMask id="km" value="#{agregarCamion.kilometraje}" mask="9999999999">
+                                    <p:watermark for="km" value="50.000" />
+                                </p:inputMask>
+
+                                <h:outputText value="(*) Motor: " />  
+                                <p:inputText id="Motor" required="true" value="#{agregarCamion.motor}" > 
+                                    <p:watermark for="Motor" value="1600 cc" />
+                                </p:inputText>  
+
+                                <h:outputText value="(*) Carga máxima: " />  
+                                <p:inputMask id="carga_max" value="#{agregarCamion.carga_max}" mask="99999999">
+                                    <p:watermark for="carga_max" value="1200, en Kg" />
+                                </p:inputMask>                        
+
+                                <h:outputText value="(*) Modelo - Marca: " />  
+                                <p:selectOneMenu value="#{agregarCamion.modelo_seleccionado}">  
+                                    <f:selectItems value="#{agregarCamion.modelos}" var="modelo" itemLabel="#{modelo.nombreModelo} - #{modelo.idMarca.nombreMarca}" itemValue="#{modelo.nombreModelo}"/>  
+                                </p:selectOneMenu> 
+
+                                
+                            </h:panelGrid>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText value="(*) Codigo GPS: " />  
+                                <p:inputMask id="cod_gps" value="#{agregarCamion.cod_gps_google}" mask="********************">
+                                     <p:watermark for="cod_gps" value="Debe seguir el tutorial" />
+                                </p:inputMask>
+                                
+                                <h:outputText value="(*) Observaciones: " />  
+                                <p:inputTextarea value="#{agregarCamion.observaciones}" rows="11" cols="10" autoResize="false"/>  
+
+                                
+                             </h:panelGrid>
+                            <f:facet name="footer"  >  
+                                <h:outputText   style="color: red" value="(*) Campos obligatorios"></h:outputText>
+                                </f:facet>
+                            </h:panelGrid>                                         
+                        </div>
                     
-                    <h:panelGrid id="formulario" style="margin: 0 auto" columns="2" cellpadding="5">  
-                        <h:outputText value="Patente: " />  
-                        <p:inputMask id="patente" value="#{agregarCamion.patente}" mask="aa-**-99">
-                            <p:watermark for="patente" value="PK-82-31" />
-                        </p:inputMask>    
+                    <p:commandButton style="margin-right: 10px" onclick="mensajeConfirmacion.show()" value="Agregar" icon="ui-icon-check" />    
+                        <p:commandButton value="Borrar formulario" type="reset" icon="ui-icon-circle-close" />
 
-                        <h:outputText value="Fecha de compra: " />  
-                        <p:inputMask id="fecha_compra" value="#{agregarCamion.fecha_compra}" mask="99/99/9999">
-                            <p:watermark for="fecha_compra" value="22/10/2010" />
-                        </p:inputMask> 
-
-                        <h:outputText value="Kilometraje: " />  
-                        <p:inputMask id="km" value="#{agregarCamion.kilometraje}" mask="9999999999">
-                            <p:watermark for="km" value="50.000" />
-                        </p:inputMask>
-
-                        <h:outputText value="Motor: " />  
-                        <p:inputText id="Motor" required="true" value="#{agregarCamion.motor}" > 
-                            <p:watermark for="Motor" value="1600 cc" />
-                        </p:inputText>  
-
-                        <h:outputText value="Carga máxima: " />  
-                        <p:inputMask id="carga_max" value="#{agregarCamion.carga_max}" mask="99999999">
-                            <p:watermark for="carga_max" value="1200, en Kg" />
-                        </p:inputMask>                        
-                        
-                        <h:outputText value="Modelo - Marca: " />  
-                        <p:selectOneMenu value="#{agregarCamion.modelo_seleccionado}">  
-                            <f:selectItems value="#{agregarCamion.modelos}" var="modelo" itemLabel="#{modelo.nombreModelo} - #{modelo.idMarca.nombreMarca}" itemValue="#{modelo.nombreModelo}"/>  
-                        </p:selectOneMenu> 
-                        
-                        <h:outputText value="Codigo GPS: " />  
-                        <p:inputMask id="cod_gps" value="#{agregarCamion.cod_gps_google}" mask="********************">
-                             <p:watermark for="cod_gps" value="Debe seguir el tutorial" />
-                        </p:inputMask>
-
-                        <h:outputText value="Observaciones: " />  
-                        <p:inputTextarea value="#{agregarCamion.observaciones}" rows="10" cols="10" autoResize="false"/>  
-
-                        <p:commandButton value="Borrar formulario" type="reset" />  
-                        <p:commandButton onclick="mensajeConfirmacion.show()" value="Agregar" />
-                        
-                        <p:confirmDialog message="¿Está seguro que desea agregar un nuevo camion? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
+                            <p:confirmDialog message="¿Está seguro que desea agregar un nuevo camion? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
                             <p:commandButton value="Sí" action="#{agregarCamion.insertarCamion()}" actionListener="#{agregarCamion.confirmacionAgregar(actionEvent)}" update=":form" oncomplete="mensajeConfirmacion.hide()" ajax="true" />
                             <p:commandButton value="No" onclick="mensajeConfirmacion.hide();" type="button" /> 
                         </p:confirmDialog>
-                                               
-                    </h:panelGrid>                                         
-                </h:form> 
+
+                </h:form>
+                </p:fieldset>
             </ui:define>
         </ui:composition>
 

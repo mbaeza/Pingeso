@@ -42,6 +42,7 @@
                                 <li role="presentation"><h:link outcome="/faces/supervisor/AgregarCamion.xhtml" value="Agregar Camion" /></li>
                                 <li role="presentation"><h:link outcome="/faces/supervisor/ModificarCamion.xhtml" value="Modificar Camion" /></li>
                                 <li role="presentation"><h:link outcome="/faces/supervisor/CambiarEstadoCamion.xhtml" value="Cambiar el Estado de un Camion" /></li>                                
+                                
                             </ul>
                         </li>
                         
@@ -58,7 +59,6 @@
                         </li>
                         
                         <li><h:link outcome="/faces/supervisor/AgregarCamion.xhtml" value="Rutas" style="font-size: 15px; font-weight: lighter" /></li>                     
-                        <li><h:link outcome="/faces/supervisor/AgregarCamion.xhtml" value="Control de Camiones" style="font-size: 15px; font-weight: lighter" /></li>
                     </ul>
                     <ul class="nav pull-right">
                       <li class="divider-vertical"></li>
@@ -79,12 +79,15 @@
         <div class="vacio"></div>
         <div class="container">
         <div class="right_content">
-            <br/>
-            <ui:insert name="content"></ui:insert>
-    </div>      
+            
+            <div class="content">
+                <br></br>
+                <ui:insert name="content"></ui:insert>
+            </div>
+            </div>
         <div id="bottom" style="position: absolute" >
             <ui:insert name="bottom">Bottom</ui:insert>
         </div>
-    </div>
+       </div>
         </h:body>
 </html>

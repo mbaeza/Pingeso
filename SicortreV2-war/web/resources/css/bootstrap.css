@@ -1187,11 +1187,11 @@ fieldset {
 }
 legend {
   display: block;
-  width: 100%;
+  width: 15%;
   padding: 0;
-  margin-bottom: 20px;
-  font-size: 21px;
-  line-height: 40px;
+  margin-bottom: 15px;
+  font-size: 17px;
+  line-height: 15px;
   color: #333333;
   border: 0;
   border-bottom: 1px solid #e5e5e5;
