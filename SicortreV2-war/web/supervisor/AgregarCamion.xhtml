@@ -10,17 +10,17 @@
         <!--Agregar un camion, este es el formulario-->
         <ui:composition template="./Base.xhtml">
             <ui:define name="content">
-                <p:fieldset legend="Agregar camión">
+                <p:fieldset legend="Agregar camión" style="text-align: center">
                 <h:form id="form">                        
                     <!--Aqui tiene que ir un titulo-->
-                    <div class="row-fluid">
-                        <h:outputText value="1.- Complete el formulario para poder ingresar un camión."></h:outputText>
+                    <div class="row-fluid" style="text-align: left" >
+                        <h:outputText  value="1.- Complete el formulario para poder ingresar un camión."></h:outputText>
                         
                     </div>
                     <p:growl id="confirmacion" showDetail="true" life="2500" />  
                     <div class="row-fluid">
                         <br></br>
-                        <h:panelGrid id="formulario" style="margin: 0 auto" columns="2" cellpadding="5" width="854px">  
+                        <h:panelGrid id="formulario" style="margin: 0 auto; text-align: left" columns="2" cellpadding="5" width="854px">  
                             <h:panelGrid columns="2" cellpadding="5">
                                 <h:outputText value="(*) Patente: " />  
                                 <p:inputMask id="patente" value="#{agregarCamion.patente}" mask="aa-**-99">
@@ -54,7 +54,7 @@
 
                                 
                             </h:panelGrid>
-                            <h:panelGrid columns="2" cellpadding="5">
+                            <h:panelGrid columns="2" cellpadding="5" style="text-align: left">
                                 <h:outputText value="(*) Codigo GPS: " />  
                                 <p:inputMask id="cod_gps" value="#{agregarCamion.cod_gps_google}" mask="********************">
                                      <p:watermark for="cod_gps" value="Debe seguir el tutorial" />
@@ -66,7 +66,7 @@
                                 
                              </h:panelGrid>
                             <f:facet name="footer"  >  
-                                <h:outputText   style="color: red" value="(*) Campos obligatorios"></h:outputText>
+                                <h:outputText   style="color: red"   value="(*) Campos obligatorios"></h:outputText>
                                 </f:facet>
                             </h:panelGrid>                                         
                         </div>
