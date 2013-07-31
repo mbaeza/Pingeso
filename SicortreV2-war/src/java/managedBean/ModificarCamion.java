@@ -64,26 +64,23 @@ public class ModificarCamion {
         int id = 0;
       /*  if(camionFacade.findAll().size() != 0){
             id = camionFacade.findAll().get(camionFacade.findAll().size()-1).getId()+1;
-        }*/
-        Camion camion = new Camion();
-        camion.setId(camion_seleccionado.getId());
-        camion.setEstado(camion_seleccionado.getEstado());
-        camion.setFechaDeCompra(fecha_compra);
-        camion.setKilometraje(Double.parseDouble(kilometraje));
-        camion.setMaxCarga(Integer.parseInt(carga_max));
-        camion.setMotor(motor);
-        camion.setPatente(patente);
-        camion.setUsuarioGLatitude(cod_gps_google);
+        }*/       
+        camion_seleccionado.setFechaDeCompra(fecha_compra);
+        camion_seleccionado.setKilometraje(Double.parseDouble(kilometraje));
+        camion_seleccionado.setMaxCarga(Integer.parseInt(carga_max));
+        camion_seleccionado.setMotor(motor);
+        camion_seleccionado.setPatente(patente);
+        camion_seleccionado.setUsuarioGLatitude(cod_gps_google);
         for(int i = 0;i<modelos.size();i++){
             if(modelos.get(i).getNombreModelo().equals(modelo_seleccionado))
                 id = modelos.get(i).getIdModelo();
         }
         //modelo.setNombreModelo(modelo_seleccionado);
         modelo = new Modelo(id);
-        camion.setControl(camion_seleccionado.getControl());
-        camion.setIdModelo(modelo);
-        camion.setObservacion(observaciones);
-        camionFacade.edit(camion);
+        camion_seleccionado.setControl(camion_seleccionado.getControl());
+        camion_seleccionado.setIdModelo(modelo);
+        camion_seleccionado.setObservacion(observaciones);
+        camionFacade.edit(camion_seleccionado);
     }
     
     //funcion utilizada en el modificar camiones, para que aparezcan los datos seleccionados en el formulario
