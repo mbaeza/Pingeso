@@ -14,7 +14,7 @@
                 <h:form id="form">                        
                     <!--Aqui tiene que ir un titulo-->
                     <div class="row-fluid" style="text-align: left" >
-                        <h:outputText  value="1.- Complete el formulario para poder ingresar un camión."></h:outputText>
+                        <h:outputText  style="font-weight: bold" value="1.- Complete el formulario para poder ingresar un camión."></h:outputText>
                         
                     </div>
                     <p:growl id="confirmacion" showDetail="true" life="2500" />  
@@ -72,7 +72,7 @@
                         </div>
                     
                     <p:commandButton style="margin-right: 10px" onclick="mensajeConfirmacion.show()" value="Agregar" icon="ui-icon-check" />    
-                        <p:commandButton value="Borrar formulario" type="reset" icon="ui-icon-circle-close" />
+                        <p:commandButton value="Borrar formulario" type="reset" icon="ui-icon-cancel" />
 
                             <p:confirmDialog message="¿Está seguro que desea agregar un nuevo camion? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
                             <p:commandButton value="Sí" action="#{agregarCamion.insertarCamion()}" actionListener="#{agregarCamion.confirmacionAgregar(actionEvent)}" update=":form" oncomplete="mensajeConfirmacion.hide()" ajax="true" />

@@ -11,8 +11,13 @@
         <ui:composition template="./Base.xhtml">
 
             <ui:define name="content">
-                 <h:form id="tablaGigante">          
-                    <h:panelGrid style="margin: 0 auto; width: 800px" cellpadding="5">                                             
+                <p:fieldset legend="Ver camión" style="text-align: center"> 
+                <h:form id="tablaGigante">
+                    <div class="row-fluid">
+                    <h:panelGrid style="margin: 0 auto; width: 800px; text-align: left" cellpadding="5" >                                             
+                        <f:facet name="header">
+                            <h:outputText value="1.- Seleccione un camión para ver su detalle."></h:outputText>
+                        </f:facet>
                         <p:dataTable  id="tbl" var="camion" value="#{verCamion.camiones}" rowKey="#{camion.patente}" paginator="true" rows="10" selection="#{verCamion.camion_seleccionado_CamEst}" >                                  
                                 
                                 <p:column selectionMode="single" style="width:2%" />  
@@ -75,8 +80,7 @@
                                 
                             </p:dataTable> 
                         
-                        <p:commandButton id="viewButton" value="Ver Camion" icon="ui-icon-search" update=":tablaGigante:displaySingle" oncomplete="singleCarDialog.show()"/>
-                    </h:panelGrid>
+                        </h:panelGrid>
                     
                     <p:dialog id="dialog" header="Visualizacion del Camion" widgetVar="singleCarDialog" resizable="false" showEffect="fade" hideEffect="explode">  
 
@@ -95,9 +99,15 @@
                                 <b> #{verCamion.camion_seleccionado_CamEst.observacion=="" ? "No existen observaciones" : verCamion.camion_seleccionado_CamEst.observacion}</b>
                                 
                            </h:panelGrid>
-                      </h:panelGrid>  
-                </p:dialog>   
+                      </h:panelGrid>
+                        
+                    
+                </p:dialog>
+                        </div>
+                    <div class="row-fluid" style="margin-top: 10px">
+                    <p:commandButton id="viewButton" value="Ver Camion" icon="ui-icon-search" update=":tablaGigante:displaySingle" oncomplete="singleCarDialog.show()"/></div>
               </h:form>
+                    </p:fieldset>
             </ui:define>
 
             <ui:define name="bottom">

@@ -11,10 +11,14 @@
         <ui:composition template="./Base.xhtml">
 
             <ui:define name="content">
+                <p:fieldset legend="Cambio de estado de un camión" style="text-align: center">
                  <h:form id="tablaGigante">       
                     <p:growl id="confirmacion" showDetail="true" life="2500" />  
                      
-                    <h:panelGrid style="margin: 0 auto; width: 800px" cellpadding="5">                                             
+                    <h:panelGrid style="margin: 0 auto; width: 800px; text-align: left" cellpadding="5">
+                        <f:facet name="header">
+                            <h:outputText value="1.- Seleccione un camión para cambiar de estado."></h:outputText>
+                        </f:facet>
                         <p:dataTable  id="tbl" var="camion" value="#{cambiarEstadoCamion.camiones}" rowKey="#{camion.patente}" paginator="true" rows="7" selection="#{cambiarEstadoCamion.camion_seleccionado_CamEst}" >                                  
                                 
                                 <p:column selectionMode="single" style="width:2%" />  
@@ -77,13 +81,14 @@
                                 
                             </p:dataTable> 
                         
-                        <p:commandButton onclick="mensajeConfirmacion.show()" value="Cambiar Estado" />
+                        </h:panelGrid>
+                    <p:commandButton style="margin-top: 10px" onclick="mensajeConfirmacion.show()" value="Cambiar Estado" icon="ui-icon-check" />
                         <p:confirmDialog message="¿Está seguro que desea cambiar el estado de este camion? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
                             <p:commandButton value="Sí" action="#{cambiarEstadoCamion.cambiarEstadoCamion()}" actionListener="#{cambiarEstadoCamion.confirmacionCambiarEstado(actionEvent)}" update=":tablaGigante" oncomplete="mensajeConfirmacion.hide()" ajax="true" />
                             <p:commandButton value="No" onclick="mensajeConfirmacion.hide();" type="button" /> 
                         </p:confirmDialog>
-                    </h:panelGrid>
                 </h:form>
+                    </p:fieldset>
             </ui:define>
 
             <ui:define name="bottom">

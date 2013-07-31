@@ -1187,7 +1187,7 @@ fieldset {
 }
 legend {
   display: block;
-  width: 15%;
+  width: auto;
   padding: 0;
   margin-bottom: 15px;
   font-size: 17px;
