@@ -23,27 +23,27 @@
                         <h:panelGrid id="formulario" style="margin: 0 auto; text-align: left" columns="2" cellpadding="5" width="854px">  
                             <h:panelGrid columns="2" cellpadding="5">
                                 <h:outputText value="(*) Patente: " />  
-                                <p:inputMask id="patente" value="#{agregarCamion.patente}" mask="aa-**-99">
+                                <p:inputMask id="patente" validator="#{agregarCamion.validaPatente}" value="#{agregarCamion.patente}" mask="aa-**-99">
                                 <p:watermark for="patente" value="PK-82-31" />
                                 </p:inputMask>    
 
                                 <h:outputText value="(*) Fecha de compra: " />  
-                                <p:inputMask id="fecha_compra" value="#{agregarCamion.fecha_compra}" mask="99/99/9999">
+                                <p:inputMask id="fecha_compra" validator="#{agregarCamion.validaFechaCompra}" value="#{agregarCamion.fecha_compra}" mask="99/99/9999">
                                     <p:watermark for="fecha_compra" value="22/10/2010" />
                                 </p:inputMask> 
 
                                 <h:outputText value="(*) Kilometraje: " />  
-                                <p:inputMask id="km" value="#{agregarCamion.kilometraje}" mask="9999999999">
+                                <p:inputMask id="km" validator="#{agregarCamion.validaKilometraje}" value="#{agregarCamion.kilometraje}" mask="9999999999">
                                     <p:watermark for="km" value="50.000" />
                                 </p:inputMask>
 
                                 <h:outputText value="(*) Motor: " />  
-                                <p:inputText id="Motor" required="true" value="#{agregarCamion.motor}" > 
+                                <p:inputText id="Motor" validator="#{agregarCamion.validaMotor}" value="#{agregarCamion.motor}" > 
                                     <p:watermark for="Motor" value="1600 cc" />
                                 </p:inputText>  
 
                                 <h:outputText value="(*) Carga máxima: " />  
-                                <p:inputMask id="carga_max" value="#{agregarCamion.carga_max}" mask="99999999">
+                                <p:inputMask id="carga_max" validator="#{agregarCamion.validaCargaMaxima}" value="#{agregarCamion.carga_max}" mask="99999999">
                                     <p:watermark for="carga_max" value="1200, en Kg" />
                                 </p:inputMask>                        
 
@@ -56,7 +56,7 @@
                             </h:panelGrid>
                             <h:panelGrid columns="2" cellpadding="5" style="text-align: left">
                                 <h:outputText value="(*) Codigo GPS: " />  
-                                <p:inputMask id="cod_gps" value="#{agregarCamion.cod_gps_google}" mask="********************">
+                                <p:inputMask id="cod_gps" validator="#{agregarCamion.validaCodigoGPS}" value="#{agregarCamion.cod_gps_google}" mask="********************">
                                      <p:watermark for="cod_gps" value="Debe seguir el tutorial" />
                                 </p:inputMask>
                                 

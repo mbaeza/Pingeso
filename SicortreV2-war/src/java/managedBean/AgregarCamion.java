@@ -14,8 +14,10 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.faces.validator.ValidatorException;
 import sessionBeans.CamionFacadeLocal;
 import sessionBeans.MarcaFacadeLocal;
 import sessionBeans.ModeloFacadeLocal;
@@ -97,6 +99,54 @@ public class AgregarCamion {
         FacesContext.getCurrentInstance().addMessage(null, message); 
     } 
 
+    public void validaPatente(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Patente"));
+        }
+    }
+    
+    public void validaFechaCompra(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Fecha de compra"));
+        }
+    }
+    
+    public void validaKilometraje(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Kilometraje"));
+        }
+    }
+    
+    public void validaMotor(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Motor"));
+        }
+    }
+    
+    public void validaCargaMaxima(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Carga maxima"));
+        }
+    }
+    
+    public void validaCodigoGPS(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Codigo GPS"));
+        }
+    }
+    
     public ModeloFacadeLocal getModeloFacade() {
         return modeloFacade;
     }
