@@ -117,7 +117,9 @@ public class AgregarCamion {
     
     public void validaKilometraje(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
-
+        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Formato de Kilometraje incorrecto"));
+        }
         if (strValue.matches("")) {
             throw new ValidatorException(new FacesMessage("Falta ingresar Kilometraje"));
         }
@@ -125,7 +127,9 @@ public class AgregarCamion {
     
     public void validaMotor(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
-
+        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Formato de Motor incorrecto"));
+        }
         if (strValue.matches("")) {
             throw new ValidatorException(new FacesMessage("Falta ingresar Motor"));
         }
@@ -133,7 +137,9 @@ public class AgregarCamion {
     
     public void validaCargaMaxima(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
-
+        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Formato de Carga maxima incorrecto"));
+        }
         if (strValue.matches("")) {
             throw new ValidatorException(new FacesMessage("Falta ingresar Carga maxima"));
         }
@@ -141,7 +147,9 @@ public class AgregarCamion {
     
     public void validaCodigoGPS(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
-
+        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Formato de Codigo GPS incorrecto"));
+        }
         if (strValue.matches("")) {
             throw new ValidatorException(new FacesMessage("Falta ingresar Codigo GPS"));
         }

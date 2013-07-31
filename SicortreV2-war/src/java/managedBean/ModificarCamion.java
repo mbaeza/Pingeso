@@ -14,7 +14,9 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import org.primefaces.event.SelectEvent;
 import sessionBeans.CamionFacadeLocal;
 import sessionBeans.MarcaFacadeLocal;
@@ -101,6 +103,60 @@ public class ModificarCamion {
     public void confirmacionModificar(ActionEvent actionEvent){  
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modificación realizada",  "Se ha modificado un camion del sistema satisfactoriamente");    
         FacesContext.getCurrentInstance().addMessage(null, message); 
+    }
+    public void validaPatente(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Patente"));
+        }
+    }
+    
+    public void validaFechaCompra(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Fecha de compra"));
+        }
+    }
+    
+    public void validaKilometraje(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Formato de Kilometraje incorrecto"));
+        }
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Kilometraje"));
+        }
+    }
+    
+    public void validaMotor(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Formato de Motor incorrecto"));
+        }
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Motor"));
+        }
+    }
+    
+    public void validaCargaMaxima(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Formato de Carga maxima incorrecto"));
+        }
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Carga maxima"));
+        }
+    }
+    
+    public void validaCodigoGPS(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Formato de Codigo GPS incorrecto"));
+        }
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Codigo GPS"));
+        }
     }
 
     public ModeloFacadeLocal getModeloFacade() {
