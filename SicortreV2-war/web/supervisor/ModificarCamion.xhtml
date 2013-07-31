@@ -42,36 +42,36 @@
                                 <h:outputText value="2.- Edite los campos que desea cambiar."></h:outputText></f:facet>
                                                        
                             <h:outputText value="Patente: " />  
-                            <p:inputMask id="patente" value="#{modificarCamion.patente}" mask="aa-**-99">
+                            <p:inputMask disabled="true" id="patente" value="#{modificarCamion.patente}" mask="aa-**-99">
                                 <p:watermark for="patente" value="PK-82-31" />
                             </p:inputMask>    
 
-                            <h:outputText value="Fecha de compra: " />  
+                            <h:outputText value="(*) Fecha de compra: " />  
                             <p:inputMask id="fecha_compra" value="#{modificarCamion.fecha_compra}" mask="99/99/9999">
                                 <p:watermark for="fecha_compra" value="22/10/2010" />
                             </p:inputMask> 
 
-                            <h:outputText value="Kilometraje: " />  
+                            <h:outputText value="(*) Kilometraje: " />  
                             <p:inputMask id="km" value="#{modificarCamion.kilometraje}" mask="9999999999">
                                 <p:watermark for="km" value="50.000" />
                             </p:inputMask>
 
-                            <h:outputText value="Motor: " />  
+                            <h:outputText value="(*) Motor: " />  
                             <p:inputText id="Motor" required="true" value="#{modificarCamion.motor}" > 
                                 <p:watermark for="Motor" value="1600 cc" />
                             </p:inputText>  
 
-                            <h:outputText value="Carga máxima: " />  
+                            <h:outputText value="(*) Carga máxima: " />  
                             <p:inputMask id="carga_max" value="#{modificarCamion.carga_max}" mask="99999999">
                                 <p:watermark for="carga_max" value="1200, en Kg" />
                             </p:inputMask>                        
 
-                            <h:outputText value="Modelo: " />  
+                            <h:outputText value="(*) Modelo: " />  
                             <p:selectOneMenu value="#{modificarCamion.modelo_seleccionado}">  
                                 <f:selectItems value="#{modificarCamion.modelos}" var="modelo" itemLabel="#{modelo.nombreModelo}" itemValue="#{modelo.nombreModelo}"/>  
                             </p:selectOneMenu> 
 
-                            <h:outputText value="Codigo GPS: " />  
+                            <h:outputText value="(*) Codigo GPS: " />  
                             <p:inputMask id="cod_gps" value="#{modificarCamion.cod_gps_google}" mask="">
                                  <p:watermark for="cod_gps" value="Debe seguir el tutorial" />
                             </p:inputMask>
@@ -79,7 +79,10 @@
                             <h:outputText value="Observaciones: " />  
                             <p:inputTextarea value="#{modificarCamion.observaciones}" rows="10" cols="10" autoResize="false"/>  
                                                                               
-                        </h:panelGrid>                    
+                        </h:panelGrid>
+                        <f:facet name="footer"  >  
+                                <h:outputText   style="color: red"   value="(*) Campos obligatorios"></h:outputText>
+                                </f:facet>
                     </h:panelGrid>
                    </div>
                    <p:commandButton onclick="mensajeConfirmacion.show()" value="Modificar" icon="ui-icon-check"/>
