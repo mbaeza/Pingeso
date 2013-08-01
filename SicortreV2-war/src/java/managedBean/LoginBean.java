@@ -48,7 +48,7 @@ public class LoginBean {
           context.addMessage(null, new FacesMessage("Login failed."));
           return "error";
         }
-        return "faces/supervisor/Monitoreo?faces-redirect=true";
+        return "supervisor/Monitoreo?faces-redirect=true";
    //     resp.sendRedirect("faces/supervisor/Monitoreo.xhtml");
     }
 

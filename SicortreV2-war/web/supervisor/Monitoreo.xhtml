@@ -11,11 +11,11 @@
         <ui:composition template="./Base.xhtml">
             <ui:define name="content">
                 <div style="border-radius: 5px; width: 702px;height: 500px; margin: 0 auto; background-color: #BBB9B9; box-shadow: 0 0 10px black; padding: 2px;">
-                    <f:ajax render="@all">
+                    <f:ajax >
                     <h:form id="asdas">                         
                         <p:gmap fitBounds="true" id="map" center="-33.4372,-70.6506" zoom="13" type="HYBRID" model="#{mapBean.advancedModel}" style="width:700px; height:500px; margin: 0 auto;"  onPointClick="handlePointClick(event);"  widgetVar="mapa" >                           
                             <p:ajax event="overlaySelect"  update="" async="true" listener="#{mapBean.onMarkerSelect}" />  
-                            <p:gmapInfoWindow>  
+                            <p:gmapInfoWindow id="aa">  
                                 <p:outputPanel style="text-align:center;display:block;margin:auto:">  
 
                                         <!--p:graphicImage value="/images/antalya/#{mapBean.marker.data}" height="150"/-->  
@@ -23,8 +23,9 @@
                                         <h:outputText value="#{mapBean.marker.title}"/>
                                 </p:outputPanel>  
                             </p:gmapInfoWindow>                           
-                        </p:gmap>         
-                        <p:poll interval="60" async="true"  transient="true" listener="#{mapBean.addMarker()}" update="map"/>
+                        </p:gmap>     
+                        <p:poll interval="5" async="true"  transient="true"   oncomplete="handleComplete(xhr, status, args)"  listener="#{mapBean.addMarker()}" />                       
+                        
                     </h:form>  
                     </f:ajax>            
                 </div>
