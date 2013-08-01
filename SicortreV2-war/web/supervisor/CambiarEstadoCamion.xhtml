@@ -17,7 +17,7 @@
                      
                     <h:panelGrid style="margin: 0 auto; width: 800px; text-align: left" cellpadding="5">
                         <f:facet name="header">
-                            <h:outputText value="1.- Seleccione un camión para cambiar de estado."></h:outputText>
+                            <h:outputText value="1.- Seleccione un camión para cambiar su estado."></h:outputText>
                         </f:facet>
                         <p:dataTable  id="tbl" var="camion" value="#{cambiarEstadoCamion.camiones}" rowKey="#{camion.patente}" paginator="true" rows="7" selection="#{cambiarEstadoCamion.camion_seleccionado_CamEst}" >                                  
                                 

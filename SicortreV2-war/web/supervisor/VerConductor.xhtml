@@ -11,8 +11,13 @@
         <ui:composition template="./Base.xhtml">
 
             <ui:define name="content">
+                <p:fieldset legend="Ver conductor" style="text-align: center"> 
                 <h:form id="tablaGigante">          
-                    <h:panelGrid style="margin: 0 auto; width: 800px" cellpadding="5">                                             
+                    <div class="row-fluid">
+                    <h:panelGrid style="margin: 0 auto; width: 800px;  text-align: left" cellpadding="5">                                             
+                         <f:facet name="header">
+                            <h:outputText value="1.- Seleccione un conductor para ver su detalle."></h:outputText>
+                        </f:facet>
                         <p:dataTable  id="tbl" var="conductor" value="#{verConductor.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="10" selection="#{verConductor.conductor_seleccionado_CamEst}" >                                  
                                 
                                 <p:column selectionMode="single" style="width:2%" />  
@@ -61,8 +66,6 @@
                                 
                             </p:dataTable> 
                         
-                        <p:commandButton id="viewButton" value="Ver Conductor" icon="ui-icon-search" update=":tablaGigante:displaySingle" oncomplete="singleCarDialog.show()"/>
-                        
                     </h:panelGrid>
                     
                     <p:dialog id="dialog" header="Visualizacion del Conductor" widgetVar="singleCarDialog" resizable="false" showEffect="fade" hideEffect="explode">  
@@ -101,8 +104,13 @@
                            </h:panelGrid>
                       </h:panelGrid>  
                 </p:dialog>
+                        </div>
+                    <div class="row-fluid" style="margin-top: 10px">
+                        <p:commandButton id="viewButton" value="Ver Conductor" icon="ui-icon-search" update=":tablaGigante:displaySingle" oncomplete="singleCarDialog.show()"/>
+                    </div>
                       
               </h:form>
+                    </p:fieldset>
             </ui:define>
 
             <ui:define name="bottom">

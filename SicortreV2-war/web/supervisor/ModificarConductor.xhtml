@@ -11,15 +11,16 @@
         <ui:composition template="./Base.xhtml">
 
             <ui:define name="content">
-                
+                <p:fieldset legend="Modificar condcutor" style="text-align: center">
                 <h:form id="formulario">
                     
                     <p:growl id="confirmacion" showDetail="true" life="2500"/>
-                    
-                    <h:panelGrid style="margin: 0 auto; width: 800px" columns="2" cellpadding="5">
-                        <h:panelGrid style="" cellpadding="5"> 
+                    <div class="row-fluid">   
+                    <h:panelGrid style="margin: 0 auto; text-align: left" columns="2" cellpadding="5" width="854px">
+                        <h:panelGrid cellpadding="5" columns="1">
+                            <h:outputText  style="font-weight: bold" value="1.- Seleccione el conductor que desea editar."></h:outputText>
                         
-                            <p:dataTable style="width: 300px; height: 550px" id="tbl" var="conductor" value="#{modificarConductor.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="5" selection="#{modificarConductor.conductor_seleccionado}" selectionMode="single">  
+                            <p:dataTable style="width: 400px; height: 390px" id="tbl" var="conductor" value="#{modificarConductor.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="5" selection="#{modificarConductor.conductor_seleccionado}" selectionMode="single">  
                                 <p:ajax event="rowSelect" listener="#{modificarConductor.onRowSelect}" update=":formulario:formModificar" />  
                                 
                                 <p:column>  
@@ -39,59 +40,64 @@
                         
                     </h:panelGrid>
                     
-                        <h:panelGrid id="formModificar" columns="2" >                 
+                        <h:panelGrid id="formModificar" columns="2" cellpadding="5" style="text-align: left" >
+                            <f:facet name="header">
+                                <h:outputText value="2.- Edite los campos que desea cambiar."></h:outputText></f:facet>
                         
                         <h:outputText value="RUT: " />
                         <p:inputText id="rut" disabled="true" required="true" value="#{modificarConductor.rut}">
-                            <p:watermark for="rut" value="172427545" />
                         </p:inputText>
                             
-                        <h:outputText value="Nombres: " />
+                        <h:outputText value="(*) Nombres: " />
                         <p:inputText id="nombres" validator="#{modificarConductor.validaNombre}" value="#{modificarConductor.nombres}">
                             <p:watermark for="nombres" value="Alex Patricio" />
                         </p:inputText>
                         
-                        <h:outputText value="Primer apellido: " />
+                        <h:outputText value="(*) Primer apellido: " />
                         <p:inputText id="primer_apellido" validator="#{modificarConductor.validaPrimerApellido}" value="#{modificarConductor.primer_apellido}">
                             <p:watermark for="primer_apellido" value="Ahumada" />
                         </p:inputText> 
                         
-                        <h:outputText value="Segundo apellido: " />
+                        <h:outputText value="(*) Segundo apellido: " />
                         <p:inputText id="segundo_apellido" validator="#{modificarConductor.validaSegundoApellido}" value="#{modificarConductor.segundo_apellido}">
                             <p:watermark for="segundo_apellido" value="Ahumada" />
                         </p:inputText>
                          
                         
-                        <h:outputText value="Fecha de nacimiento: " />
+                        <h:outputText value="(*) Fecha de nacimiento: " />
                         <p:inputMask id="fecha_nacimiento" validator="#{modificarConductor.validaFechaNacimiento}" value="#{modificarConductor.fecha_nacimiento}" mask="99/99/9999">
                             <p:watermark for="fecha_nacimiento" value="28/06/1989" />
                         </p:inputMask>
                         
-                        <h:outputText value="Direccion: " />
+                        <h:outputText value="(*) Direccion: " />
                         <p:inputText id="direccion" validator="#{modificarConductor.validaDireccion(fc, uic, o)}" value="#{modificarConductor.direccion}">
                             <p:watermark for="direccion" value="calle A #1234" />
                         </p:inputText> 
                         
-                        <h:outputText value="Correo: " />
+                        <h:outputText value="(*) Correo: " />
                         <p:inputText id="correo" validator="#{modificarConductor.validaMail}" value="#{modificarConductor.correo}">
                             <p:watermark for="correo" value="micorreo@gmail.com" />
                         </p:inputText> 
                         
-                        <h:outputText value="Telefono: " />
+                        <h:outputText value="(*) Telefono: " />
                         <p:inputMask id="telefono" validator="#{modificarConductor.validaTelefono}" value="#{modificarConductor.telefono}" mask="99999999">
                             <p:watermark for="telefono" value="83217654" />
                         </p:inputMask>
-
-                           
-                        <p:commandButton onclick="mensajeConfirmacion.show()" value="Modificar"/> 
+                                                
+                        </h:panelGrid>
+                        <f:facet name="footer"  >  
+                                <h:outputText   style="color: red"   value="(*) Campos obligatorios"></h:outputText>
+                                </f:facet>
+                    </h:panelGrid>
+                        </div>
+                       
+                        <p:commandButton onclick="mensajeConfirmacion.show()" value="Modificar" icon="ui-icon-check"/> 
                         <p:confirmDialog message="¿Está seguro que desea modificar un conductor? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
                             <p:commandButton value="Sí" action="#{modificarConductor.modificarConductor()}" actionListener="#{modificarConductor.confirmacionModificar(actionEvent)}" update=":formulario:confirmacion" oncomplete="mensajeConfirmacion.hide()"/>
                             <p:commandButton value="No" onclick="mensajeConfirmacion.hide();" type="button" /> 
                         </p:confirmDialog>
-                        
-                        </h:panelGrid>                    
-                    </h:panelGrid>
                 </h:form>
+                     </p:fieldset>
             </ui:define>
 
             <ui:define name="bottom">

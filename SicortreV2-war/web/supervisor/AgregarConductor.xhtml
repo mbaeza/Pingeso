@@ -11,63 +11,74 @@
         <ui:composition template="./Base.xhtml">
 
             <ui:define name="content">
+                <p:fieldset legend="Agregar conductor" style="text-align: center">
                 <h:form id="form">
-                    
+                    <div class="row-fluid" style="text-align: left" >
+                        <h:outputText  style="font-weight: bold" value="1.- Complete el formulario para poder ingresar un conductor."></h:outputText>
+                        
+                    </div>
                     <p:growl id="confirmacion" showDetail="true" life="2500" />
-                    
-                    <h:panelGrid id="formulario" style="margin: 0 auto" columns="2" cellpadding="5"> 
-                        <h:outputText value="RUT: " />
-                        <p:inputText id="rut" validator="#{agregarConductor.validaRut}" value="#{agregarConductor.rut}">
-                            <p:watermark for="rut" value="172427545" />
-                        </p:inputText>
+                    <br></br>
+                    <h:panelGrid id="formulario" style="margin: 0 auto; text-align: left" columns="2" cellpadding="5" width="854px"> 
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="(*) RUT: " />
+                            <p:inputText id="rut" validator="#{agregarConductor.validaRut}" value="#{agregarConductor.rut}">
+                                <p:watermark for="rut" value="172427545" />
+                            </p:inputText>
                         
-                        <h:outputText value="Nombres: " />
-                        <p:inputText id="nombres" validator="#{agregarConductor.validaNombre}" value="#{agregarConductor.nombres}">
-                            <p:watermark for="nombres" value="Alex Patricio" />
-                        </p:inputText>
-                        
-                        <h:outputText value="Primer apellido: " />
-                        <p:inputText id="primer_apellido" validator="#{agregarConductor.validaPrimerApellido}" value="#{agregarConductor.primer_apellido}">
-                            <p:watermark for="primer_apellido" value="Ahumada" />
-                        </p:inputText> 
-                        
-                        <h:outputText value="Segundo apellido: " />
-                        <p:inputText id="segundo_apellido" validator="#{agregarConductor.validaSegundoApellido}" value="#{agregarConductor.segundo_apellido}">
-                            <p:watermark for="segundo_apellido" value="Ahumada" />
-                        </p:inputText>
+                            <h:outputText value="(*) Nombres: " />
+                            <p:inputText id="nombres" validator="#{agregarConductor.validaNombre}" value="#{agregarConductor.nombres}">
+                                <p:watermark for="nombres" value="Alex Patricio" />
+                            </p:inputText>
+
+                            <h:outputText value="(*) Primer apellido: " />
+                            <p:inputText id="primer_apellido" validator="#{agregarConductor.validaPrimerApellido}" value="#{agregarConductor.primer_apellido}">
+                                <p:watermark for="primer_apellido" value="Ahumada" />
+                            </p:inputText> 
+
+                            <h:outputText value="(*) Segundo apellido: " />
+                            <p:inputText id="segundo_apellido" validator="#{agregarConductor.validaSegundoApellido}" value="#{agregarConductor.segundo_apellido}">
+                                <p:watermark for="segundo_apellido" value="Ahumada" />
+                            </p:inputText>
+                        </h:panelGrid>
                   
+                        <h:panelGrid columns="2" cellpadding="5" style="text-align: left">
+                            <h:outputText value="(*) Fecha de nacimiento: " />
+                            <p:inputMask id="fecha_nacimiento" validator="#{agregarConductor.validaFechaNacimiento}" value="#{agregarConductor.fecha_nacimiento}" mask="99/99/9999">
+                                <p:watermark for="fecha_nacimiento" value="28/06/1989" />
+                            </p:inputMask>
+
+                            <h:outputText value="(*) Direccion: " />
+                            <p:inputText id="direccion" validator="#{agregarConductor.validaDireccion}" value="#{agregarConductor.direccion}">
+                                <p:watermark for="direccion" value="calle A #1234" />
+                            </p:inputText> 
                         
-                        <h:outputText value="Fecha de nacimiento: " />
-                        <p:inputMask id="fecha_nacimiento" validator="#{agregarConductor.validaFechaNacimiento}" value="#{agregarConductor.fecha_nacimiento}" mask="99/99/9999">
-                            <p:watermark for="fecha_nacimiento" value="28/06/1989" />
-                        </p:inputMask>
-                        
-                        <h:outputText value="Direccion: " />
-                        <p:inputText id="direccion" validator="#{agregarConductor.validaDireccion}" value="#{agregarConductor.direccion}">
-                            <p:watermark for="direccion" value="calle A #1234" />
-                        </p:inputText> 
-                        
-                        <h:outputText value="Correo: " />
-                        <p:inputText id="correo" validator="#{agregarConductor.validaMail}" value="#{agregarConductor.correo}">
-                            <p:watermark for="correo" value="micorreo@gmail.com" />
-                        </p:inputText>
-                        
-                        <h:outputText value="Telefono: " />
-                        <p:inputMask id="telefono" validator="#{agregarConductor.validaTelefono}" value="#{agregarConductor.telefono}" mask="99999999">
-                            <p:watermark for="telefono" value="83217654" />
-                        </p:inputMask> 
-                        
-                        <p:commandButton value="Borrar formulario" type="reset" /> 
-                        <p:commandButton onclick="mensajeConfirmacion.show()" value="Agregar" />
-                        
-                        <p:confirmDialog message="¿Está seguro que desea agregar un nuevo conductor? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
+                            <h:outputText value="(*) Correo: " />
+                            <p:inputText id="correo" validator="#{agregarConductor.validaMail}" value="#{agregarConductor.correo}">
+                                <p:watermark for="correo" value="micorreo@gmail.com" />
+                            </p:inputText>
+
+                            <h:outputText value="(*) Telefono: " />
+                            <p:inputMask id="telefono" validator="#{agregarConductor.validaTelefono}" value="#{agregarConductor.telefono}" mask="99999999">
+                                <p:watermark for="telefono" value="83217654" />
+                            </p:inputMask> 
+                        </h:panelGrid>
+                        <f:facet name="footer"  >  
+                                <h:outputText   style="color: red"   value="(*) Campos obligatorios"></h:outputText>
+                                </f:facet>
+                    </h:panelGrid>
+                    <p:commandButton style="margin-right: 10px" onclick="mensajeConfirmacion.show()" value="Agregar" icon="ui-icon-check" />    
+                        <p:commandButton value="Borrar formulario" type="reset" icon="ui-icon-cancel" />
+
+                            <p:confirmDialog message="¿Está seguro que desea agregar un nuevo camion? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
                             <p:commandButton value="Sí" action="#{agregarConductor.insertarConductor()}" actionListener="#{agregarConductor.confirmacionAgregar(actionEvent)}" update=":form" oncomplete="mensajeConfirmacion.hide()" ajax="true" />
                             <p:commandButton value="No" onclick="mensajeConfirmacion.hide();" type="button" /> 
                         </p:confirmDialog>
-                        
-                    </h:panelGrid>
+                   
                 </h:form> 
+                </p:fieldset>
             </ui:define>
+            
 
             <ui:define name="bottom">
                 bottom

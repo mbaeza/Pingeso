@@ -11,13 +11,17 @@
         <ui:composition template="./Base.xhtml">
 
             <ui:define name="content">
+                <p:fieldset legend="Cambio de estado de un conductor" style="text-align: center">
                 <h:form id="tablaGigante">       
                     <p:growl id="confirmacion" showDetail="true" life="2500" />  
                      
-                    <h:panelGrid style="margin: 0 auto; width: 800px" cellpadding="5">                                             
+                    <h:panelGrid style="margin: 0 auto; width: 800px; text-align: left" cellpadding="5">                                             
+                        <f:facet name="header">
+                            <h:outputText value="1.- Seleccione un conductor para cambiar su estado."></h:outputText>
+                        </f:facet>
                         <p:dataTable  id="tbl" var="conductor" value="#{cambiarEstadoConductor.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="7" selection="#{cambiarEstadoConductor.conductor_seleccionado_CamEst}" >                                  
                                 
-                                <p:column selectionMode="single" style="width:2%" />  
+                                <p:column selectionMode="single" style="width:2%"/>  
                                 
                                 <p:column>  
                                     <f:facet name="header">  
@@ -63,13 +67,15 @@
                                 
                             </p:dataTable> 
                         
-                        <p:commandButton onclick="mensajeConfirmacion.show()" value="Cambiar Estado" />
-                        <p:confirmDialog message="¿Está seguro que desea cambiar el estado de este conductor? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
+                        
+                    </h:panelGrid>
+                        <p:commandButton style="margin-top: 10px" onclick="mensajeConfirmacion.show()" value="Cambiar Estado" icon="ui-icon-check" />
+                        <p:confirmDialog message="¿Está seguro que desea cambiar el estado de este camion? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
                             <p:commandButton value="Sí" action="#{cambiarEstadoConductor.cambiarEstadoConductor()}" actionListener="#{cambiarEstadoConductor.confirmacionCambiarEstado(actionEvent)}" update=":tablaGigante" oncomplete="mensajeConfirmacion.hide()" ajax="true" />
                             <p:commandButton value="No" onclick="mensajeConfirmacion.hide();" type="button" /> 
                         </p:confirmDialog>
-                    </h:panelGrid>
                 </h:form>
+                </p:fieldset>
             </ui:define>
 
             <ui:define name="bottom">

@@ -11,8 +11,10 @@
         <ui:composition template="./Base.xhtml">
 
             <ui:define name="content">
+                <p:fieldset legend="Ver asignación" style="text-align: center"> 
                 <h:form id="tablaGigante">          
                     <h:panelGrid style="margin: 0 auto; width: 800px" cellpadding="5">                                             
+                        
                         <p:dataTable  id="tbl" var="asignacion" value="#{verAsignacionBean.asignaciones}" rowKey="#{asignacion.fecha}" paginator="true" rows="10">                                    
                                 
                                 <p:column>  
@@ -42,6 +44,7 @@
                     </h:panelGrid>                   
                       
               </h:form>
+                </p:fieldset>
             </ui:define>
 
             <ui:define name="bottom">

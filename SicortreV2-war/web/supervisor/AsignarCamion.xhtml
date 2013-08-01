@@ -11,9 +11,12 @@
         <ui:composition template="./Base.xhtml">
 
             <ui:define name="content">
-                
+                <p:fieldset legend="Asignar camión - conductor" style="text-align: center">
                 <h:form id="tablaGigante">          
-                    <h:panelGrid style="margin: 0 auto; width: 800px" cellpadding="5">                                             
+                    <h:panelGrid style="margin: 0 auto; width: 800px; text-align: left" cellpadding="5">                                             
+                        <f:facet name="header">
+                            <h:outputText value="1.- Seleccione un camión para ver su detalle."></h:outputText>
+                        </f:facet>
                         <p:dataTable  id="tbl" var="conductor" value="#{asignarConductorCamion.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="10" selection="#{asignarConductorCamion.conductor_seleccionado_CamEst}" >                                  
                                 
                                 <p:column selectionMode="single" style="width:2%" />  
@@ -55,15 +58,14 @@
                                 
                             </p:dataTable> 
                         
-                        <p:commandButton id="viewButton" value="Asignar Camion"  update=":tablaGigante:displaySingle" oncomplete="singleCarDialog.show()"/>
-                        
+             
                     </h:panelGrid>
                     
-                    <p:dialog id="dialog" header="Asignar Camion" widgetVar="singleCarDialog" resizable="false" showEffect="fade" hideEffect="explode">  
+                    <p:dialog id="dialog" header="Seleccione el camión" widgetVar="singleCarDialog" resizable="false" showEffect="fade" hideEffect="explode">  
 
-                        <h:panelGrid id="displaySingle" columns="2" cellpadding="4">   
+                        <h:panelGrid id="displaySingle" columns="2" cellpadding="4" style="text-align: left">   
                             
-                            <h:panelGrid>  
+                            <h:panelGrid columns="2" cellpadding="4">  
                                 
                                 <h:outputText value="RUT: " />  
                                 <h:outputText value="#{asignarConductorCamion.conductor_seleccionado_CamEst.rut}" style="font-weight:bold"/>
@@ -72,15 +74,19 @@
                                 <p:selectOneMenu value="#{asignarConductorCamion.camion}">  
                                     <f:selectItems value="#{camionBean.camiones}" var="camion" itemLabel="#{camion.patente}" itemValue="#{camion.id}"/>  
                                     </p:selectOneMenu> 
+                                <f:facet name="footer" >
+                                    <p:commandButton icon="ui-icon-check" value="Aceptar" action="#{asignarConductorCamion.asignarCamion()}" actionListener="#{conductorBean.confirmacionCambiarEstado(actionEvent)}" update=":tablaGigante" oncomplete="mensajeConfirmacion.hide()" ajax="true" />
+                                </f:facet>
                                 
-                                <p:commandButton value="Aceptar" action="#{asignarConductorCamion.asignarCamion()}" actionListener="#{conductorBean.confirmacionCambiarEstado(actionEvent)}" update=":tablaGigante" oncomplete="mensajeConfirmacion.hide()" ajax="true" />
                                 
                            </h:panelGrid>
                       </h:panelGrid>  
                 </p:dialog>
-                      
-              </h:form>
-                
+                    <div class="row-fluid" style="margin-top: 10px"> 
+                        <p:commandButton id="viewButton" icon="ui-icon-check" value="Asignar Camion"  update=":tablaGigante:displaySingle" oncomplete="singleCarDialog.show()"/>
+                    </div>
+                </h:form>
+                </p:fieldset> 
             </ui:define>
 
             <ui:define name="bottom">
