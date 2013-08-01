@@ -33,9 +33,9 @@
                                 </p:inputMask> 
 
                                 <h:outputText value="(*) Kilometraje: " />  
-                                <p:inputMask id="km" validator="#{agregarCamion.validaKilometraje}" value="#{agregarCamion.kilometraje}" mask="9999999999">
+                                <p:inputText id="km" validator="#{agregarCamion.validaKilometraje}" value="#{agregarCamion.kilometraje}">
                                     <p:watermark for="km" value="50.000" />
-                                </p:inputMask>
+                                </p:inputText>
 
                                 <h:outputText value="(*) Motor: " />  
                                 <p:inputText id="Motor" validator="#{agregarCamion.validaMotor}" value="#{agregarCamion.motor}" > 
@@ -43,9 +43,9 @@
                                 </p:inputText>  
 
                                 <h:outputText value="(*) Carga máxima: " />  
-                                <p:inputMask id="carga_max" validator="#{agregarCamion.validaCargaMaxima}" value="#{agregarCamion.carga_max}" mask="99999999">
+                                <p:inputText id="carga_max" validator="#{agregarCamion.validaCargaMaxima}" value="#{agregarCamion.carga_max}">
                                     <p:watermark for="carga_max" value="1200, en Kg" />
-                                </p:inputMask>                        
+                                </p:inputText>                        
 
                                 <h:outputText value="(*) Modelo - Marca: " />  
                                 <p:selectOneMenu value="#{agregarCamion.modelo_seleccionado}">  
@@ -56,9 +56,9 @@
                             </h:panelGrid>
                             <h:panelGrid columns="2" cellpadding="5" style="text-align: left">
                                 <h:outputText value="(*) Codigo GPS: " />  
-                                <p:inputMask id="cod_gps" validator="#{agregarCamion.validaCodigoGPS}" value="#{agregarCamion.cod_gps_google}" mask="********************">
+                                <p:inputText id="cod_gps" validator="#{agregarCamion.validaCodigoGPS}" value="#{agregarCamion.cod_gps_google}">
                                      <p:watermark for="cod_gps" value="Debe seguir el tutorial" />
-                                </p:inputMask>
+                                </p:inputText>
                                 
                                 <h:outputText value="   Observaciones: " />  
                                 <p:inputTextarea value="#{agregarCamion.observaciones}" rows="11" cols="10" autoResize="false"/>  
