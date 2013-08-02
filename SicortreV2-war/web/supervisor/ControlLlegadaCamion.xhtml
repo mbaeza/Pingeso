@@ -11,14 +11,16 @@
         <ui:composition template="./Base.xhtml">
 
             <ui:define name="content">
+                
+                <p:fieldset legend="Control de llegada de camión" style="text-align: center">
                 <h:form id="formulario">
                     
                     <p:growl id="confirmacion" showDetail="true" life="2500"/>  
                     
-                    <h:panelGrid style="margin: 0 auto; width: 800px" columns="2" cellpadding="5">
-                        <h:panelGrid cellpadding="5"> 
-                        
-                            <p:dataTable style="width: 300px; height: 250px" id="tbl" var="camion" value="#{controlLlegadaCamion.controles}" rowKey="#{camion.idControl}" paginator="true" rows="5" selection="#{controlLlegadaCamion.camion_seleccionado}" selectionMode="single">  
+                    <h:panelGrid style="margin: 0 auto; text-align: left" columns="2" cellpadding="5" width="854px">
+                        <h:panelGrid cellpadding="5" columns="1"> 
+                            <h:outputText  style="font-weight: bold" value="1.- Seleccione el control de salida."></h:outputText>
+                            <p:dataTable style="width: 400px; height: 250px" id="tbl" var="camion" value="#{controlLlegadaCamion.controles}" rowKey="#{camion.idControl}" paginator="true" rows="5" selection="#{controlLlegadaCamion.camion_seleccionado}" selectionMode="single">  
                                 <p:ajax event="rowSelect" listener="#{controlLlegadaCamion.onRowSelect(event)}" update=":formulario:formModificar" />  
                                 
                                 <p:column>  
@@ -45,8 +47,9 @@
                             </p:dataTable>                      
                         </h:panelGrid>                                                
                     
-                        <h:panelGrid id="formModificar" columns="2" >                 
-                            
+                        <h:panelGrid id="formModificar" columns="2" cellpadding="5" style="text-align: left" >                 
+                            <f:facet name="header">
+                                <h:outputText value="2.- Complete el formulario para realizar el control de llegada."></h:outputText></f:facet>
                             <h:outputText value="Patente camión: " />
                             <p:inputText id="patente" required="true" disabled="true" value="#{controlLlegadaCamion.patente}">
                             </p:inputText>                                                       
@@ -59,26 +62,28 @@
                             <p:inputText id="hora" disabled="true" required="true" value="#{controlLlegadaCamion.hora_salida}">    
                             </p:inputText>
                             
-                            <h:outputText value="Hora llegada: " />
+                            <h:outputText value="(*) Hora llegada: " />
                             <p:inputText id="hora_llegada" required="true" value="#{controlLlegadaCamion.hora_entrada}">
                                 <p:watermark for="hora_llegada" value="15:00:00" />
                             </p:inputText>
                             
-                            <h:outputText value="Cantidad basura: " />
+                            <h:outputText value="(*) Cantidad basura: " />
                             <p:inputText id="basura" required="true" value="#{controlLlegadaCamion.cantidad_basura}">
                                 <p:watermark for="basura" value="1500 kgs" />
                             </p:inputText>                                                          
                             
-                            <p:commandButton onclick="mensajeConfirmacion.show()" value="Ingresar Control"/>
+                        </h:panelGrid>
+                        <f:facet name="footer"  >  
+                                <h:outputText   style="color: red"   value="(*) Campos obligatorios"></h:outputText>
+                                </f:facet>
+                    </h:panelGrid>
+                        <p:commandButton onclick="mensajeConfirmacion.show()" value="Ingresar Control" icon="ui-icon-check"/>
                             <p:confirmDialog message="¿Está seguro que desea ingresar el control? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
                                 <p:commandButton value="Sí" action="#{controlLlegadaCamion.modificarControl()}" actionListener="#{controlLlegadaCamion.confirmacionControlLlegada(actionEvent)}" update=":formulario:confirmacion" oncomplete="mensajeConfirmacion.hide()"/>
                                 <p:commandButton value="No" onclick="mensajeConfirmacion.hide();" type="button" /> 
                             </p:confirmDialog>
-                           
-                            
-                        </h:panelGrid>
-                    </h:panelGrid>
-                </h:form>  
+                </h:form> 
+                    </p:fieldset>
             </ui:define>
 
             <ui:define name="bottom">
