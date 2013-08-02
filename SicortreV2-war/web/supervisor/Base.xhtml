@@ -53,12 +53,21 @@
                                 <li role="presentation"><h:link outcome="/faces/supervisor/AgregarConductor.xhtml" value="Agregar conductor" /></li>
                                 <li role="presentation"><h:link outcome="/faces/supervisor/CambiarEstadoConductor.xhtml" value="Cambiar estado de conductor" /></li>
                                 <li role="presentation"><h:link outcome="/faces/supervisor/ModificarConductor.xhtml" value="Modificar conductor" /></li>
-                                <li role="presentation"><h:link outcome="/faces/supervisor/AsignarCamion.xhtml" value="Asignar camión" /></li>
-                                <li role="presentation"><h:link outcome="/faces/supervisor/VerAsignacion.xhtml" value="Ver asignaciones" /></li>
+                                
                             </ul>
                         </li>
                         
                         <li><h:link outcome="/faces/supervisor/AgregarCamion.xhtml" value="Rutas" style="font-size: 15px; font-weight: lighter" /></li>                     
+                        
+                        <li id="fat-menu" class="dropdown">
+                            <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 15px; font-weight: lighter">Control <b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="drop3" style="background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(246,248,249)), color-stop(50%,rgb(229,235,238)), color-stop(51%,rgb(215,222,227)), color-stop(100%,rgb(245,247,249))); /* Chrome10+,Safari5.1+ */">
+                                <li role="presentation"><h:link outcome="/faces/supervisor/AsignarCamion.xhtml" value="Asignar camión-conductor" /></li>
+                                <li role="presentation"><h:link outcome="/faces/supervisor/VerAsignacion.xhtml" value="Ver asignación" /></li>
+                                <li role="presentation"><h:link outcome="/faces/supervisor/ControlLlegadaCamion.xhtml" value="Control llegada" /></li>
+                                <li role="presentation"><h:link outcome="/faces/supervisor/ControlSalidaCamion.xhtml" value="Control salida" /></li>
+                            </ul>
+                        </li>
                     </ul>
                     <ul class="nav pull-right">
                       <li class="divider-vertical"></li>
