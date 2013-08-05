@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import sessionBeans.CamionFacadeLocal;
 import sessionBeans.MarcaFacadeLocal;
 import sessionBeans.ModeloFacadeLocal;
@@ -29,19 +30,12 @@ public class VerCamion {
     @EJB
     private MarcaFacadeLocal marcaFacade;
     @EJB
-    private CamionFacadeLocal camionFacade;    
+    private CamionFacadeLocal camionFacade;   
+    @Inject CamionBeans camionBeans;
 
     private List<Modelo> modelos;
     private List<Marca> marcas;
     private List<Camion> camiones;
-    private String modelo_seleccionado;
-    private String patente;
-    private String fecha_compra;
-    private String kilometraje;
-    private String motor;
-    private String carga_max;
-    private String cod_gps_google;
-    private String observaciones;  
     private Modelo modelo;
     private Camion camion_seleccionado;  
     private Camion camion_seleccionado_CamEst;
@@ -102,70 +96,6 @@ public class VerCamion {
 
     public void setCamiones(List<Camion> camiones) {
         this.camiones = camiones;
-    }
-
-    public String getModelo_seleccionado() {
-        return modelo_seleccionado;
-    }
-
-    public void setModelo_seleccionado(String modelo_seleccionado) {
-        this.modelo_seleccionado = modelo_seleccionado;
-    }
-
-    public String getPatente() {
-        return patente;
-    }
-
-    public void setPatente(String patente) {
-        this.patente = patente;
-    }
-
-    public String getFecha_compra() {
-        return fecha_compra;
-    }
-
-    public void setFecha_compra(String fecha_compra) {
-        this.fecha_compra = fecha_compra;
-    }
-
-    public String getKilometraje() {
-        return kilometraje;
-    }
-
-    public void setKilometraje(String kilometraje) {
-        this.kilometraje = kilometraje;
-    }
-
-    public String getMotor() {
-        return motor;
-    }
-
-    public void setMotor(String motor) {
-        this.motor = motor;
-    }
-
-    public String getCarga_max() {
-        return carga_max;
-    }
-
-    public void setCarga_max(String carga_max) {
-        this.carga_max = carga_max;
-    }
-
-    public String getCod_gps_google() {
-        return cod_gps_google;
-    }
-
-    public void setCod_gps_google(String cod_gps_google) {
-        this.cod_gps_google = cod_gps_google;
-    }
-
-    public String getObservaciones() {
-        return observaciones;
-    }
-
-    public void setObservaciones(String observaciones) {
-        this.observaciones = observaciones;
     }
 
     public Modelo getModelo() {

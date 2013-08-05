@@ -18,6 +18,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.faces.validator.ValidatorException;
+import javax.inject.Inject;
 import sessionBeans.CamionFacadeLocal;
 import sessionBeans.MarcaFacadeLocal;
 import sessionBeans.ModeloFacadeLocal;
@@ -34,20 +35,13 @@ public class AgregarCamion {
     @EJB
     private MarcaFacadeLocal marcaFacade;
     @EJB
-    private CamionFacadeLocal camionFacade;
+    private CamionFacadeLocal camionFacade;    
+    @Inject CamionBeans camionBeans;    
 
     private List<Modelo> modelos;
     private List<Marca> marcas;
     private List<Camion> camiones;
-    private String modelo_seleccionado;
-    private String patente;
-    private String fecha_compra;
-    private String kilometraje;
-    private String motor;
-    private String carga_max;
-    private String cod_gps_google;
-    private String observaciones;  
-    private Modelo modelo;
+
     
     public AgregarCamion() {
     }
@@ -65,31 +59,31 @@ public class AgregarCamion {
         Camion camion = new Camion();
         
         camion.setEstado("Activo");
-        camion.setFechaDeCompra(fecha_compra);
-        camion.setKilometraje(Double.parseDouble(kilometraje));
-        camion.setMaxCarga(Integer.parseInt(carga_max));
-        camion.setMotor(motor);
-        camion.setPatente(patente);
+        camion.setFechaDeCompra(camionBeans.getFecha_compra());
+        camion.setKilometraje(Double.parseDouble(camionBeans.getKilometraje()));
+        camion.setMaxCarga(Integer.parseInt(camionBeans.getCarga_max()));
+        camion.setMotor(camionBeans.getMotor());
+        camion.setPatente(camionBeans.getPatente());
         camion.setControl("Estacionado");
-        camion.setUsuarioGLatitude(cod_gps_google);
+        camion.setUsuarioGLatitude(camionBeans.getCod_gps_google());
         for(int i = 0;i<modelos.size();i++){
-            if(modelos.get(i).getNombreModelo().equals(modelo_seleccionado))
+            if(modelos.get(i).getNombreModelo().equals(camionBeans.getModelo_seleccionado()))
                 id = modelos.get(i).getIdModelo();
         }
         //modelo.setNombreModelo(modelo_seleccionado);
-        modelo = new Modelo(id);
+        Modelo modelo = new Modelo(id);
         camion.setIdModelo(modelo);
-        camion.setObservacion(observaciones);
+        camion.setObservacion(camionBeans.getObservaciones());
         camionFacade.create(camion);
         
-        modelo_seleccionado = "";
-        patente = null;
-        fecha_compra = null;;
-        kilometraje = null;
-        motor = null;
-        carga_max =null;
-        cod_gps_google = null;
-        observaciones = null;
+        camionBeans.setModelo_seleccionado("");
+        camionBeans.setPatente(null);
+        camionBeans.setFecha_compra(null);
+        camionBeans.setKilometraje(null);
+        camionBeans.setMotor(null);
+        camionBeans.setCarga_max(null);
+        camionBeans.setCod_gps_google(null);
+        camionBeans.setObservaciones(null);
         
     }
     
@@ -98,62 +92,6 @@ public class AgregarCamion {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Agregación realizada",  "Se ha agregado un camion del sistema satisfactoriamente");    
         FacesContext.getCurrentInstance().addMessage(null, message); 
     } 
-
-    public void validaPatente(FacesContext fc, UIComponent uic, Object o) {
-        String strValue = String.valueOf(o);
-
-        if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Patente"));
-        }
-    }
-    
-    public void validaFechaCompra(FacesContext fc, UIComponent uic, Object o) {
-        String strValue = String.valueOf(o);
-
-        if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Fecha de compra"));
-        }
-    }
-    
-    public void validaKilometraje(FacesContext fc, UIComponent uic, Object o) {
-        String strValue = String.valueOf(o);
-        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de Kilometraje incorrecto"));
-        }
-        if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Kilometraje"));
-        }
-    }
-    
-    public void validaMotor(FacesContext fc, UIComponent uic, Object o) {
-        String strValue = String.valueOf(o);
-        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de Motor incorrecto"));
-        }
-        if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Motor"));
-        }
-    }
-    
-    public void validaCargaMaxima(FacesContext fc, UIComponent uic, Object o) {
-        String strValue = String.valueOf(o);
-        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de Carga maxima incorrecto"));
-        }
-        if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Carga maxima"));
-        }
-    }
-    
-    public void validaCodigoGPS(FacesContext fc, UIComponent uic, Object o) {
-        String strValue = String.valueOf(o);
-        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de Codigo GPS incorrecto"));
-        }
-        if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Codigo GPS"));
-        }
-    }
     
     public ModeloFacadeLocal getModeloFacade() {
         return modeloFacade;
@@ -201,79 +139,5 @@ public class AgregarCamion {
 
     public void setCamiones(List<Camion> camiones) {
         this.camiones = camiones;
-    }
-
-    public String getModelo_seleccionado() {
-        return modelo_seleccionado;
-    }
-
-    public void setModelo_seleccionado(String modelo_seleccionado) {
-        this.modelo_seleccionado = modelo_seleccionado;
-    }
-
-    public String getPatente() {
-        return patente;
-    }
-
-    public void setPatente(String patente) {
-        this.patente = patente;
-    }
-
-    public String getFecha_compra() {
-        return fecha_compra;
-    }
-
-    public void setFecha_compra(String fecha_compra) {
-        this.fecha_compra = fecha_compra;
-    }
-
-    public String getKilometraje() {
-        return kilometraje;
-    }
-
-    public void setKilometraje(String kilometraje) {
-        this.kilometraje = kilometraje;
-    }
-
-    public String getMotor() {
-        return motor;
-    }
-
-    public void setMotor(String motor) {
-        this.motor = motor;
-    }
-
-    public String getCarga_max() {
-        return carga_max;
-    }
-
-    public void setCarga_max(String carga_max) {
-        this.carga_max = carga_max;
-    }
-
-    public String getCod_gps_google() {
-        return cod_gps_google;
-    }
-
-    public void setCod_gps_google(String cod_gps_google) {
-        this.cod_gps_google = cod_gps_google;
-    }
-
-    public String getObservaciones() {
-        return observaciones;
-    }
-
-    public void setObservaciones(String observaciones) {
-        this.observaciones = observaciones;
-    }
-
-    public Modelo getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(Modelo modelo) {
-        this.modelo = modelo;
-    }
-    
-    
+    }       
 }

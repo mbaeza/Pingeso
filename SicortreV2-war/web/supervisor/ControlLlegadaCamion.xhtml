@@ -51,19 +51,19 @@
                             <f:facet name="header">
                                 <h:outputText value="2.- Complete el formulario para realizar el control de llegada."></h:outputText></f:facet>
                             <h:outputText value="Patente camión: " />
-                            <p:inputText id="patente" required="true" disabled="true" value="#{controlLlegadaCamion.patente}">
+                            <p:inputText id="patente" required="true"  value="#{controlBeans.patente}">
                             </p:inputText>                                                       
                         
                             <h:outputText value="Fecha control: " />
-                            <p:inputText id="fecha" disabled="true" required="true" value="#{controlLlegadaCamion.fecha}">                                
+                            <p:inputText id="fecha" disabled="true" required="true" value="#{controlBeans.fecha}">                                
                             </p:inputText>   
                             
                             <h:outputText value="Hora salida: " />
-                            <p:inputText id="hora" disabled="true" required="true" value="#{controlLlegadaCamion.hora_salida}">    
+                            <p:inputText id="hora" disabled="true" required="true" value="#{controlBeans.hora_salida}">    
                             </p:inputText>
                             
                             <h:outputText value="(*) Hora llegada: " />
-                            <p:inputText id="hora_llegada" required="true" value="#{controlLlegadaCamion.hora_entrada}">
+                            <p:inputText id="hora_llegada" required="true" value="#{controlBeans.hora_entrada}">
                                 <p:watermark for="hora_llegada" value="15:00:00" />
                             </p:inputText>
                             

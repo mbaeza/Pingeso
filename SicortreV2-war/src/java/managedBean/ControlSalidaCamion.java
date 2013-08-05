@@ -22,6 +22,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import org.primefaces.event.SelectEvent;
 import sessionBeans.AsignacionConductorCamionFacadeLocal;
 import sessionBeans.CamionFacadeLocal;
@@ -40,37 +41,31 @@ public class ControlSalidaCamion {
     private AsignacionConductorCamionFacadeLocal asignacionConductorCamionFacade;
     @EJB
     private CamionFacadeLocal camionFacade;
-
+    @Inject ControlBeans controlBeans;
+    
     private int cantidad_basura;
     private AsignacionConductorCamion camion_seleccionado;
-    private String conductor_nombres;
-    private String conductor_apellidos;
-    private List<AsignacionConductorCamion> asignaciones;
-    private String patente;
-    private String fecha;
-    private String hora_salida;
-    private String hora_entrada;
+    private List<AsignacionConductorCamion> asignaciones;     
     
     public ControlSalidaCamion() {       
     }
     
     @PostConstruct
     public void init(){       
-        asignaciones = asignacionConductorCamionFacade.BuscarPorCamion();          
+        asignaciones = asignacionConductorCamionFacade.findAll();          
     }
     
     public void ingresarControl(){
         
         try {
-            System.out.println(camion_seleccionado.getIdCamion().getPatente());
             Control control = new Control();
             
             SimpleDateFormat formato_fecha = new SimpleDateFormat("yyyy-MM-dd");
-            Date fecha_con_formato = formato_fecha.parse(fecha);
+            Date fecha_con_formato = formato_fecha.parse(controlBeans.getFecha());
             control.setFecha(fecha_con_formato);
             
             SimpleDateFormat formato_hora = new SimpleDateFormat("hh:mm:ss");
-            Date hora_con_formato = formato_hora.parse(hora_salida);
+            Date hora_con_formato = formato_hora.parse(controlBeans.getHora_salida());
             control.setHoraSalida(hora_con_formato);
             
             control.setCantidadBasura(null);
@@ -90,9 +85,9 @@ public class ControlSalidaCamion {
     
     
     public void onRowSelect(SelectEvent event) {         
-       conductor_nombres = camion_seleccionado.getIdConductor().getNombres();
-       conductor_apellidos = camion_seleccionado.getIdConductor().getPrimerApellido() + camion_seleccionado.getIdConductor().getSegundoApellido();
-       patente = camion_seleccionado.getIdCamion().getPatente();
+       controlBeans.setConductor_nombres(camion_seleccionado.getIdConductor().getNombres());
+       controlBeans.setConductor_apellidos(camion_seleccionado.getIdConductor().getPrimerApellido() + camion_seleccionado.getIdConductor().getSegundoApellido());
+       controlBeans.setPatente(camion_seleccionado.getIdCamion().getPatente());
     } 
     
     public void confirmacionControlSalida(ActionEvent actionEvent){  
@@ -140,60 +135,12 @@ public class ControlSalidaCamion {
         this.camion_seleccionado = camion_seleccionado;
     }
 
-    public String getConductor_nombres() {
-        return conductor_nombres;
-    }
-
-    public void setConductor_nombres(String conductor_nombres) {
-        this.conductor_nombres = conductor_nombres;
-    }
-
-    public String getConductor_apellidos() {
-        return conductor_apellidos;
-    }
-
-    public void setConductor_apellidos(String conductor_apellidos) {
-        this.conductor_apellidos = conductor_apellidos;
-    }
-
     public List<AsignacionConductorCamion> getAsignaciones() {
         return asignaciones;
     }
 
     public void setAsignaciones(List<AsignacionConductorCamion> asignaciones) {
         this.asignaciones = asignaciones;
-    }
-
-    public String getPatente() {
-        return patente;
-    }
-
-    public void setPatente(String patente) {
-        this.patente = patente;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getHora_salida() {
-        return hora_salida;
-    }
-
-    public void setHora_salida(String hora_salida) {
-        this.hora_salida = hora_salida;
-    }
-
-    public String getHora_entrada() {
-        return hora_entrada;
-    }
-
-    public void setHora_entrada(String hora_entrada) {
-        this.hora_entrada = hora_entrada;
     }
 
 }

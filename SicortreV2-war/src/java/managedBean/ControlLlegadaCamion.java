@@ -19,6 +19,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import org.primefaces.event.SelectEvent;
 import sessionBeans.AsignacionConductorCamionFacadeLocal;
 import sessionBeans.CamionFacadeLocal;
@@ -38,18 +39,14 @@ public class ControlLlegadaCamion {
     private ControlFacadeLocal controlFacade;
     @EJB
     private AsignacionConductorCamionFacadeLocal asignacionConductorCamionFacade;
-    @EJB
-    
+    @EJB    
     private CamionFacadeLocal camionFacade;
+    @Inject ControlBeans controlBeans;
+    
+    private List<Control> controles;
     private String cantidad_basura;
     private Control camion_seleccionado;
-    private String conductor_nombres;
-    private String conductor_apellidos;
-    private List<Control> controles;
-    private String patente;
-    private String fecha;
-    private String hora_salida;
-    private String hora_entrada;
+    
     
     public ControlLlegadaCamion() {
     }
@@ -64,7 +61,7 @@ public class ControlLlegadaCamion {
         try {
             System.out.println(camion_seleccionado.getIdCamion().getPatente());
             SimpleDateFormat formato_hora = new SimpleDateFormat("hh:mm:ss");
-            Date hora_con_formato = formato_hora.parse(hora_entrada);
+            Date hora_con_formato = formato_hora.parse(controlBeans.getHora_entrada());
             camion_seleccionado.setHoraLlegada(hora_con_formato);
             
             camion_seleccionado.setCantidadBasura(Integer.parseInt(cantidad_basura));
@@ -81,9 +78,9 @@ public class ControlLlegadaCamion {
     }
     
     public void onRowSelect(SelectEvent event) {         
-       patente = camion_seleccionado.getIdCamion().getPatente();
-       hora_salida = camion_seleccionado.getHoraSalida().toString();
-       fecha = camion_seleccionado.getFecha().toString();
+       controlBeans.setPatente(camion_seleccionado.getIdCamion().getPatente());
+       controlBeans.setHora_salida(camion_seleccionado.getHoraSalida().toString());
+       controlBeans.setFecha(camion_seleccionado.getFecha().toString());
     } 
     
     public void confirmacionControlLlegada(ActionEvent actionEvent){  
@@ -129,19 +126,7 @@ public class ControlLlegadaCamion {
 
     public void setCamion_seleccionado(Control camion_seleccionado) {
         this.camion_seleccionado = camion_seleccionado;
-    }
-
-    public String getConductor_nombres() {
-        return conductor_nombres;
-    }
-
-    public void setConductor_nombres(String conductor_nombres) {
-        this.conductor_nombres = conductor_nombres;
-    }
-
-    public String getConductor_apellidos() {
-        return conductor_apellidos;
-    }
+    }    
 
     public ControlFacadeLocal getControlFacade1() {
         return controlFacade1;
@@ -157,42 +142,6 @@ public class ControlLlegadaCamion {
 
     public void setControles(List<Control> controles) {
         this.controles = controles;
-    }
-
-    public void setConductor_apellidos(String conductor_apellidos) {
-        this.conductor_apellidos = conductor_apellidos;
-    }
-
-    public String getPatente() {
-        return patente;
-    }
-
-    public void setPatente(String patente) {
-        this.patente = patente;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getHora_salida() {
-        return hora_salida;
-    }
-
-    public void setHora_salida(String hora_salida) {
-        this.hora_salida = hora_salida;
-    }
-
-    public String getHora_entrada() {
-        return hora_entrada;
-    }
-
-    public void setHora_entrada(String hora_entrada) {
-        this.hora_entrada = hora_entrada;
-    }
+    }  
     
 }

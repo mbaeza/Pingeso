@@ -19,7 +19,7 @@
                     <h:panelGrid style="margin: 0 auto; text-align: left" columns="2" cellpadding="5" width="854px" >
                         <h:panelGrid cellpadding="5" columns="1"> 
                             <h:outputText  style="font-weight: bold" value="1.- Seleccione el camión que desea editar."></h:outputText>
-                            <p:dataTable style="width: 300px; height: 250px" id="tbl" var="camion" value="#{controlSalidaCamion.asignaciones}" rowKey="#{camion.idCamion}" paginator="true" rows="5" selection="#{controlSalidaCamion.camion_seleccionado}" selectionMode="single">  
+                            <p:dataTable style="width: 300px; height: 250px" id="tbl" var="camion" value="#{controlSalidaCamion.asignaciones}" rowKey="#{camion.idAsignar}" paginator="true" rows="5" selection="#{controlSalidaCamion.camion_seleccionado}" selectionMode="single">  
                                 <p:ajax event="rowSelect" listener="#{controlSalidaCamion.onRowSelect(event)}" update=":formulario:formModificar" />  
                                 
                                 <p:column>  
@@ -36,24 +36,24 @@
                             <f:facet name="header">
                                 <h:outputText value="2.- Complete el formulario para realizar el control de salida."></h:outputText></f:facet>
                             <h:outputText value="Patente camión: " />
-                            <p:inputText id="patente" required="true" disabled="true" value="#{controlSalidaCamion.patente}">
+                            <p:inputText id="patente" required="true" disabled="true" value="#{controlBeans.patente}">
                             </p:inputText>
                             
                             <h:outputText value="Nombre(s) conductor: " />
-                            <p:inputText id="nombres" required="true" disabled="true" value="#{controlSalidaCamion.conductor_nombres}">                                
+                            <p:inputText id="nombres" required="true" disabled="true" value="#{controlBeans.conductor_nombres}">                                
                             </p:inputText>
                             
                             <h:outputText value="Apellidos conductor " />
-                            <p:inputText id="apellidos" disabled="true" required="true" value="#{controlSalidaCamion.conductor_apellidos}">                                
+                            <p:inputText id="apellidos" disabled="true" required="true" value="#{controlBeans.conductor_apellidos}">                                
                             </p:inputText>
                         
                             <h:outputText value="(*) Fecha control: " />
-                            <p:inputText id="fecha" required="true" value="#{controlSalidaCamion.fecha}">
+                            <p:inputText id="fecha" required="true" value="#{controlBeans.fecha}">
                                 <p:watermark for="fecha" value="1990/10/22" />                  
                             </p:inputText>   
                             
                             <h:outputText value="(*) Hora salida: " />
-                            <p:inputText id="hora" required="true" value="#{controlSalidaCamion.hora_salida}">
+                            <p:inputText id="hora" required="true" value="#{controlBeans.hora_salida}">
                                 <p:watermark for="hora" value="15:00:00 hrs" />
                             </p:inputText> 
                             
