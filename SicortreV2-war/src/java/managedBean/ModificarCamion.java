@@ -66,7 +66,7 @@ public class ModificarCamion {
         int id = 0;
       /*  if(camionFacade.findAll().size() != 0){
             id = camionFacade.findAll().get(camionFacade.findAll().size()-1).getId()+1;
-        }*/    
+        }*/       
         camion_seleccionado.setFechaDeCompra(fecha_compra);
         camion_seleccionado.setKilometraje(Double.parseDouble(kilometraje));
         camion_seleccionado.setMaxCarga(Integer.parseInt(carga_max));
@@ -82,7 +82,6 @@ public class ModificarCamion {
         camion_seleccionado.setControl(camion_seleccionado.getControl());
         camion_seleccionado.setIdModelo(modelo);
         camion_seleccionado.setObservacion(observaciones);
-        System.out.println(camion_seleccionado.getPatente());
         camionFacade.edit(camion_seleccionado);
     }
     
@@ -105,7 +104,61 @@ public class ModificarCamion {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modificación realizada",  "Se ha modificado un camion del sistema satisfactoriamente");    
         FacesContext.getCurrentInstance().addMessage(null, message); 
     }
+    public void validaPatente(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Patente"));
+        }
+    }
     
+    public void validaFechaCompra(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Fecha de compra"));
+        }
+    }
+    
+    public void validaKilometraje(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Formato de Kilometraje incorrecto"));
+        }
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Kilometraje"));
+        }
+    }
+    
+    public void validaMotor(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Formato de Motor incorrecto"));
+        }
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Motor"));
+        }
+    }
+    
+    public void validaCargaMaxima(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Formato de Carga maxima incorrecto"));
+        }
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Carga maxima"));
+        }
+    }
+    
+    public void validaCodigoGPS(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Formato de Codigo GPS incorrecto"));
+        }
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage("Falta ingresar Codigo GPS"));
+        }
+    }
+
     public ModeloFacadeLocal getModeloFacade() {
         return modeloFacade;
     }
@@ -240,61 +293,6 @@ public class ModificarCamion {
 
     public void setCamion_seleccionado_CamEst(Camion camion_seleccionado_CamEst) {
         this.camion_seleccionado_CamEst = camion_seleccionado_CamEst;
-    }
-    
-    public void validaPatente(FacesContext fc, UIComponent uic, Object o) {
-        String strValue = String.valueOf(o);
-        if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Patente"));
-        }
-    }
-    
-    public void validaFechaCompra(FacesContext fc, UIComponent uic, Object o) {
-        String strValue = String.valueOf(o);
-
-        if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Fecha de compra"));
-        }
-    }
-    
-    public void validaKilometraje(FacesContext fc, UIComponent uic, Object o) {
-        String strValue = String.valueOf(o);
-        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de Kilometraje incorrecto"));
-        }
-        if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Kilometraje"));
-        }
-    }
-    
-    public void validaMotor(FacesContext fc, UIComponent uic, Object o) {
-        String strValue = String.valueOf(o);
-        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de Motor incorrecto"));
-        }
-        if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Motor"));
-        }
-    }
-    
-    public void validaCargaMaxima(FacesContext fc, UIComponent uic, Object o) {
-        String strValue = String.valueOf(o);
-        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de Carga maxima incorrecto"));
-        }
-        if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Carga maxima"));
-        }
-    }
-    
-    public void validaCodigoGPS(FacesContext fc, UIComponent uic, Object o) {
-        String strValue = String.valueOf(o);
-        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de Codigo GPS incorrecto"));
-        }
-        if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Codigo GPS"));
-        }
     }
     
     
