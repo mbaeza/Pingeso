@@ -23,32 +23,32 @@
                         <h:panelGrid id="formulario" style="margin: 0 auto; text-align: left" columns="2" cellpadding="5" width="854px">  
                             <h:panelGrid columns="2" cellpadding="5">
                                 <h:outputText value="(*) Patente: " />  
-                                <p:inputMask id="patente" validator="#{agregarCamion.validaPatente}" value="#{agregarCamion.patente}" mask="aa-**-99">
+                                <p:inputMask id="patente" validator="#{camionBeans.validaPatente}" value="#{camionBeans.patente}" mask="aa-**-99">
                                 <p:watermark for="patente" value="PK-82-31" />
                                 </p:inputMask>    
 
                                 <h:outputText value="(*) Fecha de compra: " />  
-                                <p:inputMask id="fecha_compra" validator="#{agregarCamion.validaFechaCompra}" value="#{agregarCamion.fecha_compra}" mask="99/99/9999">
+                                <p:inputMask id="fecha_compra" validator="#{camionBeans.validaFechaCompra}" value="#{camionBeans.fecha_compra}" mask="99/99/9999">
                                     <p:watermark for="fecha_compra" value="22/10/2010" />
                                 </p:inputMask> 
 
                                 <h:outputText value="(*) Kilometraje: " />  
-                                <p:inputText id="km" validator="#{agregarCamion.validaKilometraje}" value="#{agregarCamion.kilometraje}">
+                                <p:inputText id="km" validator="#{camionBeans.validaKilometraje}" value="#{camionBeans.kilometraje}">
                                     <p:watermark for="km" value="50.000" />
                                 </p:inputText>
 
                                 <h:outputText value="(*) Motor: " />  
-                                <p:inputText id="Motor" validator="#{agregarCamion.validaMotor}" value="#{agregarCamion.motor}" > 
+                                <p:inputText id="Motor" validator="#{camionBeans.validaMotor}" value="#{camionBeans.motor}" > 
                                     <p:watermark for="Motor" value="1600 cc" />
                                 </p:inputText>  
 
                                 <h:outputText value="(*) Carga máxima: " />  
-                                <p:inputText id="carga_max" validator="#{agregarCamion.validaCargaMaxima}" value="#{agregarCamion.carga_max}">
+                                <p:inputText id="carga_max" validator="#{camionBeans.validaCargaMaxima}" value="#{camionBeans.carga_max}">
                                     <p:watermark for="carga_max" value="1200, en Kg" />
                                 </p:inputText>                        
 
                                 <h:outputText value="(*) Modelo - Marca: " />  
-                                <p:selectOneMenu value="#{agregarCamion.modelo_seleccionado}">  
+                                <p:selectOneMenu value="#{camionBeans.modelo_seleccionado}">  
                                     <f:selectItems value="#{agregarCamion.modelos}" var="modelo" itemLabel="#{modelo.nombreModelo} - #{modelo.idMarca.nombreMarca}" itemValue="#{modelo.nombreModelo}"/>  
                                 </p:selectOneMenu> 
 
@@ -56,12 +56,12 @@
                             </h:panelGrid>
                             <h:panelGrid columns="2" cellpadding="5" style="text-align: left">
                                 <h:outputText value="(*) Codigo GPS: " />  
-                                <p:inputText id="cod_gps" validator="#{agregarCamion.validaCodigoGPS}" value="#{agregarCamion.cod_gps_google}">
+                                <p:inputText id="cod_gps" validator="#{camionBeans.validaCodigoGPS}" value="#{camionBeans.cod_gps_google}">
                                      <p:watermark for="cod_gps" value="Debe seguir el tutorial" />
                                 </p:inputText>
                                 
                                 <h:outputText value="   Observaciones: " />  
-                                <p:inputTextarea value="#{agregarCamion.observaciones}" rows="11" cols="10" autoResize="false"/>  
+                                <p:inputTextarea value="#{camionBeans.observaciones}" rows="11" cols="10" autoResize="false"/>  
 
                                 
                              </h:panelGrid>
