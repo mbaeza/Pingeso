@@ -4,9 +4,15 @@
  */
 package managedBean;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +22,8 @@ import javax.servlet.http.HttpServletRequest;
  * @author Marco
  */
 @Named(value = "loginBean")
-@ApplicationScoped
-public class LoginBean {
+@SessionScoped
+public class LoginBean implements Serializable{
 
     private String username;
     private String password;
@@ -38,18 +44,29 @@ public class LoginBean {
         this.password = password;
     }
     
-    public String login () {
+    public void login () {
         FacesContext context = FacesContext.getCurrentInstance();
-        HttpServletRequest request = (HttpServletRequest)         
-            context.getExternalContext().getRequest();
+        ExternalContext externalContext = context.getExternalContext();
+        HttpServletRequest request = (HttpServletRequest)externalContext.getRequest();
+        
         try {
+            System.out.println("usuario logueado anteriormente: " + request.getRemoteUser());
           request.login(this.username, this.password);
+          System.out.println("se hizo login: " + request.getRemoteUser());
+          System.out.println("Es gerente: " + request.isUserInRole("Gerente"));
+          System.out.println("Es supervisor: " + request.isUserInRole("Supervisor de Camiones"));
+          
         } catch (ServletException e) {
+            System.out.println("error: " + e.getMessage());
           context.addMessage(null, new FacesMessage("Login failed."));
-          return "error";
+          return ;
         }
-        return "supervisor/Monitoreo?faces-redirect=true";
-   //     resp.sendRedirect("faces/supervisor/Monitoreo.xhtml");
+        try {
+            //return "supervisor/Monitoreo?faces-redirect=true";
+            externalContext.redirect(externalContext.getRequestContextPath()+"/faces/supervisor/Monitoreo.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void logout() {
