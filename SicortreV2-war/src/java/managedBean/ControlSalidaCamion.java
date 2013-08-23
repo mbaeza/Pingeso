@@ -52,7 +52,7 @@ public class ControlSalidaCamion {
     
     @PostConstruct
     public void init(){       
-        asignaciones = asignacionConductorCamionFacade.findAll();          
+        asignaciones = asignacionConductorCamionFacade.asignacionesActivas();          
     }
     
     public void ingresarControl(){

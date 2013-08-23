@@ -7,13 +7,14 @@ package entitiesClass;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -45,8 +46,13 @@ public class Usertable implements Serializable {
     @Size(min = 1, max = 32)
     @Column(name = "password")
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usertable")
-    private Collection<Grouptable> grouptableCollection;
+    @JoinTable(name = "grouptable", joinColumns = {
+        @JoinColumn(name = "userid", referencedColumnName = "userid")}, inverseJoinColumns = {
+        @JoinColumn(name = "userid", referencedColumnName = "userid")})
+    @ManyToMany
+    private Collection<Usertable> usertableCollection;
+    @ManyToMany(mappedBy = "usertableCollection")
+    private Collection<Usertable> usertableCollection1;
 
     public Usertable() {
     }
@@ -78,12 +84,22 @@ public class Usertable implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public Collection<Grouptable> getGrouptableCollection() {
-        return grouptableCollection;
+    public Collection<Usertable> getUsertableCollection() {
+        return usertableCollection;
     }
 
-    public void setGrouptableCollection(Collection<Grouptable> grouptableCollection) {
-        this.grouptableCollection = grouptableCollection;
+    public void setUsertableCollection(Collection<Usertable> usertableCollection) {
+        this.usertableCollection = usertableCollection;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<Usertable> getUsertableCollection1() {
+        return usertableCollection1;
+    }
+
+    public void setUsertableCollection1(Collection<Usertable> usertableCollection1) {
+        this.usertableCollection1 = usertableCollection1;
     }
 
     @Override

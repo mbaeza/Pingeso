@@ -194,12 +194,12 @@ public class AsignarConductorCamion {
     }
     
     public void asignarCamion(){
-        //conductor_seleccionado_CamEst.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
-        //conductorFacade.edit(conductor_seleccionado_CamEst);
+        asignacionConductorCamionFacade.cambiarEstado();
         AsignacionConductorCamion asignacion =  new AsignacionConductorCamion();
         asignacion.setFecha(new Date());
         asignacion.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
         asignacion.setIdConductor(conductor_seleccionado_CamEst);
+        asignacion.setEstado("Activo");
         asignacionConductorCamionFacade.create(asignacion);
     }
     

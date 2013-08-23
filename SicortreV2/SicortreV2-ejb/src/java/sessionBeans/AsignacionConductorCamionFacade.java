@@ -64,5 +64,29 @@ public class AsignacionConductorCamionFacade extends AbstractFacade<AsignacionCo
         }        
         return camiones_guardados;
     }
+
+    @Override
+    public void cambiarEstado() {
+        List<AsignacionConductorCamion> asignaciones_Antiguas = findAll();
+        
+        for(AsignacionConductorCamion AsignacionElegida : asignaciones_Antiguas){
+            AsignacionElegida.setEstado("Inactivo");
+            edit(AsignacionElegida);
+        }        
+    }
+
+    @Override
+    public List<AsignacionConductorCamion> asignacionesActivas() {
+        List<AsignacionConductorCamion> asignaciones = findAll();
+        List<AsignacionConductorCamion> asignacionesActivas = new ArrayList<AsignacionConductorCamion>();
+        for(AsignacionConductorCamion AsignacionElegida : asignaciones){
+            if(AsignacionElegida.getEstado().equals("Activo")){
+                asignacionesActivas.add(AsignacionElegida);
+            }            
+        }  
+        return asignacionesActivas;
+    }
+    
+    
     
 }

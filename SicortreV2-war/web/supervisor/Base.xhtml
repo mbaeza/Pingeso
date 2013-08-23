@@ -34,14 +34,14 @@
                 <div class="container" style="width: 940px">  
                     <h class="brand" href="#">SICORTRE</h> <!--aqui deberia ir el logo-->
                     <ul class="nav pull-left ">
-                        <li><h:link outcome="/faces/supervisor/Monitoreo.xhtml" value="Monitoreo" style="font-size: 15px; font-weight: lighter"/></li>
+                        <li><h:link outcome="/supervisor/Monitoreo.xhtml" value="Monitoreo" style="font-size: 15px; font-weight: lighter"/></li>
                         <li id="fat-menu" class="dropdown">
                             <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 15px; font-weight: lighter">Camiones <b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop3" style="background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(246,248,249)), color-stop(50%,rgb(229,235,238)), color-stop(51%,rgb(215,222,227)), color-stop(100%,rgb(245,247,249))); /* Chrome10+,Safari5.1+ */">
-                                <li role="presentation"><h:link outcome="/faces/supervisor/VerCamion.xhtml" value="Visualizar camión" /></li>
-                                <li role="presentation"><h:link outcome="/faces/supervisor/AgregarCamion.xhtml" value="Agregar camión" /></li>
-                                <li role="presentation"><h:link outcome="/faces/supervisor/ModificarCamion.xhtml" value="Modificar camión" /></li>
-                                <li role="presentation"><h:link outcome="/faces/supervisor/CambiarEstadoCamion.xhtml" value="Cambiar el estado de camión" /></li>                                
+                                <li role="presentation"><h:link outcome="/supervisor/VerCamion.xhtml" value="Visualizar camión" /></li>
+                                <li role="presentation"><h:link outcome="/supervisor/AgregarCamion.xhtml" value="Agregar camión" /></li>
+                                <li role="presentation"><h:link outcome="/supervisor/ModificarCamion.xhtml" value="Modificar camión" /></li>
+                                <li role="presentation"><h:link outcome="/supervisor/CambiarEstadoCamion.xhtml" value="Cambiar el estado de camión" /></li>                                
                                 
                             </ul>
                         </li>
@@ -49,23 +49,23 @@
                         <li id="fat-menu" class="dropdown">
                             <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 15px; font-weight: lighter">Conductores <b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop3" style="background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(246,248,249)), color-stop(50%,rgb(229,235,238)), color-stop(51%,rgb(215,222,227)), color-stop(100%,rgb(245,247,249))); /* Chrome10+,Safari5.1+ */">
-                                <li role="presentation"><h:link outcome="/faces/supervisor/VerConductor.xhtml" value="Visualizar conductor" /></li>
-                                <li role="presentation"><h:link outcome="/faces/supervisor/AgregarConductor.xhtml" value="Agregar conductor" /></li>
-                                <li role="presentation"><h:link outcome="/faces/supervisor/CambiarEstadoConductor.xhtml" value="Cambiar estado de conductor" /></li>
-                                <li role="presentation"><h:link outcome="/faces/supervisor/ModificarConductor.xhtml" value="Modificar conductor" /></li>
+                                <li role="presentation"><h:link outcome="/supervisor/VerConductor.xhtml" value="Visualizar conductor" /></li>
+                                <li role="presentation"><h:link outcome="/supervisor/AgregarConductor.xhtml" value="Agregar conductor" /></li>
+                                <li role="presentation"><h:link outcome="/supervisor/CambiarEstadoConductor.xhtml" value="Cambiar estado de conductor" /></li>
+                                <li role="presentation"><h:link outcome="/supervisor/ModificarConductor.xhtml" value="Modificar conductor" /></li>
                                 
                             </ul>
                         </li>
                         
-                        <li><h:link outcome="/faces/supervisor/AgregarCamion.xhtml" value="Rutas" style="font-size: 15px; font-weight: lighter" /></li>                     
+                        <li><h:link outcome="/supervisor/AgregarCamion.xhtml" value="Rutas" style="font-size: 15px; font-weight: lighter" /></li>                     
                         
                         <li id="fat-menu" class="dropdown">
                             <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 15px; font-weight: lighter">Control <b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop3" style="background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(246,248,249)), color-stop(50%,rgb(229,235,238)), color-stop(51%,rgb(215,222,227)), color-stop(100%,rgb(245,247,249))); /* Chrome10+,Safari5.1+ */">
-                                <li role="presentation"><h:link outcome="/faces/supervisor/AsignarCamion.xhtml" value="Asignar camión-conductor" /></li>
-                                <li role="presentation"><h:link outcome="/faces/supervisor/VerAsignacion.xhtml" value="Ver asignación" /></li>
-                                <li role="presentation"><h:link outcome="/faces/supervisor/ControlLlegadaCamion.xhtml" value="Control llegada" /></li>
-                                <li role="presentation"><h:link outcome="/faces/supervisor/ControlSalidaCamion.xhtml" value="Control salida" /></li>
+                                <li role="presentation"><h:link outcome="/supervisor/AsignarCamion.xhtml" value="Asignar camión-conductor" /></li>
+                                <li role="presentation"><h:link outcome="/supervisor/VerAsignacion.xhtml" value="Ver asignación" /></li>
+                                <li role="presentation"><h:link outcome="/supervisor/ControlLlegadaCamion.xhtml" value="Control llegada" /></li>
+                                <li role="presentation"><h:link outcome="/supervisor/ControlSalidaCamion.xhtml" value="Control salida" /></li>
                             </ul>
                         </li>
                     </ul>
@@ -74,8 +74,8 @@
                       <li id="fat-menu" class="dropdown">
                           <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 15px; font-weight: lighter"><b class="caret"></b> Usuario</a>
                           <ul class="dropdown-menu" role="menu" aria-labelledby="drop3" style="background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(246,248,249)), color-stop(50%,rgb(229,235,238)), color-stop(51%,rgb(215,222,227)), color-stop(100%,rgb(245,247,249))); /* Chrome10+,Safari5.1+ */">
-                            <li role="presentation"><h:link outcome="/faces/supervisor/AgregarCamion.xhtml" value="Ayuda"/></li>
-                            <li role="presentation"><h:link outcome="/faces/supervisor/AgregarCamion.xhtml" value="Configuración"/></li>
+                            <li role="presentation"><h:link outcome="/supervisor/AgregarCamion.xhtml" value="Ayuda"/></li>
+                            <li role="presentation"><h:link outcome="/supervisor/AgregarCamion.xhtml" value="Configuración"/></li>
                             <li role="presentation"><h:outputLink tabindex="-1" value="#{loginBean.logout()}" style="">Cerrar Sesión</h:outputLink></li>
                           </ul>
                       </li>

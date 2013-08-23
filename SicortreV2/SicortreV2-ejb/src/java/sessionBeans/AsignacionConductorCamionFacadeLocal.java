@@ -5,6 +5,7 @@
 package sessionBeans;
 
 import entitiesClass.AsignacionConductorCamion;
+import entitiesClass.Camion;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -30,5 +31,9 @@ public interface AsignacionConductorCamionFacadeLocal {
     int count();
     
     List<AsignacionConductorCamion> BuscarPorCamion();
+
+    void cambiarEstado();
+
+    List<AsignacionConductorCamion> asignacionesActivas();
     
 }

@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -32,7 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "AsignacionConductorCamion.findAll", query = "SELECT a FROM AsignacionConductorCamion a"),
     @NamedQuery(name = "AsignacionConductorCamion.findByFecha", query = "SELECT a FROM AsignacionConductorCamion a WHERE a.fecha = :fecha"),
-    @NamedQuery(name = "AsignacionConductorCamion.findByIdAsignar", query = "SELECT a FROM AsignacionConductorCamion a WHERE a.idAsignar = :idAsignar")})
+    @NamedQuery(name = "AsignacionConductorCamion.findByIdAsignar", query = "SELECT a FROM AsignacionConductorCamion a WHERE a.idAsignar = :idAsignar"),
+    @NamedQuery(name = "AsignacionConductorCamion.findByEstado", query = "SELECT a FROM AsignacionConductorCamion a WHERE a.estado = :estado")})
 public class AsignacionConductorCamion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
@@ -45,6 +47,11 @@ public class AsignacionConductorCamion implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_asignar")
     private Integer idAsignar;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 8)
+    @Column(name = "Estado")
+    private String estado;
     @JoinColumn(name = "id_conductor", referencedColumnName = "Rut")
     @ManyToOne(optional = false)
     private Conductor idConductor;
@@ -59,9 +66,10 @@ public class AsignacionConductorCamion implements Serializable {
         this.idAsignar = idAsignar;
     }
 
-    public AsignacionConductorCamion(Integer idAsignar, Date fecha) {
+    public AsignacionConductorCamion(Integer idAsignar, Date fecha, String estado) {
         this.idAsignar = idAsignar;
         this.fecha = fecha;
+        this.estado = estado;
     }
 
     public Date getFecha() {
@@ -78,6 +86,14 @@ public class AsignacionConductorCamion implements Serializable {
 
     public void setIdAsignar(Integer idAsignar) {
         this.idAsignar = idAsignar;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public Conductor getIdConductor() {
