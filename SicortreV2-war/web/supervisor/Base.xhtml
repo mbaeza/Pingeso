@@ -23,7 +23,7 @@
         
         <!--Barra de header-->
         
-    <div class="row-fluid" style= "position: fixed">
+    <div class="row-fluid" style= "position: fixed; z-index: 1; overflow: auto">
              <div class="header-central">
                 <h:graphicImage value="/resources/img/header1.png"/>
             </div>
@@ -93,6 +93,7 @@
                 <div class="content">
                     <br></br>
                     <ui:insert name="content"></ui:insert>
+                    <br></br>
                 </div>
             </div>        
        </div>

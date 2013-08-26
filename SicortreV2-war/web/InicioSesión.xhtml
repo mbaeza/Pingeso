@@ -7,32 +7,37 @@
     <body>
          <ui:composition template="./BaseInicio.xhtml">
             <ui:define name="content">
-                <div style="padding-top: 100px; padding-left: 20%; padding-right: 20%; margin: 0px 10% 12% 15%; height: 300px; width: 400px">    
-                    <div class="InicioSesión">
-                        <h:form class="form-horizontal">
-                                <div class="control-group">
-                                  <label class="control-label" for="usernameInput">Nombre de Usuario</label>
-                                  <div class="controls">
-                                      <h:inputText id="inputEmail" value="#{loginBean.username}"  />
-                                  </div>
-                                </div>
-                                <div class="control-group">
-                                  <label class="control-label" for="passwordInput">Contraseña</label>
-                                  <div class="controls">
-                                      <h:inputText value="#{loginBean.password}" id="inputPassword" />
-                                  </div>
-                                </div>
-                                <div class="control-group">
-                                  <div class="controls">
-                                    <label class="checkbox">
-                                      <input type="checkbox"/> Remember me
-                                    </label>
-                                      <h:commandButton type="submit" value="Entrar" class="btn" action="#{loginBean.login()}"></h:commandButton>
-                                  </div>
-                                </div>                   
-                        </h:form>
-                    </div>
+                <div style="position: absolute; margin: auto">
+                 <h:graphicImage value="/resources/img/inicio2.png"/>
                 </div>
+                    
+                    
+                    <div style="padding-top: 150px; padding-left: 47%; padding-right: 20%; margin: 0px 10% 12% 15%; height: 300px; width: 400px">    
+                        <div class="InicioSesión">
+                            <h4 style="font-weight: bold; margin-left: 140px">Inicio de sesión</h4>
+                            <br></br>
+                            <h:form class="form-horizontal">
+                                    <div class="control-group">
+                                      <label class="control-label" style="cursor: default" for="usernameInput">Nombre de Usuario</label>
+                                      <div class="controls">
+                                          <h:inputText id="inputEmail" value="#{loginBean.username}"  />
+                                      </div>
+                                    </div>
+                                    <div class="control-group">
+                                      <label class="control-label" style="cursor: default" for="passwordInput">Contraseña</label>
+                                      <div class="controls">
+                                          <h:inputText value="#{loginBean.password}" id="inputPassword" />
+                                      </div>
+                                    </div>
+                                    <div class="control-group">
+                                      <div class="controls">
+                                       
+                                          <h:commandButton type="submit" value="Entrar" class="btn" action="#{loginBean.login()}"></h:commandButton>
+                                      </div>
+                                    </div>                   
+                            </h:form>
+                        </div>
+                    </div>
             </ui:define>
         </ui:composition>
     </body>

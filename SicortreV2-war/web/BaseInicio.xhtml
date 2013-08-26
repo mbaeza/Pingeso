@@ -14,33 +14,22 @@
         <h:outputScript name="bootstrap.js" />
         <title>Facelets Template</title>
     </h:head>
-    <h:body style="margin:0;">
-        <div class="row-fluid " style="margin-bottom:2%; min-width: 1165px; height: 41px">
+    <h:body class="color-fondo" style="margin:0;">
+        <div class="row-fluid " >
             <div id="navbar-example " class="navbar navbar-inverse navbar-static-top">
-              <div class="navbar-inner" style="background: -moz-linear-gradient(top, rgba(69,72,77,1) 0%, rgba(0,0,0,1) 62%);background: -webkit-linear-gradient(top, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 92%); /* Chrome10+,Safari5.1+ */">
-                <div class="container">
-                    <h class="brand " href="#">SICORTRE</h> <!--aqui deberia ir el logo-->
-                    <ui:insert name="top"></ui:insert>
+              <div class="navbar-inner" style="background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(246,248,249)), color-stop(50%,rgb(229,235,238)), color-stop(51%,rgb(215,222,227)), color-stop(100%,rgb(245,247,249))); /* Chrome,Safari4+ */">
+                <div class="container" style="width: 302px">  
+                    <h class="brand" style="margin: auto" href="#">BIENVENIDO A SICORTRE</h> <!--aqui deberia ir el logo-->
                 </div>
               </div>
             </div>
         </div>
         <div>
-            <div id="left">
-                <ui:insert name="left">Left</ui:insert>
-            </div>
-            <div>
-                <div id="right">
-                    <ui:insert name="right">Right</ui:insert>
-                </div>
-                <div id="content">
+            <div id="content">
                     <ui:insert name="content">Content</ui:insert>
-                </div>
             </div>
         </div>
-        <div id="bottom" >
-            <ui:insert name="bottom">Bottom</ui:insert>
-        </div>
+               
     </h:body>
 
 </html>
