@@ -37,8 +37,8 @@ public class VerCamion {
     private List<Marca> marcas;
     private List<Camion> camiones;
     private Modelo modelo;
-    private Camion camion_seleccionado;  
-    private Camion camion_seleccionado_CamEst;
+    private Camion camionSeleccionado;  
+    private Camion camionSeleccionadoCamEst;
     
     public VerCamion() {
     }
@@ -106,20 +106,20 @@ public class VerCamion {
         this.modelo = modelo;
     }
 
-    public Camion getCamion_seleccionado() {
-        return camion_seleccionado;
+    public Camion getCamionSeleccionado() {
+        return camionSeleccionado;
     }
 
-    public void setCamion_seleccionado(Camion camion_seleccionado) {
-        this.camion_seleccionado = camion_seleccionado;
+    public void setCamionSeleccionado(Camion camionSeleccionado) {
+        this.camionSeleccionado = camionSeleccionado;
     }
 
-    public Camion getCamion_seleccionado_CamEst() {
-        return camion_seleccionado_CamEst;
+    public Camion getCamionSeleccionadoCamEst() {
+        return camionSeleccionadoCamEst;
     }
 
-    public void setCamion_seleccionado_CamEst(Camion camion_seleccionado_CamEst) {
-        this.camion_seleccionado_CamEst = camion_seleccionado_CamEst;
+    public void setCamionSeleccionadoCamEst(Camion camionSeleccionadoCamEst) {
+        this.camionSeleccionadoCamEst = camionSeleccionadoCamEst;
     }
     
 }

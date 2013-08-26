@@ -19,15 +19,14 @@ import javax.faces.validator.ValidatorException;
 @RequestScoped
 public class ConductorBeans {
 
-    private String rut;
-    private String rut_seleccionado;
-    private String fecha_nacimiento;
+    private String rut;    
+    private String fechaNacimiento;
     private String direccion;
     private String correo;
     private String telefono;
     private String nombres;
-    private String primer_apellido;
-    private String segundo_apellido;
+    private String primerApellido;
+    private String segundoApellido;
     private String camion;
     
     public ConductorBeans() {
@@ -135,20 +134,12 @@ public class ConductorBeans {
         this.rut = rut;
     }
 
-    public String getRut_seleccionado() {
-        return rut_seleccionado;
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setRut_seleccionado(String rut_seleccionado) {
-        this.rut_seleccionado = rut_seleccionado;
-    }
-
-    public String getFecha_nacimiento() {
-        return fecha_nacimiento;
-    }
-
-    public void setFecha_nacimiento(String fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getDireccion() {
@@ -183,20 +174,20 @@ public class ConductorBeans {
         this.nombres = nombres;
     }
 
-    public String getPrimer_apellido() {
-        return primer_apellido;
+    public String getPrimerApellido() {
+        return primerApellido;
     }
 
-    public void setPrimer_apellido(String primer_apellido) {
-        this.primer_apellido = primer_apellido;
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
     }
 
-    public String getSegundo_apellido() {
-        return segundo_apellido;
+    public String getSegundoApellido() {
+        return segundoApellido;
     }
 
-    public void setSegundo_apellido(String segundo_apellido) {
-        this.segundo_apellido = segundo_apellido;
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
     }
 
     public String getCamion() {

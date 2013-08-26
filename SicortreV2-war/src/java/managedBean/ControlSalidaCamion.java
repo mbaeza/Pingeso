@@ -43,8 +43,8 @@ public class ControlSalidaCamion {
     private CamionFacadeLocal camionFacade;
     @Inject ControlBeans controlBeans;
     
-    private int cantidad_basura;
-    private AsignacionConductorCamion camion_seleccionado;
+    private int cantidadBasura;
+    private AsignacionConductorCamion camionSeleccionado;
     private List<AsignacionConductorCamion> asignaciones;     
     
     public ControlSalidaCamion() {       
@@ -65,17 +65,17 @@ public class ControlSalidaCamion {
             control.setFecha(fecha_con_formato);
             
             SimpleDateFormat formato_hora = new SimpleDateFormat("hh:mm:ss");
-            Date hora_con_formato = formato_hora.parse(controlBeans.getHora_salida());
+            Date hora_con_formato = formato_hora.parse(controlBeans.getHoraSalida());
             control.setHoraSalida(hora_con_formato);
             
             control.setCantidadBasura(null);
             control.setHoraLlegada(null);
-            control.setIdCamion(camion_seleccionado.getIdCamion());
+            control.setIdCamion(camionSeleccionado.getIdCamion());
 
             controlFacade.create(control);
             
-            camion_seleccionado.getIdCamion().setControl("En Ruta");
-            camionFacade.edit(camion_seleccionado.getIdCamion());
+            camionSeleccionado.getIdCamion().setControl("En Ruta");
+            camionFacade.edit(camionSeleccionado.getIdCamion());
         
         } catch (ParseException ex) {
             Logger.getLogger(ControlSalidaCamion.class.getName()).log(Level.SEVERE, null, ex);
@@ -85,9 +85,9 @@ public class ControlSalidaCamion {
     
     
     public void onRowSelect(SelectEvent event) {         
-       controlBeans.setConductor_nombres(camion_seleccionado.getIdConductor().getNombres());
-       controlBeans.setConductor_apellidos(camion_seleccionado.getIdConductor().getPrimerApellido() + camion_seleccionado.getIdConductor().getSegundoApellido());
-       controlBeans.setPatente(camion_seleccionado.getIdCamion().getPatente());
+       controlBeans.setConductorNombres(camionSeleccionado.getIdConductor().getNombres());
+       controlBeans.setConductorApellidos(camionSeleccionado.getIdConductor().getPrimerApellido() + camionSeleccionado.getIdConductor().getSegundoApellido());
+       controlBeans.setPatente(camionSeleccionado.getIdCamion().getPatente());
     } 
     
     public void confirmacionControlSalida(ActionEvent actionEvent){  
@@ -119,20 +119,20 @@ public class ControlSalidaCamion {
         this.camionFacade = camionFacade;
     }
 
-    public int getCantidad_basura() {
-        return cantidad_basura;
+    public int getCantidadBasura() {
+        return cantidadBasura;
     }
 
-    public void setCantidad_basura(int cantidad_basura) {
-        this.cantidad_basura = cantidad_basura;
+    public void setCantidadBasura(int cantidadBasura) {
+        this.cantidadBasura = cantidadBasura;
     }
 
-    public AsignacionConductorCamion getCamion_seleccionado() {
-        return camion_seleccionado;
+    public AsignacionConductorCamion getCamionSeleccionado() {
+        return camionSeleccionado;
     }
 
-    public void setCamion_seleccionado(AsignacionConductorCamion camion_seleccionado) {
-        this.camion_seleccionado = camion_seleccionado;
+    public void setCamionSeleccionado(AsignacionConductorCamion camionSeleccionado) {
+        this.camionSeleccionado = camionSeleccionado;
     }
 
     public List<AsignacionConductorCamion> getAsignaciones() {

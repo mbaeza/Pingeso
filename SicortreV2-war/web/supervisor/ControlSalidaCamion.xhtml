@@ -19,7 +19,7 @@
                     <h:panelGrid style="margin: 0 auto; text-align: left" columns="2" cellpadding="5" width="854px" >
                         <h:panelGrid cellpadding="5" columns="1"> 
                             <h:outputText  style="font-weight: bold" value="1.- Seleccione el camión que desea editar."></h:outputText>
-                            <p:dataTable style="width: 300px; height: 250px" id="tbl" var="camion" value="#{controlSalidaCamion.asignaciones}" rowKey="#{camion.idAsignar}" paginator="true" rows="5" selection="#{controlSalidaCamion.camion_seleccionado}" selectionMode="single">  
+                            <p:dataTable style="width: 300px; height: 250px" id="tbl" var="camion" value="#{controlSalidaCamion.asignaciones}" rowKey="#{camion.idAsignar}" paginator="true" rows="5" selection="#{controlSalidaCamion.camionSeleccionado}" selectionMode="single">  
                                 <p:ajax event="rowSelect" listener="#{controlSalidaCamion.onRowSelect(event)}" update=":formulario:formModificar" />  
                                 
                                 <p:column>  
@@ -40,22 +40,22 @@
                             </p:inputText>
                             
                             <h:outputText value="Nombre(s) conductor: " />
-                            <p:inputText id="nombres" required="true" disabled="true" value="#{controlBeans.conductor_nombres}">                                
+                            <p:inputText id="nombres" required="true" disabled="true" value="#{controlBeans.conductorNombres}">                                
                             </p:inputText>
                             
                             <h:outputText value="Apellidos conductor " />
-                            <p:inputText id="apellidos" disabled="true" required="true" value="#{controlBeans.conductor_apellidos}">                                
+                            <p:inputText id="apellidos" disabled="true" required="true" value="#{controlBeans.conductorApellidos}">                                
                             </p:inputText>
                         
                             <h:outputText value="(*) Fecha control: " />
                             <p:inputText id="fecha" required="true" value="#{controlBeans.fecha}">
-                                <p:watermark for="fecha" value="1990/10/22" />                  
+                                <p:watermark for="fecha" value="1990-10-22" />                  
                             </p:inputText>   
                             
                             <h:outputText value="(*) Hora salida: " />
-                            <p:inputText id="hora" required="true" value="#{controlBeans.hora_salida}">
+                            <p:inputMask id="hora" required="true" value="#{controlBeans.horaSalida}" mask="99:99:99">
                                 <p:watermark for="hora" value="15:00:00 hrs" />
-                            </p:inputText> 
+                            </p:inputMask> 
                             
                         </h:panelGrid>
                         <f:facet name="footer"  >  

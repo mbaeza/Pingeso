@@ -22,7 +22,7 @@
                         </p:inputMask>    
 
                         <h:outputText value="Fecha de compra: " />  
-                        <p:inputMask id="fecha_compra" value="#{camionBean.fecha_compra}" mask="99/99/9999">
+                        <p:inputMask id="fecha_compra" value="#{camionBean.fechaCompra}" mask="99/99/9999">
                             <p:watermark for="fecha_compra" value="22/10/2010" />
                         </p:inputMask> 
 
@@ -37,18 +37,18 @@
                         </p:inputText>  
 
                         <h:outputText value="Carga máxima: " />  
-                        <p:inputMask id="carga_max" value="#{camionBean.carga_max}" mask="99999999">
+                        <p:inputMask id="carga_max" value="#{camionBean.cargaMax}" mask="99999999">
                             <p:watermark for="carga_max" value="1200, en Kg" />
                         </p:inputMask>
                         
                         <h:outputText value="Modelo: " />  
-                        <p:selectOneMenu value="#{camionBean.modelo_seleccionado}" effect="fade">  
+                        <p:selectOneMenu value="#{camionBean.modeloSeleccionado}" effect="fade">  
                             <f:selectItem itemLabel="Select One" itemValue="" />  
                             <f:selectItems value="#{camionBean.modelos}" var="modelo" itemLabel="#{modelo.nombreModelo}" itemValue="#{modelo}"/>  
                         </p:selectOneMenu> 
 
                         <h:outputText value="Codigo GPS: " />  
-                        <p:inputMask id="cod_gps" value="#{camionBean.cod_gps_google}" mask="********************">
+                        <p:inputMask id="cod_gps" value="#{camionBean.codGpsGoogle}" mask="********************">
                              <p:watermark for="cod_gps" value="Debe seguir el tutorial" />
                         </p:inputMask>
 

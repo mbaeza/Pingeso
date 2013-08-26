@@ -28,7 +28,7 @@
                                 </p:inputMask>    
 
                                 <h:outputText value="(*) Fecha de compra: " />  
-                                <p:inputMask id="fecha_compra" validator="#{camionBeans.validaFechaCompra}" value="#{camionBeans.fecha_compra}" mask="99/99/9999">
+                                <p:inputMask id="fecha_compra" validator="#{camionBeans.validaFechaCompra}" value="#{camionBeans.fechaCompra}" mask="99/99/9999">
                                     <p:watermark for="fecha_compra" value="22/10/2010" />
                                 </p:inputMask> 
 
@@ -43,12 +43,12 @@
                                 </p:inputText>  
 
                                 <h:outputText value="(*) Carga máxima: " />  
-                                <p:inputText id="carga_max" validator="#{camionBeans.validaCargaMaxima}" value="#{camionBeans.carga_max}">
+                                <p:inputText id="carga_max" validator="#{camionBeans.validaCargaMaxima}" value="#{camionBeans.cargaMax}">
                                     <p:watermark for="carga_max" value="1200, en Kg" />
                                 </p:inputText>                        
 
                                 <h:outputText value="(*) Modelo - Marca: " />  
-                                <p:selectOneMenu value="#{camionBeans.modelo_seleccionado}">  
+                                <p:selectOneMenu value="#{agregarCamion.modeloSeleccionado}">  
                                     <f:selectItems value="#{agregarCamion.modelos}" var="modelo" itemLabel="#{modelo.nombreModelo} - #{modelo.idMarca.nombreMarca}" itemValue="#{modelo.nombreModelo}"/>  
                                 </p:selectOneMenu> 
 
@@ -56,7 +56,7 @@
                             </h:panelGrid>
                             <h:panelGrid columns="2" cellpadding="5" style="text-align: left">
                                 <h:outputText value="(*) Codigo GPS: " />  
-                                <p:inputText id="cod_gps" validator="#{camionBeans.validaCodigoGPS}" value="#{camionBeans.cod_gps_google}">
+                                <p:inputText id="cod_gps" validator="#{camionBeans.validaCodigoGPS}" value="#{camionBeans.codGpsGoogle}">
                                      <p:watermark for="cod_gps" value="Debe seguir el tutorial" />
                                 </p:inputText>
                                 

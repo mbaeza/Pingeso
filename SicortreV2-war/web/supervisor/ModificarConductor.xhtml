@@ -11,7 +11,7 @@
         <ui:composition template="./Base.xhtml">
 
             <ui:define name="content">
-                <p:fieldset legend="Modificar condcutor" style="text-align: center">
+                <p:fieldset legend="Modificar conductor" style="text-align: center">
                 <h:form id="formulario">
                     
                     <p:growl id="confirmacion" showDetail="true" life="2500"/>
@@ -20,7 +20,7 @@
                         <h:panelGrid cellpadding="5" columns="1">
                             <h:outputText  style="font-weight: bold" value="1.- Seleccione el conductor que desea editar."></h:outputText>
                         
-                            <p:dataTable style="width: 400px; height: 390px" id="tbl" var="conductor" value="#{modificarConductor.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="5" selection="#{modificarConductor.conductor_seleccionado}" selectionMode="single">  
+                            <p:dataTable style="width: 400px; height: 390px" id="tbl" var="conductor" value="#{modificarConductor.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="5" selection="#{modificarConductor.conductorSeleccionado}" selectionMode="single">  
                                 <p:ajax event="rowSelect" listener="#{modificarConductor.onRowSelect}" update=":formulario:formModificar" />  
                                 
                                 <p:column>  
@@ -45,7 +45,7 @@
                                 <h:outputText value="2.- Edite los campos que desea cambiar."></h:outputText></f:facet>
                         
                         <h:outputText value="RUT: " />
-                        <p:inputText id="rut" required="true" value="#{conductorBeans.rut}">
+                        <p:inputText id="rut" disabled="true" required="true" value="#{conductorBeans.rut}">
                         </p:inputText>
                             
                         <h:outputText value="(*) Nombres: " />
@@ -54,18 +54,18 @@
                         </p:inputText>
                         
                         <h:outputText value="(*) Primer apellido: " />
-                        <p:inputText id="primer_apellido" validator="#{conductorBeans.validaPrimerApellido}" value="#{conductorBeans.primer_apellido}">
+                        <p:inputText id="primer_apellido" validator="#{conductorBeans.validaPrimerApellido}" value="#{conductorBeans.primerApellido}">
                             <p:watermark for="primer_apellido" value="Ahumada" />
                         </p:inputText> 
                         
                         <h:outputText value="(*) Segundo apellido: " />
-                        <p:inputText id="segundo_apellido" validator="#{conductorBeans.validaSegundoApellido}" value="#{conductorBeans.segundo_apellido}">
+                        <p:inputText id="segundo_apellido" validator="#{conductorBeans.validaSegundoApellido}" value="#{conductorBeans.segundoApellido}">
                             <p:watermark for="segundo_apellido" value="Ahumada" />
                         </p:inputText>
                          
                         
                         <h:outputText value="(*) Fecha de nacimiento: " />
-                        <p:inputMask id="fecha_nacimiento" validator="#{conductorBeans.validaFechaNacimiento}" value="#{conductorBeans.fecha_nacimiento}" mask="99/99/9999">
+                        <p:inputMask id="fecha_nacimiento" validator="#{conductorBeans.validaFechaNacimiento}" value="#{conductorBeans.fechaNacimiento}" mask="99/99/9999">
                             <p:watermark for="fecha_nacimiento" value="28/06/1989" />
                         </p:inputMask>
                         

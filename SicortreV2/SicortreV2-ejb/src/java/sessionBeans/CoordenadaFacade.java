@@ -8,10 +8,17 @@ import entitiesClass.Camion;
 import entitiesClass.Coordenada;
 import entitiesClass.Marca;
 import entitiesClass.Modelo;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -29,6 +36,8 @@ import org.codehaus.jackson.JsonParser;
  */
 @Stateless
 public class CoordenadaFacade extends AbstractFacade<Coordenada> implements CoordenadaFacadeLocal {
+    protected static int contador;//Para BOT
+    protected static List<String> misCoordenadas = new ArrayList<String>();
     @EJB
     private ModeloFacadeLocal modeloFacade;
     @EJB
@@ -43,15 +52,38 @@ public class CoordenadaFacade extends AbstractFacade<Coordenada> implements Coor
         return em;
     }
 
-    public CoordenadaFacade() {
-        super(Coordenada.class);
-    }
-    
+    public CoordenadaFacade()  {
+        super(Coordenada.class);        
+        
+        /**********************************BOT****************************************************************/
+        /*contador = 0;        
+        try{
+            // Abrimos el archivo
+            FileInputStream fstream = new FileInputStream("C:\\Users\\Marco\\Documents\\GitHub\\Pingeso\\SicortreV2\\SicortreV2-ejb\\src\\java\\sessionBeans\\coordenadas.txt");
+            // Creamos el objeto de entrada
+            DataInputStream entrada = new DataInputStream(fstream);
+            // Creamos el Buffer de Lectura
+            BufferedReader buffer = new BufferedReader(new InputStreamReader(entrada));
+            String strLinea;
+            // Leer el archivo linea por linea
+            while ((strLinea = buffer.readLine()) != null)   {
+                // Imprimimos la línea por pantalla
+                misCoordenadas.add(strLinea);
+            }
+            
+            // Cerramos el archivo
+            entrada.close();
+        }catch (Exception e){ //Catch de excepciones
+            System.err.println("Ocurrio un error: " + e.getMessage());
+        }
+        /**************************************************************************************************/
+    }      
+        
     @Override
     public String obtenerLongitud(String nombreUsuarioGLongitud) {
         
         JsonFactory jfactory = new JsonFactory();
-        String Longitud = "Error";
+        String longitud = "Error";
         JsonParser jParser;
         
         try {
@@ -64,7 +96,7 @@ public class CoordenadaFacade extends AbstractFacade<Coordenada> implements Coor
 		if ("coordinates".equals(fieldname)) {
                   jParser.nextToken();
                   jParser.nextToken();
-                  Longitud = jParser.getText();
+                  longitud = jParser.getText();
                   break;		
 		}      
         }
@@ -73,15 +105,17 @@ public class CoordenadaFacade extends AbstractFacade<Coordenada> implements Coor
         } catch (IOException ex) {
             
         }
-        return Longitud;
+//        String[] longitudBot = misCoordenadas.get(contador).split(", ");
+//        contador = contador + 1;
+//        return longitudBot[1];
+        return longitud;
     }
 
     @Override
     public String obtenerLatitud(String nombreUsuarioGLatitude) {
         JsonFactory jfactory = new JsonFactory();
-        String Latitud = "Error";
+        String latitud = "Error";
         JsonParser jParser;
-        
         try {
             jParser = jfactory.createJsonParser(new URL("https://latitude.google.com/latitude/apps/badge/api?user="+nombreUsuarioGLatitude+"&type=json&callback=?"));
             // loop until token equal to "}"
@@ -93,7 +127,7 @@ public class CoordenadaFacade extends AbstractFacade<Coordenada> implements Coor
                   jParser.nextToken();
                   jParser.nextToken();
                   jParser.nextToken();
-                  Latitud = jParser.getText();
+                  latitud = jParser.getText();
                   break;		
 		}           
         }
@@ -101,7 +135,11 @@ public class CoordenadaFacade extends AbstractFacade<Coordenada> implements Coor
         } catch (IOException ex) {
            
         }
-        return Latitud;
+        
+//        String[] latitudBot = misCoordenadas.get(contador).split(", ");
+        
+//        return latitudBot[0];
+        return latitud;
     }
     @Schedule(minute = "*", second = "*/30", dayOfMonth = "*", month = "*", year = "*", hour = "*", dayOfWeek = "Mon-Fri")
     @Override

@@ -41,23 +41,23 @@ public class CamionBean implements Serializable {
     private CamionFacadeLocal camionFacade;
     
     //variables a utilizar
-    private List<SelectItem> modelos_y_marcas;
+    private List<SelectItem> modelosYMarcas;
     private List<Modelo> modelos;
     private List<Marca> marcas;
     private List<Camion> camiones;
     private List<Modelo> modelosSeleccionadosPorMarca;
-    private Marca marca_seleccionada;
-    private String modelo_seleccionado;
+    private Marca marcaSeleccionada;
+    private String modeloSeleccionado;
     private String patente;
-    private String fecha_compra;
+    private String fechaCompra;
     private String kilometraje;
     private String motor;
-    private String carga_max;
-    private String cod_gps_google;
+    private String cargaMax;
+    private String codGpsGoogle;
     private String observaciones;
-    private Camion camion_seleccionado;    
+    private Camion camionSeleccionado;    
     private Modelo modelo;
-    private Camion camion_seleccionado_CamEst;
+    private Camion camionSeleccionadoCamEst;
   
     public CamionBean(){    
     }
@@ -70,20 +70,20 @@ public class CamionBean implements Serializable {
    }
    
     //Setters y Getters
-    public Camion getCamion_seleccionado_CamEst() {
-        return camion_seleccionado_CamEst;
+    public Camion getCamionSeleccionadoCamEst() {
+        return camionSeleccionadoCamEst;
     }
 
-    public void setCamion_seleccionado_CamEst(Camion camion_seleccionado_CamEst) {
-        this.camion_seleccionado_CamEst = camion_seleccionado_CamEst;
+    public void setCamionSeleccionadoCamEst(Camion camionSeleccionadoCamEst) {
+        this.camionSeleccionadoCamEst = camionSeleccionadoCamEst;
     }
     
-    public Camion getCamion_seleccionado() {
-        return camion_seleccionado;
+    public Camion getCamionSeleccionado() {
+        return camionSeleccionado;
     }
 
-    public void setCamion_seleccionado(Camion camion_seleccionado) {
-        this.camion_seleccionado = camion_seleccionado;
+    public void setCamionSeleccionado(Camion camionSeleccionado) {
+        this.camionSeleccionado = camionSeleccionado;
     }
     
      public Modelo getModelo() {
@@ -94,12 +94,12 @@ public class CamionBean implements Serializable {
         this.modelo = modelo;
     }
 
-    public List<SelectItem> getModelos_y_marcas() {
-        return modelos_y_marcas;
+    public List<SelectItem> getModelosYMarcas() {
+        return modelosYMarcas;
     }
 
-    public void setModelos_y_marcas(List<SelectItem> modelos_y_marcas) {
-        this.modelos_y_marcas = modelos_y_marcas;
+    public void setModelosYMarcas(List<SelectItem> modelosYMarcas) {
+        this.modelosYMarcas = modelosYMarcas;
     }
     
     public List<Modelo> getModelosSeleccionadosPorMarca() {
@@ -143,12 +143,12 @@ public class CamionBean implements Serializable {
         this.patente = patente;
     }
 
-    public String getFecha_compra() {
-        return fecha_compra;
+    public String getFechaCompra() {
+        return fechaCompra;
     }
 
-    public void setFecha_compra(String fecha_compra) {
-        this.fecha_compra = fecha_compra;
+    public void setFechaCompra(String fechaCompra) {
+        this.fechaCompra = fechaCompra;
     }
 
     public String getKilometraje() {
@@ -167,20 +167,20 @@ public class CamionBean implements Serializable {
         this.motor = motor;
     }
 
-    public String getCarga_max() {
-        return carga_max;
+    public String getCargaMax() {
+        return cargaMax;
     }
 
-    public void setCarga_max(String carga_max) {
-        this.carga_max = carga_max;
+    public void setCargaMax(String cargaMax) {
+        this.cargaMax = cargaMax;
     }
 
-    public String getCod_gps_google() {
-        return cod_gps_google;
+    public String getCodGpsGoogle() {
+        return codGpsGoogle;
     }
 
-    public void setCod_gps_google(String cod_gps_google) {
-        this.cod_gps_google = cod_gps_google;
+    public void setCodGpsGoogle(String codGpsGoogle) {
+        this.codGpsGoogle = codGpsGoogle;
     }
 
     public String getObservaciones() {
@@ -215,20 +215,20 @@ public class CamionBean implements Serializable {
         this.camiones = camiones;
     }
 
-    public Marca getMarca_seleccionada() {
-        return marca_seleccionada;
+    public Marca getMarcaSeleccionada() {
+        return marcaSeleccionada;
     }
 
-    public void setMarca_seleccionada(Marca marca_seleccionada) {
-        this.marca_seleccionada = marca_seleccionada;
+    public void setMarcaSeleccionada(Marca marcaSeleccionada) {
+        this.marcaSeleccionada = marcaSeleccionada;
     }
 
-    public String getModelo_seleccionado() {
-        return modelo_seleccionado;
+    public String getModeloSeleccionado() {
+        return modeloSeleccionado;
     }
 
-    public void setModelo_seleccionado(String modelo_seleccionado) {
-        this.modelo_seleccionado = modelo_seleccionado;
+    public void setModeloSeleccionado(String modeloSeleccionado) {
+        this.modeloSeleccionado = modeloSeleccionado;
     }
 
     //Funcion para insertarun camion
@@ -239,30 +239,30 @@ public class CamionBean implements Serializable {
         }*/
         Camion camion = new Camion();
         camion.setEstado("Activo");
-        camion.setFechaDeCompra(fecha_compra);
+        camion.setFechaDeCompra(fechaCompra);
         camion.setKilometraje(Double.parseDouble(kilometraje));
-        camion.setMaxCarga(Integer.parseInt(carga_max));
+        camion.setMaxCarga(Integer.parseInt(cargaMax));
         camion.setMotor(motor);
         camion.setPatente(patente);
         camion.setControl("Estacionado");
-        camion.setUsuarioGLatitude(cod_gps_google);
+        camion.setUsuarioGLatitude(codGpsGoogle);
         for(int i = 0;i<modelos.size();i++){
-            if(modelos.get(i).getNombreModelo().equals(modelo_seleccionado))
+            if(modelos.get(i).getNombreModelo().equals(modeloSeleccionado))
                 id = modelos.get(i).getIdModelo();
         }
-        //modelo.setNombreModelo(modelo_seleccionado);
+        //modelo.setNombreModelo(modeloSeleccionado);
         modelo = new Modelo(id);
         camion.setIdModelo(modelo);
         camion.setObservacion(observaciones);
         camionFacade.create(camion);
         
-        modelo_seleccionado = "";
+        modeloSeleccionado = "";
         patente = null;
-        fecha_compra = null;;
+        fechaCompra = null;;
         kilometraje = null;
         motor = null;
-        carga_max =null;
-        cod_gps_google = null;
+        cargaMax =null;
+        codGpsGoogle = null;
         observaciones = null;
         
     }
@@ -274,18 +274,18 @@ public class CamionBean implements Serializable {
             id = camionFacade.findAll().get(camionFacade.findAll().size()-1).getId()+1;
         }*/
         Camion camion = new Camion();
-        camion.setId(camion_seleccionado.getId());
-        camion.setFechaDeCompra(fecha_compra);
+        camion.setId(camionSeleccionado.getId());
+        camion.setFechaDeCompra(fechaCompra);
         camion.setKilometraje(Double.parseDouble(kilometraje));
-        camion.setMaxCarga(Integer.parseInt(carga_max));
+        camion.setMaxCarga(Integer.parseInt(cargaMax));
         camion.setMotor(motor);
         camion.setPatente(patente);
-        camion.setUsuarioGLatitude(cod_gps_google);
+        camion.setUsuarioGLatitude(codGpsGoogle);
         for(int i = 0;i<modelos.size();i++){
-            if(modelos.get(i).getNombreModelo().equals(modelo_seleccionado))
+            if(modelos.get(i).getNombreModelo().equals(modeloSeleccionado))
                 id = modelos.get(i).getIdModelo();
         }
-        //modelo.setNombreModelo(modelo_seleccionado);
+        //modelo.setNombreModelo(modeloSeleccionado);
         modelo = new Modelo(id);
         camion.setEstado("Activo");
         camion.setIdModelo(modelo);
@@ -296,22 +296,22 @@ public class CamionBean implements Serializable {
     //funcion para cambiar el estado de un camion
     public void cambiarEstadoCamion(){
         
-        camion_seleccionado_CamEst.setEstado("Inactivo");
-        camionFacade.edit(camion_seleccionado_CamEst);
+        camionSeleccionadoCamEst.setEstado("Inactivo");
+        camionFacade.edit(camionSeleccionadoCamEst);
         
     }
     
     //funcion utilizada en el modificar camiones, para que aparezcan los datos seleccionados en el formulario
     public void onRowSelect(SelectEvent event) {  
        
-        modelo_seleccionado = modeloFacade.BuscarPorID(camion_seleccionado.getIdModelo().getIdModelo()).getNombreModelo();
-        patente = camion_seleccionado.getPatente();
-        fecha_compra = camion_seleccionado.getFechaDeCompra();
-        kilometraje = String.valueOf(camion_seleccionado.getKilometraje());
-        motor = camion_seleccionado.getMotor() ;
-        carga_max = String.valueOf(camion_seleccionado.getMaxCarga());
-        cod_gps_google = camion_seleccionado.getUsuarioGLatitude();
-        observaciones = camion_seleccionado.getObservacion();
+        modeloSeleccionado = modeloFacade.BuscarPorID(camionSeleccionado.getIdModelo().getIdModelo()).getNombreModelo();
+        patente = camionSeleccionado.getPatente();
+        fechaCompra = camionSeleccionado.getFechaDeCompra();
+        kilometraje = String.valueOf(camionSeleccionado.getKilometraje());
+        motor = camionSeleccionado.getMotor() ;
+        cargaMax = String.valueOf(camionSeleccionado.getMaxCarga());
+        codGpsGoogle = camionSeleccionado.getUsuarioGLatitude();
+        observaciones = camionSeleccionado.getObservacion();
         
     }  
     

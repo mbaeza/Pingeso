@@ -5,21 +5,16 @@
 package entitiesClass;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -86,8 +81,6 @@ public class Conductor implements Serializable {
     @Size(min = 1, max = 8)
     @Column(name = "Estado")
     private String estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idConductor")
-    private Collection<AsignacionConductorCamion> asignacionConductorCamionCollection;
 
     public Conductor() {
     }
@@ -178,16 +171,6 @@ public class Conductor implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<AsignacionConductorCamion> getAsignacionConductorCamionCollection() {
-        return asignacionConductorCamionCollection;
-    }
-
-    public void setAsignacionConductorCamionCollection(Collection<AsignacionConductorCamion> asignacionConductorCamionCollection) {
-        this.asignacionConductorCamionCollection = asignacionConductorCamionCollection;
     }
 
     @Override

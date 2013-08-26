@@ -40,8 +40,8 @@ public class CambiarEstadoCamion {
     private List<Modelo> modelos;
     private List<Marca> marcas;
     private List<Camion> camiones;   
-    private Camion camion_seleccionado;  
-    private Camion camion_seleccionado_CamEst;
+    private Camion camionSeleccionado;  
+    private Camion camionSeleccionadoCamEst;
     
     public CambiarEstadoCamion() {
     }
@@ -55,8 +55,8 @@ public class CambiarEstadoCamion {
     
     public void cambiarEstadoCamion(){
         
-        camion_seleccionado_CamEst.setEstado("Inactivo");
-        camionFacade.edit(camion_seleccionado_CamEst);
+        camionSeleccionadoCamEst.setEstado("Inactivo");
+        camionFacade.edit(camionSeleccionadoCamEst);
         
     }
     
@@ -78,12 +78,12 @@ public class CambiarEstadoCamion {
         return marcaFacade;
     }
 
-    public Camion getCamion_seleccionado_CamEst() {
-        return camion_seleccionado_CamEst;
+    public Camion getCamionSeleccionadoCamEst() {
+        return camionSeleccionadoCamEst;
     }
 
-    public void setCamion_seleccionado_CamEst(Camion camion_seleccionado_CamEst) {
-        this.camion_seleccionado_CamEst = camion_seleccionado_CamEst;
+    public void setCamionSeleccionadoCamEst(Camion camionSeleccionadoCamEst) {
+        this.camionSeleccionadoCamEst = camionSeleccionadoCamEst;
     }
 
     public void setMarcaFacade(MarcaFacadeLocal marcaFacade) {
@@ -122,12 +122,12 @@ public class CambiarEstadoCamion {
         this.camiones = camiones;
     }
 
-    public Camion getCamion_seleccionado() {
-        return camion_seleccionado;
+    public Camion getCamionSeleccionado() {
+        return camionSeleccionado;
     }
 
-    public void setCamion_seleccionado(Camion camion_seleccionado) {
-        this.camion_seleccionado = camion_seleccionado;
+    public void setCamionSeleccionado(Camion camionSeleccionado) {
+        this.camionSeleccionado = camionSeleccionado;
     }
     
     

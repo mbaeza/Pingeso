@@ -15,30 +15,30 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class ControlBeans {
 
-    private String conductor_nombres;
-    private String conductor_apellidos;    
+    private String conductorNombres;
+    private String conductorApellidos;    
     private String patente;
     private String fecha;
-    private String hora_salida;
-    private String hora_entrada;
+    private String horaSalida;
+    private String horaEntrada;
     
     public ControlBeans() {
     }
 
-    public String getConductor_nombres() {
-        return conductor_nombres;
+    public String getConductorNombres() {
+        return conductorNombres;
     }
 
-    public void setConductor_nombres(String conductor_nombres) {
-        this.conductor_nombres = conductor_nombres;
+    public void setConductorNombres(String conductorNombres) {
+        this.conductorNombres = conductorNombres;
     }
 
-    public String getConductor_apellidos() {
-        return conductor_apellidos;
+    public String getConductorApellidos() {
+        return conductorApellidos;
     }
 
-    public void setConductor_apellidos(String conductor_apellidos) {
-        this.conductor_apellidos = conductor_apellidos;
+    public void setConductorApellidos(String conductorApellidos) {
+        this.conductorApellidos = conductorApellidos;
     }
 
     public String getPatente() {
@@ -57,20 +57,20 @@ public class ControlBeans {
         this.fecha = fecha;
     }
 
-    public String getHora_salida() {
-        return hora_salida;
+    public String getHoraSalida() {
+        return horaSalida;
     }
 
-    public void setHora_salida(String hora_salida) {
-        this.hora_salida = hora_salida;
+    public void setHoraSalida(String horaSalida) {
+        this.horaSalida = horaSalida;
     }
 
-    public String getHora_entrada() {
-        return hora_entrada;
+    public String getHoraEntrada() {
+        return horaEntrada;
     }
 
-    public void setHora_entrada(String hora_entrada) {
-        this.hora_entrada = hora_entrada;
+    public void setHoraEntrada(String horaEntrada) {
+        this.horaEntrada = horaEntrada;
     }
     
     

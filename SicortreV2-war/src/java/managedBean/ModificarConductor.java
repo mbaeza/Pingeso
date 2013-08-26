@@ -52,8 +52,8 @@ public class ModificarConductor {
     @Inject ConductorBeans conductorBeans;
 
     private List<Conductor> conductores;
-    private Conductor conductor_seleccionado;
-    private Conductor conductor_seleccionado_CamEst;
+    private Conductor conductorSeleccionado;
+    private Conductor conductorSeleccionadoCamEst;
     
     public ModificarConductor() {
     }
@@ -96,55 +96,47 @@ public class ModificarConductor {
         this.conductores = conductores;
     }
 
-    public Conductor getConductor_seleccionado() {
-        return conductor_seleccionado;
+    public Conductor getConductorSeleccionado() {
+        return conductorSeleccionado;
     }
 
-    public void setConductor_seleccionado(Conductor conductor_seleccionado) {
-        this.conductor_seleccionado = conductor_seleccionado;
+    public void setConductorSeleccionado(Conductor conductorSeleccionado) {
+        this.conductorSeleccionado = conductorSeleccionado;
     }
 
-    public Conductor getConductor_seleccionado_CamEst() {
-        return conductor_seleccionado_CamEst;
+    public Conductor getConductorSeleccionadoCamEst() {
+        return conductorSeleccionadoCamEst;
     }
 
-    public void setConductor_seleccionado_CamEst(Conductor conductor_seleccionado_CamEst) {
-        this.conductor_seleccionado_CamEst = conductor_seleccionado_CamEst;
+    public void setConductorSeleccionadoCamEst(Conductor conductorSeleccionadoCamEst) {
+        this.conductorSeleccionadoCamEst = conductorSeleccionadoCamEst;
     }
     
     public void onRowSelect(SelectEvent event) {  
-       /* FacesMessage msg = new FacesMessage("Car Selected", ((Camion) event.getObject()).getPatente());  
-  
-        FacesContext.getCurrentInstance().addMessage(null, msg);*/
-      //  Modelo miModelo = modeloFacade.BuscarPorID(String.valueOf(camion_seleccionado.getId()));
-        conductorBeans.setNombres(conductor_seleccionado.getNombres());
-        conductorBeans.setPrimer_apellido(conductor_seleccionado.getPrimerApellido());
-        conductorBeans.setSegundo_apellido(conductor_seleccionado.getSegundoApellido());
-        conductorBeans.setRut(String.valueOf(conductor_seleccionado.getRut()));
-        conductorBeans.setFecha_nacimiento(conductor_seleccionado.getFechaNacimiento());
-        conductorBeans.setDireccion(conductor_seleccionado.getDireccion());
-        conductorBeans.setCorreo(conductor_seleccionado.getCorreo());
-        conductorBeans.setTelefono(conductor_seleccionado.getTelefono());;
+    
+        conductorBeans.setNombres(conductorSeleccionado.getNombres());
+        conductorBeans.setPrimerApellido(conductorSeleccionado.getPrimerApellido());
+        conductorBeans.setSegundoApellido(conductorSeleccionado.getSegundoApellido());
+        conductorBeans.setRut(String.valueOf(conductorSeleccionado.getRut()));
+        conductorBeans.setFechaNacimiento(conductorSeleccionado.getFechaNacimiento());
+        conductorBeans.setDireccion(conductorSeleccionado.getDireccion());
+        conductorBeans.setCorreo(conductorSeleccionado.getCorreo());
+        conductorBeans.setTelefono(conductorSeleccionado.getTelefono());;
         
     }
     
      public void modificarConductor(){
-      /*  if(camionFacade.findAll().size() != 0){
-            id = camionFacade.findAll().get(camionFacade.findAll().size()-1).getId()+1;
-        }*/
-        Conductor conductor = new Conductor();
-        conductor.setRut(Integer.parseInt(conductorBeans.getRut()));
-        conductor.setNombres(conductorBeans.getNombres());
-        conductor.setPrimerApellido(conductorBeans.getPrimer_apellido());
-        conductor.setSegundoApellido(conductorBeans.getSegundo_apellido());
-        conductor.setFechaNacimiento(conductorBeans.getFecha_nacimiento());
-        conductor.setDireccion(conductorBeans.getDireccion());
-        conductor.setCorreo(conductorBeans.getCorreo());
-        conductor.setTelefono(conductorBeans.getTelefono());
-        conductor.setEstado("Activo");
+         
+        conductorSeleccionado.setNombres(conductorBeans.getNombres());
+        conductorSeleccionado.setPrimerApellido(conductorBeans.getPrimerApellido());
+        conductorSeleccionado.setSegundoApellido(conductorBeans.getSegundoApellido());
+        conductorSeleccionado.setFechaNacimiento(conductorBeans.getFechaNacimiento());
+        conductorSeleccionado.setDireccion(conductorBeans.getDireccion());
+        conductorSeleccionado.setCorreo(conductorBeans.getCorreo());
+        conductorSeleccionado.setTelefono(conductorBeans.getTelefono());
+        conductorSeleccionado.setEstado("Activo");
 
-        
-        conductorFacade.edit(conductor);
+        conductorFacade.edit(conductorSeleccionado);
     }
      
     public void confirmacionModificar(ActionEvent actionEvent){  

@@ -24,14 +24,13 @@ public class CamionBeans implements Serializable{
     
 
     private String patente;
-    private String fecha_compra;
+    private String fechaCompra;
     private String kilometraje;
     private String motor;
-    private String carga_max;
-    private String cod_gps_google;
+    private String cargaMax;
+    private String codGpsGoogle;
     private String observaciones;  
-    private Modelo modelo;
-    private String modelo_seleccionado;
+    private Modelo modelo;    
 
     public CamionBeans(){
     }
@@ -99,20 +98,12 @@ public class CamionBeans implements Serializable{
         this.patente = patente;
     }
 
-    public String getFecha_compra() {
-        return fecha_compra;
+    public String getFechaCompra() {
+        return fechaCompra;
     }
-
-    public String getModelo_seleccionado() {
-        return modelo_seleccionado;
-    }
-
-    public void setModelo_seleccionado(String modelo_seleccionado) {
-        this.modelo_seleccionado = modelo_seleccionado;
-    }
-        
-    public void setFecha_compra(String fecha_compra) {
-        this.fecha_compra = fecha_compra;
+   
+    public void setFechaCompra(String fechaCompra) {
+        this.fechaCompra = fechaCompra;
     }
 
     public String getKilometraje() {
@@ -131,20 +122,20 @@ public class CamionBeans implements Serializable{
         this.motor = motor;
     }
 
-    public String getCarga_max() {
-        return carga_max;
+    public String getCargaMax() {
+        return cargaMax;
     }
 
-    public void setCarga_max(String carga_max) {
-        this.carga_max = carga_max;
+    public void setCargaMax(String cargaMax) {
+        this.cargaMax = cargaMax;
     }
 
-    public String getCod_gps_google() {
-        return cod_gps_google;
+    public String getCodGpsGoogle() {
+        return codGpsGoogle;
     }
 
-    public void setCod_gps_google(String cod_gps_google) {
-        this.cod_gps_google = cod_gps_google;
+    public void setCodGpsGoogle(String codGpsGoogle) {
+        this.codGpsGoogle = codGpsGoogle;
     }
 
     public String getObservaciones() {

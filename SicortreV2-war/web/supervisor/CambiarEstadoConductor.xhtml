@@ -19,7 +19,7 @@
                         <f:facet name="header">
                             <h:outputText value="1.- Seleccione un conductor para cambiar su estado."></h:outputText>
                         </f:facet>
-                        <p:dataTable  id="tbl" var="conductor" value="#{cambiarEstadoConductor.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="7" selection="#{cambiarEstadoConductor.conductor_seleccionado_CamEst}" >                                  
+                        <p:dataTable  id="tbl" var="conductor" value="#{cambiarEstadoConductor.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="7" selection="#{cambiarEstadoConductor.conductorSeleccionadoCamEst}" >                                  
                                 
                                 <p:column selectionMode="single" style="width:2%"/>  
                                 

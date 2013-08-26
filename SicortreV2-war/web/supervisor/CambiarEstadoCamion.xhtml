@@ -19,7 +19,7 @@
                         <f:facet name="header">
                             <h:outputText value="1.- Seleccione un camión para cambiar su estado."></h:outputText>
                         </f:facet>
-                        <p:dataTable  id="tbl" var="camion" value="#{cambiarEstadoCamion.camiones}" rowKey="#{camion.patente}" paginator="true" rows="7" selection="#{cambiarEstadoCamion.camion_seleccionado_CamEst}" >                                  
+                        <p:dataTable  id="tbl" var="camion" value="#{cambiarEstadoCamion.camiones}" rowKey="#{camion.patente}" paginator="true" rows="7" selection="#{cambiarEstadoCamion.camionSeleccionadoCamEst}" >                                  
                                 
                                 <p:column selectionMode="single" style="width:2%" />  
                                 

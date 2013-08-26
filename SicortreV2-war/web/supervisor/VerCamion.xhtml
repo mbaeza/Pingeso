@@ -18,7 +18,7 @@
                         <f:facet name="header">
                             <h:outputText value="1.- Seleccione un camión para ver su detalle."></h:outputText>
                         </f:facet>
-                        <p:dataTable  id="tbl" var="camion" value="#{verCamion.camiones}" rowKey="#{camion.patente}" paginator="true" rows="10" selection="#{verCamion.camion_seleccionado_CamEst}" >                                  
+                        <p:dataTable  id="tbl" var="camion" value="#{verCamion.camiones}" rowKey="#{camion.patente}" paginator="true" rows="10" selection="#{verCamion.camionSeleccionadoCamEst}" >                                  
                                 
                                 <p:column selectionMode="single" style="width:2%" />  
                                 
@@ -93,10 +93,10 @@
                             <h:panelGrid>  
                                 
                                 <h:outputText value="Patente: " />  
-                                <h:outputText value="#{verCamion.camion_seleccionado_CamEst.patente}" style="font-weight:bold"/>  
+                                <h:outputText value="#{verCamion.camionSeleccionadoCamEst.patente}" style="font-weight:bold"/>  
 
                                 <h:outputText value="Observaciones: " />  
-                                <b> #{verCamion.camion_seleccionado_CamEst.observacion=="" ? "No existen observaciones" : verCamion.camion_seleccionado_CamEst.observacion}</b>
+                                <b> #{verCamion.camionSeleccionadoCamEst.observacion=="" ? "No existen observaciones" : verCamion.camionSeleccionadoCamEst.observacion}</b>
                                 
                            </h:panelGrid>
                       </h:panelGrid>

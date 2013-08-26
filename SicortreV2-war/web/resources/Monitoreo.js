@@ -20,7 +20,7 @@ function handleComplete(xhr, status, args){
       var oldMarker = gmap.markers[i];
      // oldMarker.icon = newMarker.icon;
       oldMarker.position = new google.maps.LatLng(lat,lng);
-      oldMarker.setAnimation(google.maps.Animation.BOUNCE);
+      //oldMarker.setAnimation(google.maps.Animation.BOUNCE);
       oldMarker.setMap(gmap);                      
    }   
 }

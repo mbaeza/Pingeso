@@ -48,19 +48,19 @@ public class ConductorBean {
     private ConductorFacadeLocal conductorFacade;
     
     private String rut;
-    private String rut_seleccionado;
-    private String fecha_nacimiento;
+    private String rutSeleccionado;
+    private String fechaNacimiento;
     private String direccion;
     private String correo;
     private String telefono;
     private String nombres;
-    private String primer_apellido;
-    private String segundo_apellido;
+    private String primerApellido;
+    private String segundoApellido;
     private String camion;
     private List<Conductor> conductores;
-    private Conductor conductor_seleccionado;
-    private Conductor conductor_seleccionado_CamEst;
-    private Camion camion_seleccionado;
+    private Conductor conductorSeleccionado;
+    private Conductor conductorSeleccionadoCamEst;
+    private Camion camionSeleccionado;
     /**
      * Creates a new instance of ConductorBean
      */
@@ -84,20 +84,20 @@ public class ConductorBean {
         this.camion = camion;
     }
 
-    public Camion getCamion_seleccionado() {
-        return camion_seleccionado;
+    public Camion getCamionSeleccionado() {
+        return camionSeleccionado;
     }
 
-    public void setCamion_seleccionado(Camion camion_seleccionado) {
-        this.camion_seleccionado = camion_seleccionado;
+    public void setCamionSeleccionado(Camion camionSeleccionado) {
+        this.camionSeleccionado = camionSeleccionado;
     }
 
-    public Conductor getConductor_seleccionado_CamEst() {
-        return conductor_seleccionado_CamEst;
+    public Conductor getConductorSeleccionadoCamEst() {
+        return conductorSeleccionadoCamEst;
     }
 
-    public void setConductor_seleccionado_CamEst(Conductor conductor_seleccionado_CamEst) {
-        this.conductor_seleccionado_CamEst = conductor_seleccionado_CamEst;
+    public void setConductorSeleccionadoCamEst(Conductor conductorSeleccionadoCamEst) {
+        this.conductorSeleccionadoCamEst = conductorSeleccionadoCamEst;
     }
 
     public CamionFacadeLocal getCamionFacade() {
@@ -116,20 +116,20 @@ public class ConductorBean {
         this.rut = rut;
     }
 
-    public String getRut_seleccionado() {
-        return rut_seleccionado;
+    public String getRutSeleccionado() {
+        return rutSeleccionado;
     }
 
-    public void setRut_seleccionado(String rut_seleccionado) {
-        this.rut_seleccionado = rut_seleccionado;
+    public void setRutSeleccionado(String rutSeleccionado) {
+        this.rutSeleccionado = rutSeleccionado;
     }
 
-    public Conductor getConductor_seleccionado() {
-        return conductor_seleccionado;
+    public Conductor getConductorSeleccionado() {
+        return conductorSeleccionado;
     }
 
-    public void setConductor_seleccionado(Conductor conductor_seleccionado) {
-        this.conductor_seleccionado = conductor_seleccionado;
+    public void setConductorSeleccionado(Conductor conductorSeleccionado) {
+        this.conductorSeleccionado = conductorSeleccionado;
     }
 
     public ConductorFacadeLocal getConductorFacade() {
@@ -149,12 +149,12 @@ public class ConductorBean {
     }
 
 
-    public String getFecha_nacimiento() {
-        return fecha_nacimiento;
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setFecha_nacimiento(String fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getDireccion() {
@@ -189,50 +189,50 @@ public class ConductorBean {
         this.nombres = nombres;
     }
 
-    public String getPrimer_apellido() {
-        return primer_apellido;
+    public String getPrimerApellido() {
+        return primerApellido;
     }
 
-    public void setPrimer_apellido(String primer_apellido) {
-        this.primer_apellido = primer_apellido;
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
     }
 
-    public String getSegundo_apellido() {
-        return segundo_apellido;
+    public String getSegundoApellido() {
+        return segundoApellido;
     }
 
-    public void setSegundo_apellido(String segundo_apellido) {
-        this.segundo_apellido = segundo_apellido;
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
     }
     
     public void insertarConductor(){
         Conductor conductor = new Conductor();
         conductor.setRut(Integer.parseInt(rut));
-        conductor.setFechaNacimiento(fecha_nacimiento);
+        conductor.setFechaNacimiento(fechaNacimiento);
         conductor.setDireccion(direccion);
         conductor.setCorreo(correo);
         conductor.setTelefono(telefono);
         conductor.setNombres(nombres);
-        conductor.setPrimerApellido(primer_apellido);
-        conductor.setSegundoApellido(segundo_apellido);
+        conductor.setPrimerApellido(primerApellido);
+        conductor.setSegundoApellido(segundoApellido);
         conductor.setEstado("Activo");
         conductorFacade.create(conductor);
         
         rut=null;
-        rut_seleccionado=null;
-        fecha_nacimiento=null;
+        rutSeleccionado=null;
+        fechaNacimiento=null;
         direccion=null;
         correo=null;
         telefono=null;
         nombres=null;
-        primer_apellido=null;
-        segundo_apellido=null;
+        primerApellido=null;
+        segundoApellido=null;
     }
 
     public void cambiarEstadoConductor(){
         
-        conductor_seleccionado_CamEst.setEstado("Inactivo");
-        conductorFacade.edit(conductor_seleccionado_CamEst);
+        conductorSeleccionadoCamEst.setEstado("Inactivo");
+        conductorFacade.edit(conductorSeleccionadoCamEst);
         
     }
     
@@ -240,15 +240,15 @@ public class ConductorBean {
        /* FacesMessage msg = new FacesMessage("Car Selected", ((Camion) event.getObject()).getPatente());  
   
         FacesContext.getCurrentInstance().addMessage(null, msg);*/
-      //  Modelo miModelo = modeloFacade.BuscarPorID(String.valueOf(camion_seleccionado.getId()));
-        nombres = conductor_seleccionado.getNombres();
-        primer_apellido = conductor_seleccionado.getPrimerApellido();
-        segundo_apellido=conductor_seleccionado.getSegundoApellido();
-        rut= String.valueOf(conductor_seleccionado.getRut());
-        fecha_nacimiento = conductor_seleccionado.getFechaNacimiento();
-        direccion = conductor_seleccionado.getDireccion();
-        correo = conductor_seleccionado.getCorreo();
-        telefono = conductor_seleccionado.getTelefono();
+      //  Modelo miModelo = modeloFacade.BuscarPorID(String.valueOf(camionSeleccionado.getId()));
+        nombres = conductorSeleccionado.getNombres();
+        primerApellido = conductorSeleccionado.getPrimerApellido();
+        segundoApellido=conductorSeleccionado.getSegundoApellido();
+        rut= String.valueOf(conductorSeleccionado.getRut());
+        fechaNacimiento = conductorSeleccionado.getFechaNacimiento();
+        direccion = conductorSeleccionado.getDireccion();
+        correo = conductorSeleccionado.getCorreo();
+        telefono = conductorSeleccionado.getTelefono();
         
     }
     
@@ -259,9 +259,9 @@ public class ConductorBean {
         Conductor conductor = new Conductor();
         conductor.setRut(Integer.parseInt(rut));
         conductor.setNombres(nombres);
-        conductor.setPrimerApellido(primer_apellido);
-        conductor.setSegundoApellido(segundo_apellido);
-        conductor.setFechaNacimiento(fecha_nacimiento);
+        conductor.setPrimerApellido(primerApellido);
+        conductor.setSegundoApellido(segundoApellido);
+        conductor.setFechaNacimiento(fechaNacimiento);
         conductor.setDireccion(direccion);
         conductor.setCorreo(correo);
         conductor.setTelefono(telefono);
@@ -273,11 +273,11 @@ public class ConductorBean {
      
     public void asignarCamion(){
         //conductor_seleccionado_CamEst.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
-        //conductorFacade.edit(conductor_seleccionado_CamEst);
+        //conductorFacade.edit(conductorSeleccionadoCamEst);
         AsignacionConductorCamion asignacion =  new AsignacionConductorCamion();
         asignacion.setFecha(new Date());
         asignacion.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
-        asignacion.setIdConductor(conductor_seleccionado_CamEst);
+        asignacion.setIdConductor(conductorSeleccionadoCamEst);
         asignacionConductorCamionFacade.create(asignacion);
     }
      

@@ -39,9 +39,10 @@ public class AgregarConductor {
     @Inject ConductorBeans conductorBeans;
 
     private List<Conductor> conductores;
-    private Conductor conductor_seleccionado;
-    private Conductor conductor_seleccionado_CamEst;
-    private Camion camion_seleccionado;
+    private Conductor conductorSeleccionado;
+    private Conductor conductorSeleccionadoCamEst;
+    private Camion camionSeleccionado;
+    private String rutSeleccionado;
     
     public AgregarConductor() {
     }
@@ -55,25 +56,25 @@ public class AgregarConductor {
     public void insertarConductor(){
         Conductor conductor = new Conductor();
         conductor.setRut(Integer.parseInt(conductorBeans.getRut()));
-        conductor.setFechaNacimiento(conductorBeans.getFecha_nacimiento());
+        conductor.setFechaNacimiento(conductorBeans.getFechaNacimiento());
         conductor.setDireccion(conductorBeans.getDireccion());
         conductor.setCorreo(conductorBeans.getCorreo());
         conductor.setTelefono(conductorBeans.getTelefono());
         conductor.setNombres(conductorBeans.getNombres());
-        conductor.setPrimerApellido(conductorBeans.getPrimer_apellido());
-        conductor.setSegundoApellido(conductorBeans.getSegundo_apellido());
+        conductor.setPrimerApellido(conductorBeans.getPrimerApellido());
+        conductor.setSegundoApellido(conductorBeans.getSegundoApellido());
         conductor.setEstado("Activo");
         conductorFacade.create(conductor);
         
         conductorBeans.setRut(null);
-        conductorBeans.setRut_seleccionado(null);
-        conductorBeans.setFecha_nacimiento(null);
+        this.setRutSeleccionado(null);
+        conductorBeans.setFechaNacimiento(null);
         conductorBeans.setDireccion(null);
         conductorBeans.setCorreo(null);
         conductorBeans.setTelefono(null);
         conductorBeans.setNombres(null);        
-        conductorBeans.setPrimer_apellido(null);
-        conductorBeans.setSegundo_apellido(null);
+        conductorBeans.setPrimerApellido(null);
+        conductorBeans.setSegundoApellido(null);
     }
     
     public void confirmacionAgregar(ActionEvent actionEvent){  
@@ -87,6 +88,14 @@ public class AgregarConductor {
 
     public void setAsignacionConductorCamionFacade(AsignacionConductorCamionFacadeLocal asignacionConductorCamionFacade) {
         this.asignacionConductorCamionFacade = asignacionConductorCamionFacade;
+    }
+
+    public String getRutSeleccionado() {
+        return rutSeleccionado;
+    }
+
+    public void setRutSeleccionado(String rutSeleccionado) {
+        this.rutSeleccionado = rutSeleccionado;
     }
 
     public CamionFacadeLocal getCamionFacade() {
@@ -113,27 +122,27 @@ public class AgregarConductor {
         this.conductores = conductores;
     }
 
-    public Conductor getConductor_seleccionado() {
-        return conductor_seleccionado;
+    public Conductor getConductorSeleccionado() {
+        return conductorSeleccionado;
     }
 
-    public void setConductor_seleccionado(Conductor conductor_seleccionado) {
-        this.conductor_seleccionado = conductor_seleccionado;
+    public void setConductorSeleccionado(Conductor conductorSeleccionado) {
+        this.conductorSeleccionado = conductorSeleccionado;
     }
 
-    public Conductor getConductor_seleccionado_CamEst() {
-        return conductor_seleccionado_CamEst;
+    public Conductor getConductorSeleccionadoCamEst() {
+        return conductorSeleccionadoCamEst;
     }
 
-    public void setConductor_seleccionado_CamEst(Conductor conductor_seleccionado_CamEst) {
-        this.conductor_seleccionado_CamEst = conductor_seleccionado_CamEst;
+    public void setConductorSeleccionadoCamEst(Conductor conductorSeleccionadoCamEst) {
+        this.conductorSeleccionadoCamEst = conductorSeleccionadoCamEst;
     }
 
-    public Camion getCamion_seleccionado() {
-        return camion_seleccionado;
+    public Camion getCamionSeleccionado() {
+        return camionSeleccionado;
     }
 
-    public void setCamion_seleccionado(Camion camion_seleccionado) {
-        this.camion_seleccionado = camion_seleccionado;
+    public void setCamionSeleccionado(Camion camionSeleccionado) {
+        this.camionSeleccionado = camionSeleccionado;
     }            
 }

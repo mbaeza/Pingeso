@@ -42,8 +42,9 @@ public class ModificarCamion {
     private List<Modelo> modelos;
     private List<Marca> marcas;
     private List<Camion> camiones;
-    private Camion camion_seleccionado;  
-    private Camion camion_seleccionado_CamEst;    
+    private Camion camionSeleccionado;  
+    private Camion camionSeleccionadoCamEst; 
+    private String modeloSeleccionado;
         
     
     public ModificarCamion() {
@@ -58,38 +59,37 @@ public class ModificarCamion {
     
     public void modificarCamion(){
         int id = 0;
-      /*  if(camionFacade.findAll().size() != 0){
-            id = camionFacade.findAll().get(camionFacade.findAll().size()-1).getId()+1;
-        }*/       
-        camion_seleccionado.setFechaDeCompra(camionBeans.getFecha_compra());
-        camion_seleccionado.setKilometraje(Double.parseDouble(camionBeans.getKilometraje()));
-        camion_seleccionado.setMaxCarga(Integer.parseInt(camionBeans.getCarga_max()));
-        camion_seleccionado.setMotor(camionBeans.getMotor());
-        camion_seleccionado.setPatente(camionBeans.getPatente());
-        camion_seleccionado.setUsuarioGLatitude(camionBeans.getCod_gps_google());
+     
+        camionSeleccionado.setFechaDeCompra(camionBeans.getFechaCompra());
+        camionSeleccionado.setKilometraje(Double.parseDouble(camionBeans.getKilometraje()));
+        camionSeleccionado.setMaxCarga(Integer.parseInt(camionBeans.getCargaMax()));
+        camionSeleccionado.setMotor(camionBeans.getMotor());
+        //camionSeleccionado.setPatente(camionBeans.getPatente());
+        camionSeleccionado.setEstado("Activo");
+        camionSeleccionado.setUsuarioGLatitude(camionBeans.getCodGpsGoogle());
         for(int i = 0;i<modelos.size();i++){
-            if(modelos.get(i).getNombreModelo().equals(camionBeans.getModelo_seleccionado()))
+            if(modelos.get(i).getNombreModelo().equals(modeloSeleccionado))
                 id = modelos.get(i).getIdModelo();
         }
         //modelo.setNombreModelo(modelo_seleccionado);
         Modelo modelo = new Modelo(id);
-        camion_seleccionado.setControl(camion_seleccionado.getControl());
-        camion_seleccionado.setIdModelo(modelo);
-        camion_seleccionado.setObservacion(camionBeans.getObservaciones());
-        camionFacade.edit(camion_seleccionado);
+        camionSeleccionado.setControl(camionSeleccionado.getControl());
+        camionSeleccionado.setIdModelo(modelo);
+        camionSeleccionado.setObservacion(camionBeans.getObservaciones());
+        camionFacade.edit(camionSeleccionado);
     }
     
     //funcion utilizada en el modificar camiones, para que aparezcan los datos seleccionados en el formulario
     public void onRowSelect(SelectEvent event) {  
        
-        camionBeans.setModelo_seleccionado(modeloFacade.BuscarPorID(camion_seleccionado.getIdModelo().getIdModelo()).getNombreModelo());
-        camionBeans.setPatente(camion_seleccionado.getPatente());
-        camionBeans.setFecha_compra(camion_seleccionado.getFechaDeCompra());
-        camionBeans.setKilometraje(String.valueOf(camion_seleccionado.getKilometraje()));
-        camionBeans.setMotor(camion_seleccionado.getMotor());
-        camionBeans.setCarga_max(String.valueOf(camion_seleccionado.getMaxCarga()));
-        camionBeans.setCod_gps_google(camion_seleccionado.getUsuarioGLatitude());
-        camionBeans.setObservaciones(camion_seleccionado.getObservacion());
+        this.setModeloSeleccionado(modeloFacade.BuscarPorID(camionSeleccionado.getIdModelo().getIdModelo()).getNombreModelo());
+        camionBeans.setPatente(camionSeleccionado.getPatente());
+        camionBeans.setFechaCompra(camionSeleccionado.getFechaDeCompra());
+        camionBeans.setKilometraje(String.valueOf(camionSeleccionado.getKilometraje()));
+        camionBeans.setMotor(camionSeleccionado.getMotor());
+        camionBeans.setCargaMax(String.valueOf(camionSeleccionado.getMaxCarga()));
+        camionBeans.setCodGpsGoogle(camionSeleccionado.getUsuarioGLatitude());
+        camionBeans.setObservaciones(camionSeleccionado.getObservacion());
         
     }  
     
@@ -99,6 +99,15 @@ public class ModificarCamion {
         FacesContext.getCurrentInstance().addMessage(null, message); 
     }
 
+    public String getModeloSeleccionado() {
+        return modeloSeleccionado;
+    }
+
+    public void setModeloSeleccionado(String modeloSeleccionado) {
+        this.modeloSeleccionado = modeloSeleccionado;
+    }
+    
+    
     public ModeloFacadeLocal getModeloFacade() {
         return modeloFacade;
     }
@@ -148,19 +157,19 @@ public class ModificarCamion {
     }
 
     public Camion getCamion_seleccionado() {
-        return camion_seleccionado;
+        return camionSeleccionado;
     }
 
     public void setCamion_seleccionado(Camion camion_seleccionado) {
-        this.camion_seleccionado = camion_seleccionado;
+        this.camionSeleccionado = camion_seleccionado;
     }
 
-    public Camion getCamion_seleccionado_CamEst() {
-        return camion_seleccionado_CamEst;
+    public Camion getCamionSeleccionadoCamEst() {
+        return camionSeleccionadoCamEst;
     }
 
-    public void setCamion_seleccionado_CamEst(Camion camion_seleccionado_CamEst) {
-        this.camion_seleccionado_CamEst = camion_seleccionado_CamEst;
+    public void setCamionSeleccionadoCamEst(Camion camionSeleccionadoCamEst) {
+        this.camionSeleccionadoCamEst = camionSeleccionadoCamEst;
     }
     
     

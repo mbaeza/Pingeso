@@ -17,7 +17,7 @@
                         <f:facet name="header">
                             <h:outputText value="1.- Seleccione un camión para ver su detalle."></h:outputText>
                         </f:facet>
-                        <p:dataTable  id="tbl" var="conductor" value="#{asignarConductorCamion.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="10" selection="#{asignarConductorCamion.conductor_seleccionado_CamEst}" >                                  
+                        <p:dataTable  id="tbl" var="conductor" value="#{asignarConductorCamion.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="10" selection="#{asignarConductorCamion.conductorSeleccionadoCamEst}" >                                  
                                 
                                 <p:column selectionMode="single" style="width:2%" />  
                                 
@@ -68,7 +68,7 @@
                             <h:panelGrid columns="2" cellpadding="4">  
                                 
                                 <h:outputText value="RUT: " />  
-                                <h:outputText value="#{asignarConductorCamion.conductor_seleccionado_CamEst.rut}" style="font-weight:bold"/>
+                                <h:outputText value="#{asignarConductorCamion.conductorSeleccionadoCamEst.rut}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Camion: " />  
                                 <p:selectOneMenu value="#{asignarConductorCamion.camion}">  

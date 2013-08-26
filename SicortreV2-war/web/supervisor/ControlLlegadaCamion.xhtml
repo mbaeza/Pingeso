@@ -20,7 +20,7 @@
                     <h:panelGrid style="margin: 0 auto; text-align: left" columns="2" cellpadding="5" width="854px">
                         <h:panelGrid cellpadding="5" columns="1"> 
                             <h:outputText  style="font-weight: bold" value="1.- Seleccione el control de salida."></h:outputText>
-                            <p:dataTable style="width: 400px; height: 250px" id="tbl" var="camion" value="#{controlLlegadaCamion.controles}" rowKey="#{camion.idControl}" paginator="true" rows="5" selection="#{controlLlegadaCamion.camion_seleccionado}" selectionMode="single">  
+                            <p:dataTable style="width: 400px; height: 250px" id="tbl" var="camion" value="#{controlLlegadaCamion.controles}" rowKey="#{camion.idControl}" paginator="true" rows="5" selection="#{controlLlegadaCamion.camionSeleccionado}" selectionMode="single">  
                                 <p:ajax event="rowSelect" listener="#{controlLlegadaCamion.onRowSelect(event)}" update=":formulario:formModificar" />  
                                 
                                 <p:column>  
@@ -34,14 +34,21 @@
                                     <f:facet name="header">  
                                         <h:outputText value="Hora salida" />  
                                     </f:facet>    
-                                    <h:outputText value="#{camion.horaSalida.hours}:#{camion.horaSalida.minutes}:#{camion.horaSalida.seconds}" />                                      
+                                    <h:outputText value="#{camion.horaSalida.hours}:#{camion.horaSalida.minutes}" />                                      
                                 </p:column>
                                 
                                 <p:column>  
                                     <f:facet name="header">  
                                         <h:outputText value="Fecha" />  
                                     </f:facet>    
-                                    <h:outputText value="#{camion.fecha.day}-#{camion.fecha.month}-#{camion.fecha.year}" />                                      
+                                    <h:outputText value="Dia:#{camion.fecha.day}, Mes:#{camion.fecha.month}" />                                      
+                                </p:column>
+                                
+                                <p:column>  
+                                    <f:facet name="header">  
+                                        <h:outputText value="Hora llegada" />  
+                                    </f:facet>    
+                                    <h:outputText value="#{camion.horaLlegada.hours}:#{camion.horaLlegada.minutes}" />                                  
                                 </p:column>
                                                                 
                             </p:dataTable>                      
@@ -59,18 +66,19 @@
                             </p:inputText>   
                             
                             <h:outputText value="Hora salida: " />
-                            <p:inputText id="hora" disabled="true" required="true" value="#{controlBeans.hora_salida}">    
+                            <p:inputText id="hora" disabled="true" required="true" value="#{controlBeans.horaSalida}">    
                             </p:inputText>
                             
                             <h:outputText value="(*) Hora llegada: " />
-                            <p:inputText id="hora_llegada" required="true" value="#{controlBeans.hora_entrada}">
+                            <p:inputMask id="hora_llegada" required="true" value="#{controlBeans.horaEntrada}" mask="99999999">
                                 <p:watermark for="hora_llegada" value="15:00:00" />
-                            </p:inputText>
+                            </p:inputMask>
                             
                             <h:outputText value="(*) Cantidad basura: " />
-                            <p:inputText id="basura" required="true" value="#{controlLlegadaCamion.cantidad_basura}">
+                            <p:inputText id="basura" required="true" value="#{controlLlegadaCamion.cantidadBasura}">
                                 <p:watermark for="basura" value="1500 kgs" />
-                            </p:inputText>                                                          
+                            </p:inputText>       
+                    
                             
                         </h:panelGrid>
                         <f:facet name="footer"  >  
@@ -79,7 +87,7 @@
                     </h:panelGrid>
                         <p:commandButton onclick="mensajeConfirmacion.show()" value="Ingresar Control" icon="ui-icon-check"/>
                             <p:confirmDialog message="¿Está seguro que desea ingresar el control? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
-                                <p:commandButton value="Sí" action="#{controlLlegadaCamion.modificarControl()}" actionListener="#{controlLlegadaCamion.confirmacionControlLlegada(actionEvent)}" update=":formulario:confirmacion" oncomplete="mensajeConfirmacion.hide()"/>
+                                <p:commandButton value="Sí" action="#{controlLlegadaCamion.modificarControl()}" actionListener="#{controlLlegadaCamion.confirmacionControlLlegada(actionEvent)}" update=":formulario:confirmacion,:formulario:tbl" oncomplete="mensajeConfirmacion.hide()"/>
                                 <p:commandButton value="No" onclick="mensajeConfirmacion.hide();" type="button" /> 
                             </p:confirmDialog>
                 </h:form> 

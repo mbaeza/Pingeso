@@ -34,9 +34,9 @@ public class VerConductor {
     @Inject ConductorBeans conductorBeans;
     
     private List<Conductor> conductores;
-    private Conductor conductor_seleccionado;
-    private Conductor conductor_seleccionado_CamEst;
-    private Camion camion_seleccionado;
+    private Conductor conductorSeleccionado;
+    private Conductor conductorSeleccionadoCamEst;
+    private Camion camionSeleccionado;
     
     public VerConductor() {
     }
@@ -80,27 +80,27 @@ public class VerConductor {
     }
 
     public Conductor getConductor_seleccionado() {
-        return conductor_seleccionado;
+        return conductorSeleccionado;
     }
 
     public void setConductor_seleccionado(Conductor conductor_seleccionado) {
-        this.conductor_seleccionado = conductor_seleccionado;
+        this.conductorSeleccionado = conductor_seleccionado;
     }
 
-    public Conductor getConductor_seleccionado_CamEst() {
-        return conductor_seleccionado_CamEst;
+    public Conductor getConductorSeleccionadoCamEst() {
+        return conductorSeleccionadoCamEst;
     }
 
-    public void setConductor_seleccionado_CamEst(Conductor conductor_seleccionado_CamEst) {
-        this.conductor_seleccionado_CamEst = conductor_seleccionado_CamEst;
+    public void setConductorSeleccionadoCamEst(Conductor conductorSeleccionadoCamEst) {
+        this.conductorSeleccionadoCamEst = conductorSeleccionadoCamEst;
     }
 
-    public Camion getCamion_seleccionado() {
-        return camion_seleccionado;
+    public Camion getCamionSeleccionado() {
+        return camionSeleccionado;
     }
 
-    public void setCamion_seleccionado(Camion camion_seleccionado) {
-        this.camion_seleccionado = camion_seleccionado;
+    public void setCamionSeleccionado(Camion camionSeleccionado) {
+        this.camionSeleccionado = camionSeleccionado;
     }
     
 }

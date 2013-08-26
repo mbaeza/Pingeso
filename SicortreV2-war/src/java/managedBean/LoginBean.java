@@ -50,20 +50,16 @@ public class LoginBean implements Serializable{
         HttpServletRequest request = (HttpServletRequest)externalContext.getRequest();
         
         try {
-            System.out.println("usuario logueado anteriormente: " + request.getRemoteUser());
+           // System.out.println("usuario logueado anteriormente: " + request.getRemoteUser());
           request.login(this.username, this.password);
-          System.out.println("se hizo login: " + request.getRemoteUser());
-          System.out.println("Es gerente: " + request.isUserInRole("Gerente"));
-          System.out.println("Es supervisor: " + request.isUserInRole("Supervisor de Camiones"));
           
-        } catch (ServletException e) {
-            System.out.println("error: " + e.getMessage());
-          context.addMessage(null, new FacesMessage("Login failed."));
+          
+        } catch (ServletException e) {           
+          //context.addMessage(null, new FacesMessage("Login failed."));
           return ;
         }
-        try {
-            //return "supervisor/Monitoreo?faces-redirect=true";
-            externalContext.redirect(externalContext.getRequestContextPath()+"/faces/supervisor/Monitoreo.xhtml");
+        try {            
+            externalContext.redirect(externalContext.getRequestContextPath()+"/faces/supervisor/Monitorear.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,7 +72,7 @@ public class LoginBean implements Serializable{
       try {
         request.logout();
       } catch (ServletException e) {   
-        context.addMessage(null, new FacesMessage("Logout failed."));
+        //context.addMessage(null, new FacesMessage("Logout failed."));
       }
     }
 }

@@ -18,7 +18,7 @@
                          <f:facet name="header">
                             <h:outputText value="1.- Seleccione un conductor para ver su detalle."></h:outputText>
                         </f:facet>
-                        <p:dataTable  id="tbl" var="conductor" value="#{verConductor.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="10" selection="#{verConductor.conductor_seleccionado_CamEst}" >                                  
+                        <p:dataTable  id="tbl" var="conductor" value="#{verConductor.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="10" selection="#{verConductor.conductorSeleccionadoCamEst}" >                                  
                                 
                                 <p:column selectionMode="single" style="width:2%" />  
                                 
@@ -75,31 +75,31 @@
                             <h:panelGrid>  
                                 
                                 <h:outputText value="Nombres: " />  
-                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.nombres}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductorSeleccionadoCamEst.nombres}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Primer apellido: " />  
-                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.primerApellido}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductorSeleccionadoCamEst.primerApellido}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Segundo apellido: " />  
-                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.segundoApellido}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductorSeleccionadoCamEst.segundoApellido}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="RUT: " />  
-                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.rut}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductorSeleccionadoCamEst.rut}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Fecha nacimiento: " />  
-                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.fechaNacimiento}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductorSeleccionadoCamEst.fechaNacimiento}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Direccion: " />  
-                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.direccion}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductorSeleccionadoCamEst.direccion}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Correo: " />  
-                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.correo}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductorSeleccionadoCamEst.correo}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Telefono: " />  
-                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.telefono}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductorSeleccionadoCamEst.telefono}" style="font-weight:bold"/>
                                 
                                 <h:outputText value="Estado: " />  
-                                <h:outputText value="#{verConductor.conductor_seleccionado_CamEst.estado}" style="font-weight:bold"/>
+                                <h:outputText value="#{verConductor.conductorSeleccionadoCamEst.estado}" style="font-weight:bold"/>
                                 
                            </h:panelGrid>
                       </h:panelGrid>  

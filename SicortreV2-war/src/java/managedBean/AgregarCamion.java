@@ -41,7 +41,7 @@ public class AgregarCamion {
     private List<Modelo> modelos;
     private List<Marca> marcas;
     private List<Camion> camiones;
-
+    private String modeloSeleccionado;
     
     public AgregarCamion() {
     }
@@ -59,15 +59,15 @@ public class AgregarCamion {
         Camion camion = new Camion();
         
         camion.setEstado("Activo");
-        camion.setFechaDeCompra(camionBeans.getFecha_compra());
+        camion.setFechaDeCompra(camionBeans.getFechaCompra());
         camion.setKilometraje(Double.parseDouble(camionBeans.getKilometraje()));
-        camion.setMaxCarga(Integer.parseInt(camionBeans.getCarga_max()));
+        camion.setMaxCarga(Integer.parseInt(camionBeans.getCargaMax()));
         camion.setMotor(camionBeans.getMotor());
         camion.setPatente(camionBeans.getPatente());
         camion.setControl("Estacionado");
-        camion.setUsuarioGLatitude(camionBeans.getCod_gps_google());
+        camion.setUsuarioGLatitude(camionBeans.getCodGpsGoogle());
         for(int i = 0;i<modelos.size();i++){
-            if(modelos.get(i).getNombreModelo().equals(camionBeans.getModelo_seleccionado()))
+            if(modelos.get(i).getNombreModelo().equals(modeloSeleccionado))
                 id = modelos.get(i).getIdModelo();
         }
         //modelo.setNombreModelo(modelo_seleccionado);
@@ -76,13 +76,13 @@ public class AgregarCamion {
         camion.setObservacion(camionBeans.getObservaciones());
         camionFacade.create(camion);
         
-        camionBeans.setModelo_seleccionado("");
+        this.setModeloSeleccionado("");
         camionBeans.setPatente(null);
-        camionBeans.setFecha_compra(null);
+        camionBeans.setFechaCompra(null);
         camionBeans.setKilometraje(null);
         camionBeans.setMotor(null);
-        camionBeans.setCarga_max(null);
-        camionBeans.setCod_gps_google(null);
+        camionBeans.setCargaMax(null);
+        camionBeans.setCodGpsGoogle(null);
         camionBeans.setObservaciones(null);
         
     }
@@ -139,5 +139,22 @@ public class AgregarCamion {
 
     public void setCamiones(List<Camion> camiones) {
         this.camiones = camiones;
-    }       
+    }   
+
+    public CamionBeans getCamionBeans() {
+        return camionBeans;
+    }
+
+    public void setCamionBeans(CamionBeans camionBeans) {
+        this.camionBeans = camionBeans;
+    }
+
+    public String getModeloSeleccionado() {
+        return modeloSeleccionado;
+    }
+
+    public void setModeloSeleccionado(String modeloSeleccionado) {
+        this.modeloSeleccionado = modeloSeleccionado;
+    }
+    
 }

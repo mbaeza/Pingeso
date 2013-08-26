@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+        <!--Agregar un camion, este es el formulario-->
+        <ui:composition template="./Base.xhtml">
+            <ui:define name="content">
+                <p:fieldset legend="Monitoreo de camiones" style="text-align: center">              
+          
+                    <div style="border-radius: 5px; width: 702px;height: 500px; margin: 0 auto; background-color: #BBB9B9; box-shadow: 0 0 10px black; padding: 2px;">                      
+                        <iframe id="glympser" width="702" height="500" src="//glympse.com/ext/@PK8231" scrolling="no" marginheight="0px" marginwidth="0px" frameborder="0"></iframe>
+                    </div>
+           
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
