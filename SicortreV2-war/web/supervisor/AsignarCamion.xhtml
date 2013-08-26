@@ -72,10 +72,10 @@
                                 
                                 <h:outputText value="Camion: " />  
                                 <p:selectOneMenu value="#{asignarConductorCamion.camion}">  
-                                    <f:selectItems value="#{camionBean.camiones}" var="camion" itemLabel="#{camion.patente}" itemValue="#{camion.id}"/>  
+                                    <f:selectItems value="#{asignarConductorCamion.camiones}" var="camion" itemLabel="#{camion.patente}" itemValue="#{camion.id}"/>  
                                     </p:selectOneMenu> 
                                 <f:facet name="footer" >
-                                    <p:commandButton icon="ui-icon-check" value="Aceptar" action="#{asignarConductorCamion.asignarCamion()}" actionListener="#{conductorBean.confirmacionCambiarEstado(actionEvent)}" update=":tablaGigante" oncomplete="mensajeConfirmacion.hide()" ajax="true" />
+                                    <p:commandButton icon="ui-icon-check" value="Aceptar" action="#{asignarConductorCamion.asignarCamion()}" actionListener="#{asignarConductorCamion.confirmacionAgregar(actionEvent)}" update=":tablaGigante" oncomplete="mensajeConfirmacion.hide()" ajax="true" />
                                 </f:facet>
                                 
                                 

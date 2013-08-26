@@ -7,6 +7,7 @@ package managedBean;
 import entitiesClass.AsignacionConductorCamion;
 import entitiesClass.Camion;
 import entitiesClass.Conductor;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +15,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import sessionBeans.AsignacionConductorCamionFacadeLocal;
 import sessionBeans.CamionFacadeLocal;
 import sessionBeans.ConductorFacadeLocal;
@@ -44,6 +47,7 @@ public class AsignarConductorCamion {
     private String segundo_apellido;
     private String camion;
     private List<Conductor> conductores;
+    private List<Camion> camiones;
     private Conductor conductorSeleccionado;
     private Conductor conductorSeleccionadoCamEst;
     private Camion camionSeleccionado;
@@ -55,10 +59,19 @@ public class AsignarConductorCamion {
     public void init(){
         conductores= new ArrayList<Conductor>();
         conductores=conductorFacade.findAll();
+        camiones = camionFacade.findAll();
     }
 
     public AsignacionConductorCamionFacadeLocal getAsignacionConductorCamionFacade() {
         return asignacionConductorCamionFacade;
+    }
+
+    public List<Camion> getCamiones() {
+        return camiones;
+    }
+
+    public void setCamiones(List<Camion> camiones) {
+        this.camiones = camiones;
     }
 
     public void setAsignacionConductorCamionFacade(AsignacionConductorCamionFacadeLocal asignacionConductorCamionFacade) {
@@ -202,5 +215,10 @@ public class AsignarConductorCamion {
         asignacion.setEstado("Activo");
         asignacionConductorCamionFacade.create(asignacion);
     }
+    
+    public void confirmacionAgregar(ActionEvent actionEvent){  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Agregación realizada",  "Se ha agregado una asignacion al sistema satisfactoriamente");    
+        FacesContext.getCurrentInstance().addMessage(null, message); 
+    } 
     
 }
