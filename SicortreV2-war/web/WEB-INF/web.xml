@@ -34,7 +34,7 @@
         <realm-name>Sicortre</realm-name>
         <form-login-config>
             <form-login-page>/faces/InicioSesión.xhtml</form-login-page>
-            <form-error-page>/faces/InicioSesión.xhtml</form-error-page>
+            <form-error-page>/faces/InicioSesiónError.xhtml</form-error-page>
         </form-login-config>
     </login-config>
     <security-role>
