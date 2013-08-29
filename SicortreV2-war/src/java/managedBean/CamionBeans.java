@@ -7,7 +7,6 @@ package managedBean;
 import entitiesClass.Modelo;
 import java.io.Serializable;
 import javax.inject.Named;
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;

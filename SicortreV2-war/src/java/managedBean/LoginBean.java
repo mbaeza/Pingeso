@@ -4,15 +4,10 @@
  */
 package managedBean;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Named;
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -44,25 +39,17 @@ public class LoginBean implements Serializable{
         this.password = password;
     }
     
-    public void login () {
+    public String login () {
         FacesContext context = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = context.getExternalContext();
-        HttpServletRequest request = (HttpServletRequest)externalContext.getRequest();
-        
+        HttpServletRequest request = (HttpServletRequest)         
+            context.getExternalContext().getRequest();
         try {
-           // System.out.println("usuario logueado anteriormente: " + request.getRemoteUser());
           request.login(this.username, this.password);
-          
-          
-        } catch (ServletException e) {           
-          //context.addMessage(null, new FacesMessage("Login failed."));
-          return ;
+        } catch (ServletException e) {
+          context.addMessage(null, new FacesMessage("Login failed."));
+          return "InicioSesionError?faces-redirect=true";
         }
-        try {            
-            externalContext.redirect(externalContext.getRequestContextPath()+"/faces/supervisor/Monitorear.xhtml");
-        } catch (IOException ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        return "supervisor/Monitorear?faces-redirect=true";
     }
 
     public void logout() {
@@ -72,7 +59,6 @@ public class LoginBean implements Serializable{
       try {
         request.logout();
       } catch (ServletException e) {   
-        //context.addMessage(null, new FacesMessage("Logout failed."));
       }
     }
 }
