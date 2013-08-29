@@ -15,8 +15,9 @@
                 <h:form id="tablaGigante">          
                     <h:panelGrid style="margin: 0 auto; width: 800px; text-align: left" cellpadding="5">                                             
                         <f:facet name="header">
-                            <h:outputText value="1.- Seleccione un camión para ver su detalle."></h:outputText>
+                            <h:outputText value="1.- Seleccione un conductor para ver su detalle."></h:outputText>
                         </f:facet>
+                        <p:growl id="confirmacion" showDetail="true" life="2500" />  
                         <p:dataTable  id="tbl" var="conductor" value="#{asignarConductorCamion.conductores}" rowKey="#{conductor.rut}" paginator="true" rows="10" selection="#{asignarConductorCamion.conductorSeleccionadoCamEst}" >                                  
                                 
                                 <p:column selectionMode="single" style="width:2%" />  
@@ -75,7 +76,8 @@
                                     <f:selectItems value="#{asignarConductorCamion.camiones}" var="camion" itemLabel="#{camion.patente}" itemValue="#{camion.id}"/>  
                                     </p:selectOneMenu> 
                                 <f:facet name="footer" >
-                                    <p:commandButton icon="ui-icon-check" value="Aceptar" action="#{asignarConductorCamion.asignarCamion()}" actionListener="#{asignarConductorCamion.confirmacionAgregar(actionEvent)}" update=":tablaGigante" oncomplete="mensajeConfirmacion.hide()" ajax="true" />
+                                    <p:commandButton icon="ui-icon-check" value="Aceptar" action="#{asignarConductorCamion.asignarCamion()}" update=":tablaGigante" actionListener="#{asignarConductorCamion.confirmacionAgregar(actionEvent)}" ajax="true" />
+                                    
                                 </f:facet>
                                 
                                 

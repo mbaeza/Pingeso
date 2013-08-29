@@ -74,7 +74,7 @@
                     <p:commandButton style="margin-right: 10px" onclick="mensajeConfirmacion.show()" value="Agregar" icon="ui-icon-check" />    
                         <p:commandButton value="Borrar formulario" type="reset" icon="ui-icon-cancel" />
 
-                            <p:confirmDialog message="¿Está seguro que desea agregar un nuevo camion? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
+                        <p:confirmDialog message="¿Está seguro que desea agregar un nuevo camion? " header="Confirmación" showEffect="fade" hideEffect="explode" severity="alert" widgetVar="mensajeConfirmacion">
                             <p:commandButton value="Sí" action="#{agregarCamion.insertarCamion()}" actionListener="#{agregarCamion.confirmacionAgregar(actionEvent)}" update=":form" oncomplete="mensajeConfirmacion.hide()" ajax="true" />
                             <p:commandButton value="No" onclick="mensajeConfirmacion.hide();" type="button" /> 
                         </p:confirmDialog>
