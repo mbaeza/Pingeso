@@ -207,7 +207,7 @@ public class AsignarConductorCamion {
     }
     
     public void asignarCamion(){
-        asignacionConductorCamionFacade.cambiarEstado();
+        asignacionConductorCamionFacade.cambiarEstado(conductorSeleccionadoCamEst,camionFacade.BuscarPorID(Integer.parseInt(camion)));
         AsignacionConductorCamion asignacion =  new AsignacionConductorCamion();
         asignacion.setFecha(new Date());
         asignacion.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
