@@ -36,7 +36,9 @@
                                     <f:facet name="header">  
                                         <h:outputText value="Fecha" />  
                                     </f:facet>  
-                                    <h:outputText value="#{asignacion.fecha}" />  
+                                    <h:outputText value="#{asignacion.fecha}" >  
+                                        <f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+                                    </h:outputText>
                                 </p:column> 
                             
                                 <p:column>  
