@@ -35,33 +35,33 @@ public class ConductorBeans {
     public void validaNombre(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
         if (!strValue.matches("[a-zA-Z[ x0Bf ]]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de nombre incorrecto"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en nombres ingresado","Formato de nombre incorrecto"));
         }
         
         if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Nombres"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en nombres ingresados","Falta ingresar Nombres"));
         }
     }
     
     public void validaPrimerApellido(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
         if (!strValue.matches("[a-zA-Z]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de primer apellido incorrecto"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error en primer apellido ingresado","Formato de primer apellido incorrecto"));
         }
         
         if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Primer apellido"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en primer apellido ingresado","Falta ingresar Primer apellido"));
         }
     }
     
     public void validaSegundoApellido(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
         if (!strValue.matches("[a-zA-Z]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de segundo apellido incorrecto"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en segundo apellido ingresado","Formato de segundo apellido incorrecto"));
         }
         
         if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Segundo apellido"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en segundo apellido ingresado","Falta ingresar Segundo apellido"));
         }
     }
     
@@ -81,15 +81,15 @@ public class ConductorBeans {
         
         String strValue = String.valueOf(o);
         if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de segundo apellido incorrecto"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en RUT ingresado","Formato de segundo apellido incorrecto"));
         }
         
         if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar RUT"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en RUT ingresado","Falta ingresar RUT"));
         }
         
         if(!rutCorrecto(strValue)){
-            throw new ValidatorException(new FacesMessage("RUT ingresado incorrecto"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en RUT ingresado","RUT ingresado incorrecto"));
         }
         
     }
@@ -97,32 +97,36 @@ public class ConductorBeans {
     public void validaFechaNacimiento(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
         if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Fecha de nacimiento"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en fecha ingresada","Falta ingresar Fecha de nacimiento"));
+        }
+        String[] split=strValue.split("/");
+        if(Integer.parseInt(split[2])>2013 || Integer.parseInt(split[2])<1910){
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en fecha ingresada","Fecha ingresada no valida"));
         }
     }
     
     public void validaDireccion(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
         if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Direccion"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en direccion ingresada","Falta ingresar Direccion"));
         }
     }
     
     public void validaMail(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
         if (!strValue.matches(".+@.+\\.[a-z]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de correo incorrecto"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en correo ingresado","Formato de correo incorrecto"));
         }
         
         if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Correo"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en correo ingresado","Falta ingresar Correo"));
         }
     }
     
     public void validaTelefono(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
         if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Telefono"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en telefono ingresado","Falta ingresar Telefono"));
         }
     }
 

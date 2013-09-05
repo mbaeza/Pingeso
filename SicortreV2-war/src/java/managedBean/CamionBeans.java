@@ -37,7 +37,7 @@ public class CamionBeans implements Serializable{
      public void validaPatente(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
         if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Patente"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en patente ingresada","Falta ingresar Patente"));
         }
     }
     
@@ -45,47 +45,47 @@ public class CamionBeans implements Serializable{
         String strValue = String.valueOf(o);
 
         if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Fecha de compra"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en fecha de compra ingresada","Falta ingresar Fecha de compra"));
         }
     }
     
     public void validaKilometraje(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
         if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de Kilometraje incorrecto"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en kilometraje ingresado","Formato de Kilometraje incorrecto"));
         }
         if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Kilometraje"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en kilometraje ingresado","Falta ingresar Kilometraje"));
         }
     }
     
     public void validaMotor(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
         if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de Motor incorrecto"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en motor ingresado","Formato de Motor incorrecto"));
         }
         if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Motor"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en motor ingresado","Falta ingresar Motor"));
         }
     }
     
     public void validaCargaMaxima(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
         if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de Carga maxima incorrecto"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en carga maxima ingresada","Formato de Carga maxima incorrecto"));
         }
         if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Carga maxima"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en carga maxima ingresada","Falta ingresar Carga maxima"));
         }
     }
     
     public void validaCodigoGPS(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
         if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Formato de Codigo GPS incorrecto"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en codigo GPS ingresado","Formato de Codigo GPS incorrecto"));
         }
         if (strValue.matches("")) {
-            throw new ValidatorException(new FacesMessage("Falta ingresar Codigo GPS"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en codigo GPS ingresado","Falta ingresar Codigo GPS"));
         }
     }
 
