@@ -64,7 +64,7 @@ public class CamionBeans implements Serializable{
     
     public void validaKilometraje(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
-        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
+        if (!strValue.matches("[0-9]+[.]?[0-9]+") && !strValue.matches("")) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en kilometraje ingresado","Formato de Kilometraje incorrecto"));
         }
         if (strValue.matches("")) {
