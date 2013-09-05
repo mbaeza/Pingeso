@@ -58,10 +58,13 @@ public class ControlSalidaCamion {
     public void ingresarControl(){
         
         try {
+            String[] split=controlBeans.getFecha().split("/");
+            String aux="";
+            aux+=split[2]+"-"+split[1]+"-"+split[0];
             Control control = new Control();
             
             SimpleDateFormat formato_fecha = new SimpleDateFormat("yyyy-MM-dd");
-            Date fecha_con_formato = formato_fecha.parse(controlBeans.getFecha());
+            Date fecha_con_formato = formato_fecha.parse(aux);
             control.setFecha(fecha_con_formato);
             
             SimpleDateFormat formato_hora = new SimpleDateFormat("hh:mm:ss");

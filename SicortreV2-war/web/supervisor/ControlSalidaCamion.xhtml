@@ -36,7 +36,7 @@
                             <f:facet name="header">
                                 <h:outputText value="2.- Complete el formulario para realizar el control de salida."></h:outputText></f:facet>
                             <h:outputText value="Patente camión: " />
-                            <p:inputText id="patente" required="true" disabled="true" value="#{controlBeans.patente}">
+                            <p:inputText id="patente" validator="#{controlBeans.validaPatente}" disabled="true" value="#{controlBeans.patente}">
                             </p:inputText>
                             
                             <h:outputText value="Nombre(s) conductor: " />
@@ -48,12 +48,12 @@
                             </p:inputText>
                         
                             <h:outputText value="(*) Fecha control: " />
-                            <p:inputText id="fecha" required="true" value="#{controlBeans.fecha}">
-                                <p:watermark for="fecha" value="1990-10-22" />                  
-                            </p:inputText>   
+                            <p:inputMask id="fecha" validator="#{controlBeans.validaFecha}" value="#{controlBeans.fecha}" mask="99/99/9999">
+                                <p:watermark for="fecha" value="22/10/1990" />                  
+                            </p:inputMask>   
                             
                             <h:outputText value="(*) Hora salida: " />
-                            <p:inputMask id="hora" required="true" value="#{controlBeans.horaSalida}" mask="99:99:99">
+                            <p:inputMask id="hora" validator="#{controlBeans.validaHora}" value="#{controlBeans.horaSalida}" mask="99:99:99">
                                 <p:watermark for="hora" value="15:00:00 hrs" />
                             </p:inputMask> 
                             
