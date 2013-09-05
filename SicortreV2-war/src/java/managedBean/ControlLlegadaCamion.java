@@ -79,9 +79,15 @@ public class ControlLlegadaCamion {
     
     public void onRowSelect(SelectEvent event) {   
 
+       SimpleDateFormat formateador1 = new SimpleDateFormat("dd/MM/yyyy");
+       String aux1= formateador1.format(camionSeleccionado.getFecha());
+       
+       SimpleDateFormat formateador2 = new SimpleDateFormat("h:mm a");
+       String aux2= formateador2.format(camionSeleccionado.getHoraSalida());
+       
        controlBeans.setPatente(camionSeleccionado.getIdCamion().getPatente());
-       controlBeans.setHoraSalida(camionSeleccionado.getHoraSalida().toString());
-       controlBeans.setFecha(camionSeleccionado.getFecha().toString());
+       controlBeans.setHoraSalida(aux2);
+       controlBeans.setFecha(aux1);
     
     } 
     

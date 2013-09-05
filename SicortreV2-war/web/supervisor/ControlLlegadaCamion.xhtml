@@ -34,21 +34,27 @@
                                     <f:facet name="header">  
                                         <h:outputText value="Hora salida" />  
                                     </f:facet>    
-                                    <h:outputText value="#{camion.horaSalida.hours}:#{camion.horaSalida.minutes}" />                                      
+                                    <h:outputText value="#{camion.horaSalida}">  
+                                        <f:convertDateTime  pattern="h:mm a" />
+                                    </h:outputText>
                                 </p:column>
                                 
                                 <p:column>  
                                     <f:facet name="header">  
                                         <h:outputText value="Fecha" />  
                                     </f:facet>    
-                                    <h:outputText value="Dia:#{camion.fecha.day}, Mes:#{camion.fecha.month}" />                                      
+                                    <h:outputText value="#{camion.fecha}">  
+                                        <f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+                                    </h:outputText>   
                                 </p:column>
                                 
                                 <p:column>  
                                     <f:facet name="header">  
                                         <h:outputText value="Hora llegada" />  
                                     </f:facet>    
-                                    <h:outputText value="#{camion.horaLlegada.hours}:#{camion.horaLlegada.minutes}" />                                  
+                                    <h:outputText value="#{camion.horaLlegada}"> 
+                                        <f:convertDateTime  pattern="h:mm a" />
+                                    </h:outputText>
                                 </p:column>
                                                                 
                             </p:dataTable>                      
@@ -62,7 +68,7 @@
                             </p:inputText>                                                       
                         
                             <h:outputText value="Fecha control: " />
-                            <p:inputText id="fecha" disabled="true" required="true" value="#{controlBeans.fecha}">                                
+                            <p:inputText id="fecha" disabled="true" required="true" value="#{controlBeans.fecha}"> 
                             </p:inputText>   
                             
                             <h:outputText value="Hora salida: " />
