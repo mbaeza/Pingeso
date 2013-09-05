@@ -35,7 +35,7 @@
                                         <h:outputText value="Hora salida" />  
                                     </f:facet>    
                                     <h:outputText value="#{camion.horaSalida}">  
-                                        <f:convertDateTime  pattern="h:mm a" />
+                                        <f:convertDateTime type="time" pattern="h:mm a" />
                                     </h:outputText>
                                 </p:column>
                                 
@@ -53,7 +53,7 @@
                                         <h:outputText value="Hora llegada" />  
                                     </f:facet>    
                                     <h:outputText value="#{camion.horaLlegada}"> 
-                                        <f:convertDateTime  pattern="h:mm a" />
+                                        <f:convertDateTime  pattern="hh:mm a" />
                                     </h:outputText>
                                 </p:column>
                                                                 
@@ -64,7 +64,7 @@
                             <f:facet name="header">
                                 <h:outputText value="2.- Complete el formulario para realizar el control de llegada."></h:outputText></f:facet>
                             <h:outputText value="Patente camión: " />
-                            <p:inputText id="patente" required="true"  value="#{controlBeans.patente}">
+                            <p:inputText id="patente" disabled="true" required="true"  value="#{controlBeans.patente}">
                             </p:inputText>                                                       
                         
                             <h:outputText value="Fecha control: " />
@@ -76,12 +76,12 @@
                             </p:inputText>
                             
                             <h:outputText value="(*) Hora llegada: " />
-                            <p:inputMask id="hora_llegada" required="true" value="#{controlBeans.horaEntrada}" mask="99:99:99">
+                            <p:inputMask id="hora_llegada" validator="#{controlBeans.validaHoraLlegada}" required="true" value="#{controlBeans.horaEntrada}" mask="99:99:99">
                                 <p:watermark for="hora_llegada" value="15:00:00" />
                             </p:inputMask>
                             
                             <h:outputText value="(*) Cantidad basura: " />
-                            <p:inputText id="basura" required="true" value="#{controlLlegadaCamion.cantidadBasura}">
+                            <p:inputText id="basura" validator="#{controlBeans.validaCantidadBasura}" required="true" value="#{controlLlegadaCamion.cantidadBasura}">
                                 <p:watermark for="basura" value="1500 kgs" />
                             </p:inputText>       
                     

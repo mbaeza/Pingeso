@@ -89,7 +89,7 @@ public class ControlSalidaCamion {
     
     public void onRowSelect(SelectEvent event) {         
        controlBeans.setConductorNombres(camionSeleccionado.getIdConductor().getNombres());
-       controlBeans.setConductorApellidos(camionSeleccionado.getIdConductor().getPrimerApellido() + camionSeleccionado.getIdConductor().getSegundoApellido());
+       controlBeans.setConductorApellidos(camionSeleccionado.getIdConductor().getPrimerApellido() +" "+ camionSeleccionado.getIdConductor().getSegundoApellido());
        controlBeans.setPatente(camionSeleccionado.getIdCamion().getPatente());
     } 
     

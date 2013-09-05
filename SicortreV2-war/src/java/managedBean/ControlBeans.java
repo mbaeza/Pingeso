@@ -53,11 +53,33 @@ public class ControlBeans {
         }
     }
     
+    public void validaHoraLlegada(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en hora de llegada ingresada","Falta ingresar hora de llegada"));
+        }
+        String[] split=strValue.split(":");
+        if(Integer.parseInt(split[2])>59 || Integer.parseInt(split[1])>59 || Integer.parseInt(split[0])>23){
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en hora de llegada ingresada","Hora de llegada ingresada no valida"));
+        }
+    }
+    
     public void validaPatente(FacesContext fc, UIComponent uic, Object o) {
         String strValue = String.valueOf(o);
 
         if (strValue.matches("")) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en patente seleccionada","No se ha seleccionado un camion"));
+        }
+    }
+    
+    public void validaCantidadBasura(FacesContext fc, UIComponent uic, Object o) {
+        String strValue = String.valueOf(o);
+        if (!strValue.matches("[0-9]+") && !strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en cantidad de basura ingresada","Formato de cantidad de basura incorrecto"));
+        }
+        if (strValue.matches("")) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en cantidad de basura ingresada","No se ha ingresado la cantidad de basura"));
         }
     }
     
