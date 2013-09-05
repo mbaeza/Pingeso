@@ -213,7 +213,7 @@ public class AsignarConductorCamion {
         asignacion.setIdCamion(camionFacade.BuscarPorID(Integer.parseInt(camion)));
         asignacion.setIdConductor(conductorSeleccionadoCamEst);
         asignacion.setEstado("Activo");
-        asignacion.setIdAsignar(25);
+        //asignacion.setIdAsignar(25);
         asignacionConductorCamionFacade.edit(asignacion);
     }
     
