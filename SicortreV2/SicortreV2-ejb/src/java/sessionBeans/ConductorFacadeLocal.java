@@ -14,6 +14,8 @@ import javax.ejb.Local;
  */
 @Local
 public interface ConductorFacadeLocal {
+    
+    boolean ConductorExiste(int rut);
 
     void create(Conductor conductor);
 

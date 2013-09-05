@@ -15,6 +15,8 @@ import javax.ejb.Local;
 @Local
 public interface CamionFacadeLocal {
 
+    boolean CamionExiste(String patente);
+    
     void create(Camion camion);
 
     void edit(Camion camion);

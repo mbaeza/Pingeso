@@ -4,12 +4,14 @@
  */
 package managedBean;
 
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
+import sessionBeans.ConductorFacadeLocal;
 
 /**
  *
@@ -18,6 +20,8 @@ import javax.faces.validator.ValidatorException;
 @Named(value = "conductorBeans")
 @RequestScoped
 public class ConductorBeans {
+    @EJB
+    private ConductorFacadeLocal conductorFacade;
 
     private String rut;    
     private String fechaNacimiento;
@@ -90,6 +94,9 @@ public class ConductorBeans {
         
         if(!rutCorrecto(strValue)){
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en RUT ingresado","RUT ingresado incorrecto"));
+        }
+        if(conductorFacade.ConductorExiste(Integer.parseInt(strValue))){
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en RUT ingresado","Ya existe un conductor con este RUT"));
         }
         
     }

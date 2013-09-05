@@ -6,12 +6,14 @@ package managedBean;
 
 import entitiesClass.Modelo;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
+import sessionBeans.CamionFacadeLocal;
 
 /**
  *
@@ -20,6 +22,8 @@ import javax.faces.validator.ValidatorException;
 @Named(value = "camionBeans")
 @RequestScoped
 public class CamionBeans implements Serializable{
+    @EJB
+    private CamionFacadeLocal camionFacade;
     
 
     private String patente;
@@ -31,6 +35,8 @@ public class CamionBeans implements Serializable{
     private String observaciones;  
     private Modelo modelo;    
 
+    
+    
     public CamionBeans(){
     }
     
@@ -38,6 +44,9 @@ public class CamionBeans implements Serializable{
         String strValue = String.valueOf(o);
         if (strValue.matches("")) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en patente ingresada","Falta ingresar Patente"));
+        }
+        if (camionFacade.CamionExiste(strValue)){
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en patente ingresada","Ya existe un camion con esta patente"));
         }
     }
     

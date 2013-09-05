@@ -43,4 +43,18 @@ public class CamionFacade extends AbstractFacade<Camion> implements CamionFacade
         return (Camion)query.getResultList().get(0);
     }
     
+    @Override
+    public boolean CamionExiste(String patente) {
+        Query query;
+        query = em.createNamedQuery("Camion.findAll");
+        List<Camion> camiones =  query.getResultList();
+        
+        for(Camion camionEleg : camiones){
+            if(camionEleg.getPatente().equals(patente) ){
+                return true;
+            }            
+        }
+        return false;
+    }
+    
 }

@@ -5,9 +5,11 @@
 package sessionBeans;
 
 import entitiesClass.Conductor;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -25,6 +27,20 @@ public class ConductorFacade extends AbstractFacade<Conductor> implements Conduc
 
     public ConductorFacade() {
         super(Conductor.class);
+    }
+    
+    @Override
+    public boolean ConductorExiste(int rut) {
+        Query query;
+        query = em.createNamedQuery("Conductor.findAll");
+        List<Conductor> conductores =  query.getResultList();
+        
+        for(Conductor conductorEleg : conductores){
+            if(conductorEleg.getRut()==rut ){
+                return true;
+            }            
+        }
+        return false;
     }
     
 }
