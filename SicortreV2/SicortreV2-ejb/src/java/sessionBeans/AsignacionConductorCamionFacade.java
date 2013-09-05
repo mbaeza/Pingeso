@@ -6,8 +6,10 @@ package sessionBeans;
 
 import entitiesClass.AsignacionConductorCamion;
 import entitiesClass.Camion;
+import entitiesClass.Conductor;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -66,13 +68,16 @@ public class AsignacionConductorCamionFacade extends AbstractFacade<AsignacionCo
     }
 
     @Override
-    public void cambiarEstado() {
+    public void cambiarEstado(Conductor conductor, Camion camion) {
         List<AsignacionConductorCamion> asignaciones_Antiguas = findAll();
         
         for(AsignacionConductorCamion AsignacionElegida : asignaciones_Antiguas){
-            AsignacionElegida.setEstado("Inactivo");
-            edit(AsignacionElegida);
-        }        
+            if(AsignacionElegida.getIdConductor().getRut().equals(conductor.getRut()) || AsignacionElegida.getIdCamion().getId().equals(camion.getId())){
+                AsignacionElegida.setEstado("Inactivo");
+                edit(AsignacionElegida);
+            }
+        }          
+        
     }
 
     @Override
