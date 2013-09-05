@@ -100,7 +100,7 @@ public class ConductorBeans {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en fecha ingresada","Falta ingresar Fecha de nacimiento"));
         }
         String[] split=strValue.split("/");
-        if(Integer.parseInt(split[2])>2013 || Integer.parseInt(split[2])<1910){
+        if(Integer.parseInt(split[2])>2013 || Integer.parseInt(split[2])<1910 || Integer.parseInt(split[1])>12 || Integer.parseInt(split[0])>31){
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error en fecha ingresada","Fecha ingresada no valida"));
         }
     }
